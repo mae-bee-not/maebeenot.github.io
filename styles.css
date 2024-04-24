@@ -15,7 +15,7 @@ body {
 
 #ascii-art {
   color: #ff93f4;
-  font-weight: bolder;
+  font-weight: 900; /* Maximum boldness */
   text-align: center;
   white-space: pre;
   font-size: 7px;
@@ -52,7 +52,13 @@ body {
   border-radius: 50%;
 }
 hr {
-  border-width: 3px;
-  border-radius: 3px;
-  border-color: #00f7ff
+  border: none;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    #ffffff,
+    #ffffff 10px,
+    transparent 10px,
+    transparent 20px
+  );
 }
