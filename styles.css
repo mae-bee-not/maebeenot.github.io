@@ -3,8 +3,12 @@ body {
   background-image: url('https://64.media.tumblr.com/90d14bc3c54a3daabd04bc8e61cc295a/tumblr_inline_n258ovpRe81qhwjx8.gif');
   background-size: contain;
   background-position: center;
-  cursor: url('https://i.imgur.com/FJeXKRQ.png'), auto;
 }
+
+.bee-area {
+  cursor: none;
+}
+
 
 #title {
   color: purple;
@@ -62,3 +66,6 @@ hr {
     transparent 20px
   );
 }
+
+
+
