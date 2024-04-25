@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   beeCursor.style.zIndex = '1000'; // Keep it on top
   beeCursor.style.width = '57px'; // Width of the cursor image
   beeCursor.style.height = '53px'; // Height of the cursor image
-  beeCursor.style.backgroundImage = "url('https://dl.dropboxusercontent.com/scl/fi/2xd2ob70ognvy66ouwjje/minecraft_bee57x53.png?rlkey=0rcgivrjg5xitafqikmknm3eh&st=awup5z4v&dl=1')";
+  beeCursor.style.backgroundImage = "url('/coolbugs/minecraft_bee57x53.png')";
   beeCursor.style.backgroundSize = 'contain';
   document.body.appendChild(beeCursor);
 

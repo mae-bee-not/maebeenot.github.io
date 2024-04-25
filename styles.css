@@ -1,6 +1,6 @@
 body {
   background-color: #000000;
-  background-image: url('https://dl.dropboxusercontent.com/scl/fi/dkmk1iwcd48m8djs9trzy/sparkling_background.gif?rlkey=fq2jnd7xrtgxc8vbrzkpyrgg3&st=raqz4bud&dl=1');
+   background-image: url('/coolbugs/sparkling_background.gif');
   background-size: contain;
   background-position: center;
 }
