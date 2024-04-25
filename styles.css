@@ -1,134 +1,181 @@
+
 body {
-  background-color: #000000;
-   background-image: url('/coolbugs/sparkling_background.gif');
-  background-size: contain;
-  background-position: center;
+    background-color: #000000;
+    background-image: url("/coolbugs/sparkling_background.gif");
+    background-size: contain;
+    background-position: center;
+    font-family: 'Jersey 15', sans-serif; /* Apply the font globally */
 }
 
 .bee-area {
-  cursor: none;
+    cursor: none;
 }
 
-
 #title {
-  color: purple;
-  text-align: center;
-  text-shadow: 2px 2px 5px rgba(128, 0, 128, 0.7);
-  font-size: 26px;
+    color: purple;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(128, 0, 128, 0.7);
+    font-size: 26px;
 }
 
 #ascii-art {
-  color: #ff93f4;
-  font-weight: 900; /* Maximum boldness */
-  text-align: center;
-  white-space: pre;
-  font-size: 7px;
+    color: #ff93f4;
+    font-weight: 900; /* Maximum boldness */
+    text-align: center;
+    white-space: pre;
+    font-size: 7px;
+    font-family: 'Lucida Console', monospace; /* or any other font that works well with ASCII art */
 }
 
+#title, .navigation a, p, .introduction-area, .the-glade-container, .server-info {
+    font-family: 'Jersey 15', sans-serif;
+}
+
+
 #cat-explosion {
-  display: block;
-  width: 134px;
-  height: 53px;
-  margin: 9px auto;
-  background-color: #ff72f4;
-  color: #7a0060;
-  text-shadow: 2px 2px 5px #ffb2ffb3;
-  border: none;
-  border-radius: 29px;
-  font-size: 29px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+    display: block;
+    width: 134px;
+    height: 53px;
+    margin: 9px auto;
+    background-color: #ff72f4;
+    color: #7a0060;
+    text-shadow: 2px 2px 5px #ffb2ffb3;
+    border: none;
+    border-radius: 29px;
+    font-size: 29px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 #cat-explosion:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 #cat-explosion:active {
-  transform: translateY(10px);
+    transform: translateY(10px);
 }
 
 .dot {
-  position: absolute;
-  height: 10px;
-  width: 10px;
-  background: #ff002d;
-  border-radius: 50%;
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: #ff002d;
+    border-radius: 50%;
 }
 hr {
-  border: none;
-  height: 2px;
-  background: repeating-linear-gradient(
-    to right,
-    #ffffff,
-    #ffffff 10px,
-    transparent 10px,
-    transparent 20px
-  );
+    border: none;
+    height: 2px;
+    background: repeating-linear-gradient(
+        to right,
+        #ffffff,
+        #ffffff 10px,
+        transparent 10px,
+        transparent 20px
+    );
 }
 
-
 .introduction-area {
-  position: absolute; /* or 'fixed' if you want it to stay in place when scrolling */
-  left: 0;
-  top: 39%; /* Adjust this value as needed to position it right below the bee-area */
-  width: 65%; /* or any width you prefer */
-  padding: 41px; /* Add some padding around the text */
-  box-sizing: border-box; /* This ensures that padding is included in the width */
-  background-color: rgba(255, 255, 255, 0); /* Light background for the text */
-  color: #ff53c3; /* Dark text for readability */
-  font-family: Lucida Console; /* A simple, readable font */
-  overflow-y: auto; /* Allows for scrolling if the content is too long */
-  max-height: calc(150vh - 100%); /* Adjust height as necessary */
+    position: absolute; /* or 'fixed' if you want it to stay in place when scrolling */
+    left: 0;
+    top: 280px; /* Adjust this value as needed to position it right below the bee-area */
+    width: 500px; /* or any width you prefer */
+    padding: 40px; /* Add some padding around the text */
+    box-sizing: border-box; /* This ensures that padding is included in the width */
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0
+    ); /* Light background for the text */
+    color: #ff53c3; /* Dark text for readability */
+    font-family: Lucida Console; /* A simple, readable font */
+    overflow-y: auto; /* Allows for scrolling if the content is too long */
+    max-height: calc(400px); /* Adjust height as necessary */
+    font-size: 24px;
 }
 
 p {
-  margin: 0 0 20px; /* Adds spacing below paragraphs */
+    margin: 0 0 20px; /* Adds spacing below paragraphs */
 }
 
-
 .maeborder-area {
-  position: absolute; /* Use 'absolute' if you want the image to scroll with the page */
-  right: 0;
-  top: 80%; /* Adjust this value as needed */
-  transform: translateY(-50%); /* This will center the image vertically */
-  max-width: 40%; /* Ensures the image does not take more than half the screen width */
-  height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Use 'absolute' if you want the image to scroll with the page */
+    right: 0;
+    top: 80%; /* Adjust this value as needed */
+    transform: translateY(-50%); /* This will center the image vertically */
+    max-width: 40%; /* Ensures the image does not take more than half the screen width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .maeborder-area img {
-  width: 100%; /* Make image fill container */
-  height: auto; /* Maintain aspect ratio */
+    width: 100%; /* Make image fill container */
+    height: auto; /* Maintain aspect ratio */
 }
+
+
+
 
 
 .navigation {
-  text-align: center;
-  background-color: rgba(255, 154, 154, 0); /* Change the color to match your design */
-  padding: 10px 0; /* Adjust the padding to control the height */
-  border-bottom: 2px solid #fff; /* This creates the white line */
+    text-align: center;
+    background-color: rgba(
+        255,
+        154,
+        154,
+        0
+    ); /* Change the color to match your design */
+    padding: 10px 0; /* Adjust the padding to control the height */
+    border-bottom: 2px solid #fff; /* This creates the white line */
 }
 
 .navigation ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .navigation li {
-  display: inline; /* Display list items inline */
-  margin-right: 10px; /* Space between the items */
+    display: inline; /* Display list items inline */
+    margin-right: 10px; /* Space between the items */
 }
 
 .navigation a {
-  text-decoration: none;
-  color: #ffffff; /* Color of the text */
-  font-weight: bold;
+    text-decoration: none;
+    color: #ffffff; /* Color of the text */
+    font-weight: bold;
 }
 
 .navigation a:hover,
 .navigation a:focus {
-  color: #7a0060; /* Change color on hover/focus */
+    color: #7a0060; /* Change color on hover/focus */
 }
 
 
+
+.the-glade-container {
+  display: flex;
+  align-items: flex-start; /* Align items to the start of the flex container */
+  justify-content: space-between; /* Add space between the two child elements */
+  margin-top: 20px; /* Add space after the navbar */
+}
+
+.server-info {
+  width: calc(50% - 10px); /* Adjust width as needed, considering the gap between elements */
+  padding: 10px; /* Add padding inside the box */
+  border: 1px dotted fuchsia; /* Adjust border size and set border color */
+  color: #fff; /* Text color */
+  background-color: #234b34; /* Background color for the info box */
+  overflow: auto; /* Add scroll if content is too long */
+  margin-right: 20px; /* Space between the server-info and the dynmap */
+}
+
+.dynmap-area {
+  flex-grow: 1; /* Allow the dynmap area to grow */
+  text-align: right; /* Aligns the content to the right */
+}
+
+.dynmap-area iframe {
+  width: 100%; /* Make the iframe take the full width of its parent */
+  height: 600px; /* Set a fixed height */
+  border: 3px dotted fuchsia; /* Adjust border size and set border color */
+}
