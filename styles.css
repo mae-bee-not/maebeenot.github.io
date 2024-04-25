@@ -43,7 +43,7 @@ body {
     border: none;
     border-radius: 29px;
     font-size: 29px;
-    cursor: pointer;
+    cursor: none;
     transition: transform 0.3s ease;
 }
 
@@ -142,12 +142,14 @@ p {
 .navigation a {
     text-decoration: none;
     color: #ffffff; /* Color of the text */
-    font-weight: bold;
+    font-weight:  thin;
 }
 
 .navigation a:hover,
 .navigation a:focus {
     color: #7a0060; /* Change color on hover/focus */
+    cursor: pointer;
+    
 }
 
 
