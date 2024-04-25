@@ -30,7 +30,7 @@ body {
   width: 134px;
   height: 53px;
   margin: 9px auto;
-  background-color: #ff9a9a;
+  background-color: #ff72f4;
   color: #7a0060;
   text-shadow: 2px 2px 5px #ffb2ffb3;
   border: none;
@@ -69,21 +69,66 @@ hr {
 
 
 .introduction-area {
-  position: fixed; /* or 'fixed' if you want it to stay in place when scrolling */
-  right: 1;
-  top: 33%; /* Adjust this value as needed to position it right below the bee-area */
-  width: 41%; /* or any width you prefer */
+  position: absolute; /* or 'fixed' if you want it to stay in place when scrolling */
+  left: 0;
+  top: 39%; /* Adjust this value as needed to position it right below the bee-area */
+  width: 65%; /* or any width you prefer */
   padding: 41px; /* Add some padding around the text */
   box-sizing: border-box; /* This ensures that padding is included in the width */
-  background-color: rgba(240, 240, 240, 0); /* Light background for the text */
+  background-color: rgba(255, 255, 255, 0); /* Light background for the text */
   color: #ff53c3; /* Dark text for readability */
   font-family: Lucida Console; /* A simple, readable font */
   overflow-y: auto; /* Allows for scrolling if the content is too long */
-  max-height: calc(120vh - 100%); /* Adjust height as necessary */
+  max-height: calc(150vh - 100%); /* Adjust height as necessary */
 }
 
 p {
   margin: 0 0 20px; /* Adds spacing below paragraphs */
+}
+
+
+.maeborder-area {
+  position: absolute; /* Use 'absolute' if you want the image to scroll with the page */
+  right: 0;
+  top: 80%; /* Adjust this value as needed */
+  transform: translateY(-50%); /* This will center the image vertically */
+  max-width: 40%; /* Ensures the image does not take more than half the screen width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.maeborder-area img {
+  width: 100%; /* Make image fill container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+.navigation {
+  text-align: center;
+  background-color: rgba(255, 154, 154, 0); /* Change the color to match your design */
+  padding: 10px 0; /* Adjust the padding to control the height */
+  border-bottom: 2px solid #fff; /* This creates the white line */
+}
+
+.navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation li {
+  display: inline; /* Display list items inline */
+  margin-right: 10px; /* Space between the items */
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #ffffff; /* Color of the text */
+  font-weight: bold;
+}
+
+.navigation a:hover,
+.navigation a:focus {
+  color: #7a0060; /* Change color on hover/focus */
 }
 
 

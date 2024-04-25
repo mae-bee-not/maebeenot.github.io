@@ -4,6 +4,7 @@ document.getElementById('cat-explosion').onclick = function() {
   
   // Get the audio element and play the sound
   var audio = document.getElementById('catBOOM');
+  audio.currentTime = 0; 
   audio.play();
   
   // Optional: reset the button position after a delay
@@ -47,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let beeArea = document.querySelector('.bee-area');
     let rect = beeArea.getBoundingClientRect();
     if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
-      beeCursor.style.left = e.pageX - 28 + 'px'; // Adjust X coordinate to center the image
-      beeCursor.style.top = e.pageY - 26 + 'px'; // Adjust Y coordinate to center the image
+      beeCursor.style.left = e.pageX - 30 + 'px'; // Adjust X coordinate to center the image
+      beeCursor.style.top = e.pageY - 40 + 'px'; // Adjust Y coordinate to center the image
       beeCursor.style.display = 'block';
     } else {
       beeCursor.style.display = 'none'; // Hide custom cursor when not over bee-area
