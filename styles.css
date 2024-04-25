@@ -1,6 +1,6 @@
 body {
   background-color: #000000;
-  background-image: url('https://64.media.tumblr.com/90d14bc3c54a3daabd04bc8e61cc295a/tumblr_inline_n258ovpRe81qhwjx8.gif');
+  background-image: url('https://dl.dropboxusercontent.com/scl/fi/dkmk1iwcd48m8djs9trzy/sparkling_background.gif?rlkey=fq2jnd7xrtgxc8vbrzkpyrgg3&st=raqz4bud&dl=1');
   background-size: contain;
   background-position: center;
 }
@@ -67,5 +67,23 @@ hr {
   );
 }
 
+
+.introduction-area {
+  position: fixed; /* or 'fixed' if you want it to stay in place when scrolling */
+  right: 1;
+  top: 33%; /* Adjust this value as needed to position it right below the bee-area */
+  width: 41%; /* or any width you prefer */
+  padding: 41px; /* Add some padding around the text */
+  box-sizing: border-box; /* This ensures that padding is included in the width */
+  background-color: rgba(240, 240, 240, 0); /* Light background for the text */
+  color: #ff53c3; /* Dark text for readability */
+  font-family: Lucida Console; /* A simple, readable font */
+  overflow-y: auto; /* Allows for scrolling if the content is too long */
+  max-height: calc(120vh - 100%); /* Adjust height as necessary */
+}
+
+p {
+  margin: 0 0 20px; /* Adds spacing below paragraphs */
+}
 
 
