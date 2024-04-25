@@ -1,7 +1,7 @@
 body {
     background-color: #000000;
     background-image: url("/coolbugs/sparkling_background.gif");
-    background-size: 100px;
+    background-size: auto;
     background-position: center;
     font-family: "Jersey 15", sans-serif; /* Apply the font globally */
 }
