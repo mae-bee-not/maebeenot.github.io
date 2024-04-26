@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     beeCursor.style.zIndex = "1000"; // Keep it on top
     beeCursor.style.width = "57px"; // Width of the cursor image
     beeCursor.style.height = "53px"; // Height of the cursor image
-    beeCursor.style.backgroundImage = "url('/coolbugs/minecraft_bee57x53.png')";
+    beeCursor.style.backgroundImage = "url('/media/minecraft_bee57x53.png')";
     beeCursor.style.backgroundSize = "contain";
     document.body.appendChild(beeCursor);
 
