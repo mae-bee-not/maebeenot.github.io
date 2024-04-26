@@ -1,7 +1,8 @@
 body {
     background-color: #000000;
-    background-image: url("/coolbugs/sparkling_background.gif");
-    background-size: auto;
+    background-image: url("/media/sparkling_background.gif");
+    background-size: contain;
+    background-repeat: repeat;   
     background-position: center;
     font-family: "Jersey 15", sans-serif; /* Apply the font globally */
 }
@@ -172,6 +173,8 @@ p {
 .dynmap-area {
     flex-grow: 1; /* Allow the dynmap area to grow */
     text-align: right; /* Aligns the content to the right */
+    color: green;
+    font-size: 10px;
 }
 
 .dynmap-area iframe {
