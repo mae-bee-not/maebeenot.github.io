@@ -20,18 +20,29 @@
         <div class="bee-area">
             <h1 id="title">hi! i'm</h1>
             <pre id="ascii-art">
-    ,---.    ,---.   ____        .-''-.         _______       .-''-.      .-''-.        ,---.   .--.    ,-----.  ,---------.
-|    \  /    | .'  __ `.   .'_ _   \       \  ____  \   .'_ _   \   .'_ _   \       |    \  |  |  .'  .-,  '.\          \
-|  ,  \/  ,  |/   '  \  \ / ( ` )   '      | |    \ |  / ( ` )   ' / ( ` )   '      |  ,  \ |  | / ,-.|  \ _ \`--.  ,---'
+   ,---.    ,---.   ____        .-''-.         _______       .-''-.      .-''-.        ,---.   .--.    ,-----.  ,---------.
+   |    \  /    | .'  __ `.   .'_ _   \       \  ____  \   .'_ _   \   .'_ _   \       |    \  |  |  .'  .-,  '.\          \
+   |  ,  \/  ,  |/   '  \  \ / ( ` )   '      | |    \ |  / ( ` )   ' / ( ` )   '      |  ,  \ |  | / ,-.|  \ _ \`--.  ,---'
 |  |\_   /|  ||___|  /  |. (_ o _)  |      | |____/ / . (_ o _)  |. (_ o _)  |      |  |\_ \|  |;  \  '_ /  | :  |   \
 |  _( )_/ |  |   _.-`   ||  (_,_)___|      |   _ _ '. |  (_,_)___||  (_,_)___|      |  _( )_\  ||  _`,/ \ _/  |  :_ _:
 | (_ o _) |  |.'   _    |'  \   .---. _ _  |  ( ' )  \'  \   .---.'  \   .---. _ _  | (_ o _)  |: (  '\_/ \   ;  (_I_)
-|  (_,_)  |  ||  _( )_  | \  `-'    /( ` ) | (_{;}_) | \  `-'    / \  `-'    /( ` ) |  (_,_)\  | \ `"/  \  ) /  (_(=)_)
+ |  (_,_)  |  ||  _( )_  | \  `-'    /( ` ) | (_{;}_) | \  `-'    / \  `-'    /( ` ) |  (_,_)\  | \ `"/  \  ) /  (_(=)_)
 |  |      |  |\ (_ o _) /  \       /(_{;}_)|  (_,_)  /  \       /   \       /(_{;}_)|  |    |  |  '. \_/``".'    (_I_)
 '--'      '--' '.(_,_).'    `'-..-'  (_,_) /_______.'    `'-..-'     `'-..-'  (_,_) '--'    '--'    '-----'      '---'
             </pre>
-            <button id="cat-explosion">&#128165; &#128165; &#128165;</button>
+            <div class="button-container">
+            <button class="cat-explosion-pushable" role="button">
+                <span class="cat-explosion-shadow"></span>
+                <span class="cat-explosion-edge"></span>
+                <span class="cat-explosion-front text">
+                    &#128165; &#128165; &#128165;
+                </span>
+            </button>
+            </div>
+
+
             <audio id="catBOOM" src="/media/deltarune-explosion.mp3"></audio>
+
             <nav class="navigation">
                 <ul>
                     <li><a href="/index.html">home</a></li>
@@ -43,6 +54,8 @@
         </div>
     </header>
     <hr />
+    <hr />
+
     <div class="main-flex-container">
         <main class="content-area">
             <script src="script.js"></script>
@@ -69,7 +82,7 @@
     </div>
     <footer class="footer-area">
         <div class="gif-row-area">
-            <a href="chrome://restart" target="_blank">
+           <a href="chrome://restart" target="_blank">
                     <img
                         src="/media/not-secure-88x31.gif"
                         alt="clicking here kills you" />

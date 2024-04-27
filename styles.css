@@ -18,11 +18,13 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px 0; 
+    background-color: transparent;
 }
 
 .content-area {
     flex-grow: 1; 
     padding: 0 20px; 
+    margin-top: -150px;
 }
 
 .footer-area {
@@ -81,27 +83,6 @@ p,
     font-family: "Jersey 15", sans-serif;
 }
 
-#cat-explosion {
-    display: block;
-    width: 134px;
-    height: 53px;
-    margin: 9px auto;
-    background-color: #ff72f4;
-    color: #7a0060;
-    text-shadow: 2px 2px 5px #ffb2ffb3;
-    border: none;
-    border-radius: 29px;
-    font-size: 29px;
-    cursor: none;
-    transition: transform 0.3s ease;
-}
-
-#cat-explosion:hover {
-    opacity: 0.8;
-}
-
-#cat-explosion:active {
-    transform: translateY(10px);
 }
 
 .dot {
@@ -127,7 +108,6 @@ hr {
 }
 
 .introduction-area {
-    /* Remove position: absolute; and related positioning properties */
     min-width: 300px;
     min-height: 50px;
     padding: 0px;
@@ -240,4 +220,100 @@ p {
     margin-top: 10px;
     font-size: 1em;
     color: #ffffff;
+}
+
+.button-container {
+    text-align: center; 
+    padding-top: 0px;
+    background-color: transparent;
+}
+
+.cat-explosion-pushable {
+  margin: auto;
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.cat-explosion-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(330deg 100% 70% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.cat-explosion-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to right,
+    hsl(330deg 100% 70%) 0%,
+    hsl(330deg 100% 70%) 0%,
+    hsl(330deg 100% 70%) 0%
+  );
+}
+
+.cat-explosion-front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  background: hsl(330deg 100% 75%);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+@media (min-width: 768px) {
+  .cat-explosion-front {
+    font-size: 1.7rem;
+    padding: 12px 42px;
+  }
+}
+
+.cat-explosion-pushable:hover {
+  filter: brightness(110%);
+}
+
+.cat-explosion-pushable:hover .cat-explosion-front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.cat-explosion-pushable:active .cat-explosion-front {
+  transform: translateY(-15px);
+  transition: transform 34ms;
+}
+
+.cat-explosion-pushable:hover .cat-explosion-shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.cat-explosion-pushable:active .cat-explosion-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.cat-explosion-pushable:focus:not(:focus-visible) {
+  outline: none;
 }
