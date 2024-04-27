@@ -1,11 +1,56 @@
 body {
     background-color: #000000;
     background-image: url("/media/sparkling_background.gif");
-    background-size: contain;
-    background-repeat: repeat;   
+    background-size: auto;
+    background-repeat: repeat;
     background-position: center;
-    font-family: "Jersey 15", sans-serif; /* Apply the font globally */
+    font-family: "Jersey 15", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
+
+.main-flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; 
+}
+
+.content-area {
+    flex-grow: 1; 
+    padding: 0 20px; 
+}
+
+.footer-area {
+    border-top: 2px solid #fff; 
+    background: rgba(255, 255, 255, 0); 
+    text-align: center; 
+    width: 100%;
+}
+
+.gif-row-area {
+    text-align: center; 
+    padding: 10px 0; 
+    background: #000; 
+    max-width: 1000px;
+    margin: auto;
+}
+
+.gif-row a {
+    margin: 0 5px; 
+    display: inline-block; 
+    vertical-align: middle; 
+}
+
+.gif-row-area a img {
+    width: 88px; 
+    height: 31px; 
+}
+
 
 .bee-area {
     cursor: none;
@@ -20,11 +65,11 @@ body {
 
 #ascii-art {
     color: #ff93f4;
-    font-weight: 900; /* Maximum boldness */
+    font-weight: 900; /* max bold */
     text-align: center;
     white-space: pre;
     font-size: 7px;
-    font-family: "Lucida Console", monospace; /* or any other font that works well with ASCII art */
+    font-family: "Lucida Console", monospace;
 }
 
 #title,
@@ -73,47 +118,40 @@ hr {
         to right,
         #ffffff,
         #ffffff 10px,
-        transparent 10px,
-        transparent 20px
+        #000000 10px, 
+        #000000 20px  
     );
+    margin: 0;
+    margin-top: 10px; 
+    margin-bottom: 0px; 
 }
 
 .introduction-area {
-    position: absolute; /* or 'fixed' if you want it to stay in place when scrolling */
-    left: 0;
-    top: 280px; /* Adjust this value as needed to position it right below the bee-area */
-    width: 500px; /* or any width you prefer */
-    padding: 40px; /* Add some padding around the text */
-    box-sizing: border-box; /* This ensures that padding is included in the width */
-    background-color: rgba(
-        255,
-        255,
-        255,
-        0
-    ); /* Light background for the text */
-    color: #ff53c3; /* Dark text for readability */
-    font-family: Lucida Console; /* A simple, readable font */
-    overflow-y: auto; /* Allows for scrolling if the content is too long */
-    max-height: calc(400px); /* Adjust height as necessary */
+    /* Remove position: absolute; and related positioning properties */
+    min-width: 300px;
+    min-height: 50px;
+    padding: 0px;
+    box-sizing: border-box;
+    color: #ff53c3;
+    font-family: "Lucida Console", monospace;
     font-size: 24px;
 }
 
+
 p {
-    margin: 0 0 20px; /* Adds spacing below paragraphs */
+    margin: 0 0 25px; /* spaces between paragraph intro-area */ 
 }
 
 .maeborder-area {
-    position: absolute; /* Use 'absolute' if you want the image to scroll with the page */
-    right: 0;
-    top: 80%; /* Adjust this value as needed */
-    transform: translateY(-50%); /* This will center the image vertically */
-    max-width: 40%; /* Ensures the image does not take more than half the screen width */
-    height: auto; /* Maintain aspect ratio */
+    flex: 0 0 35%; 
+    max-width: 350px; 
+    order: 2; 
+    padding: 20px; 
 }
 
 .maeborder-area img {
-    width: 100%; /* Make image fill container */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%; 
+    height: auto; 
 }
 
 .navigation {
@@ -123,62 +161,83 @@ p {
         154,
         154,
         0
-    ); /* Change the color to match your design */
-    padding: 10px 0; /* Adjust the padding to control the height */
-    border-bottom: 2px solid #fff; /* This creates the white line */
+    ); 
+    padding: 10px 0; 
+    border-bottom: 2px solid #fff; 
 }
 
 .navigation ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    
 }
 
 .navigation li {
-    display: inline; /* Display list items inline */
-    margin-right: 10px; /* Space between the items */
+    display: inline; 
+    margin-right: 10px; 
 }
 
 .navigation a {
     text-decoration: none;
-    color: #ffffff; /* Color of the text */
+    color: #ffffff; 
     font-weight: thin;
 }
 
+.navigation ul li {
+    display: inline; 
+    margin-right: 10px; 
+    position: relative; 
+}
+
+.navigation ul li:not(:last-child):after {
+    content: '|'; /* separator */
+    color: #fff;
+    margin-left: 10px; 
+}
+
+
 .navigation a:hover,
 .navigation a:focus {
-    color: #7a0060; /* Change color on hover/focus */
-    cursor: pointer;
+    color: #7a0060; 
+    cursor: pointer; 
 }
 
 .the-glade-container {
     display: flex;
-    align-items: flex-start; /* Align items to the start of the flex container */
-    justify-content: space-between; /* Add space between the two child elements */
-    margin-top: 20px; /* Add space after the navbar */
+    align-items: flex-start; 
+    justify-content: space-between; 
+    margin-top: 20px; 
 }
 
 .server-info {
     width: calc(
         50% - 10px
-    ); /* Adjust width as needed, considering the gap between elements */
-    padding: 10px; /* Add padding inside the box */
-    border: 1px dotted fuchsia; /* Adjust border size and set border color */
-    color: #fff; /* Text color */
-    background-color: #234b34; /* Background color for the info box */
-    overflow: auto; /* Add scroll if content is too long */
-    margin-right: 20px; /* Space between the server-info and the dynmap */
+    ); 
+    padding: 10px; 
+    border: 1px dotted fuchsia; 
+    color: #fff; 
+    background-color: #234b34; 
+    overflow: auto; 
+    margin-right: 20px; 
 }
 
 .dynmap-area {
-    flex-grow: 1; /* Allow the dynmap area to grow */
-    text-align: right; /* Aligns the content to the right */
+    flex-grow: 1; 
+    text-align: right; 
     color: green;
     font-size: 10px;
 }
 
 .dynmap-area iframe {
-    width: 100%; /* Make the iframe take the full width of its parent */
-    height: 600px; /* Set a fixed height */
-    border: 3px dotted fuchsia; /* Adjust border size and set border color */
+    width: 100%; 
+    height: 600px; 
+    border: 3px dotted fuchsia; 
+}
+
+.jo\.llei-credit {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1em;
+    color: #ffffff;
 }
