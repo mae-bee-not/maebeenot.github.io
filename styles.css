@@ -11,12 +11,22 @@ body {
     margin: 0;
 }
 
-.main-flex-container {
+.top-flex-container {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    padding: 20px 0; 
+    background-color: transparent;
+}
+
+.middle-flex-container {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 20px 0; 
     background-color: transparent;
 }
@@ -125,7 +135,6 @@ p {
 .maeborder-area {
     flex: 0 0 35%; 
     max-width: 350px; 
-    order: 2; 
     padding: 20px; 
 }
 
@@ -316,4 +325,8 @@ p {
 
 .cat-explosion-pushable:focus:not(:focus-visible) {
   outline: none;
+}
+
+.cbox-chat {
+    
 }
