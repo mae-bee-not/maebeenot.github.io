@@ -310,8 +310,8 @@ body {
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     padding: 20px 0; 
     background-color: transparent;
 }
