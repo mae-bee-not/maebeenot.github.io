@@ -45,6 +45,7 @@ body {
     margin-bottom: 5px; 
 }
 
+
 .bee-area {
     cursor: none;
 }
@@ -314,17 +315,20 @@ body {
     background-color: transparent;
 }
         .spin-bee img {
-    width: 300px;
+    width: 350px;
+    padding: 0;
+    margin-left: 0px;
     order: 1;
     flex: 0 0 35%; 
     background-color:transparent;
 }
 
     .about-text-area {
-    text-align: center;
+    text-align: left;
+    margin-left: 0px;
     flex-grow: 1; 
     padding: 0 20px; 
-    margin-top: -300px;
+    margin-top: 0px;
     min-width: 300px;
     min-height: 50px;
     padding-left: 0; 
@@ -396,6 +400,24 @@ body {
     .very-bottom-area {
     color: white;
     text-align: center;
+}
+
+.fediring-random {
+    
+}
+    .fediring-random a {
+    color: fuchsia;
+    text-align: center;
+    font-size: 18px;
+}
+
+.fediring-navigation {
+    margin-top: -16px;
+}
+    .fediring-navigation a {
+    color: fuchsia;
+    text-align: center;
+    font-size: 20px;
 }
 
 
