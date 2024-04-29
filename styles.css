@@ -373,6 +373,31 @@ body {
     border: 8px dotted fuchsia; 
 }
 
+.minecraft-middle-flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px 0; 
+    background-color: transparent;
+}
+
+    .minecraft-bug {
+    max-width: 300px; 
+    order: 0;
+    flex: 0 0 35%; 
+    background-color: transparent;
+    margin-top: -350px;
+    margin-left: -80px;
+}
+    .minecraft-bug img {
+    width: 500px; 
+    order: 1;
+    flex: 0 0 35%; 
+    background-color: transparent;
+}
+
 .footer-container {
     border-top: 2px solid #fff; 
     background: transparent; 
