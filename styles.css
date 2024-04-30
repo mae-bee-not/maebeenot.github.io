@@ -11,11 +11,23 @@ body {
     margin: 0;
 }
 
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+
     #title {
     color: purple;
     text-align: center;
     text-shadow: 2px 2px 5px rgba(128, 0, 128, 0.7);
     font-size: 26px;
+    animation: wiggle 1s ease-in-out infinite;
+
 }
 
     #title, .navigation a, p, .index-introduction-area, .the-glade-container, .server-info {
@@ -336,6 +348,31 @@ body {
     color: #ff53c3;
     font-family: "Lucida Console", monospace;
     font-size: 18px;
+    background-color: transparent;
+}
+
+.socials-top-flex-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    resize: both;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.socials-text-area {
+    text-align: center;
+    flex-grow: 1; 
+    padding: 0 20px; 
+    margin-top: 15px;
+    min-width: 300px;
+    min-height: 50px;
+    padding-left: 30px; 
+    box-sizing: border-box;
+    color: #ff53c3;
+    font-family: "Lucida Console", monospace;
+    font-size: 24px;
     background-color: transparent;
 }
 
