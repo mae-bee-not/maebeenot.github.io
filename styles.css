@@ -464,22 +464,12 @@ body {
     text-align: center;
 }
 
-.webring-random {
-    
-}
-    .webring-random a {
-    color: fuchsia;
-    text-align: center;
-    font-size: 18px;
+.webring-bucket {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
 
-.webring-navigation {
-    margin-top: -16px;
-}
-    .webring-navigation a {
-    color: fuchsia;
-    text-align: center;
-    font-size: 20px;
-}
 
 
