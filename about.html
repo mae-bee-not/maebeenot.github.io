@@ -62,14 +62,32 @@
             <img src=/media/3d-bee.gif>
         </div>
         <div class="about-text-area">
-        <p>✿ name: mae beeman ✿<br /><br />
-           ✿ birthday: october 23rd ✿<br /><br />
-           ✿ relationship: taken ✿<br /><br />
-           ✿ fav animal: deer ✿<br /><br />
-           ✿ fav color: pink n blue ✿<br /><br />
-           ✿ contact: maebeenot@coolbugs.win ✿<br /><br />
-           ✿ sign: ☼ scorpio / ☽ pices ✿<br /><br />
+        <p>✿<br />hello i am <strong>mae beeman</strong> but i already said that oh em gee my last name has the word bee in it isn't that silly <br />
+           ✿<br />my birthday is october 23rd and i am currently <span id="myAge">0</span>, birthday is right near halloween which is also my favorite holiday ! <br />
+           ✿<br />i am taken relationship wise by my wonderful boyfriend sal who ill ask to link socials if he'd like <br />
+           ✿<br />my favorite animal is DEER !! I LOVE DEER !!! i will post all of my deer pictures here <br />
+           ✿<br />my favorite colors are pink n blue :3 <br />
+           ✿<br />my email is <br /> maebeenot@coolbugs.win <br />
+           feel free to message me! <br />
+           ✿<br />my sign is ☼ scorpio / ☽ pices, idk what it means lol <br />
         </p>
+        <script>
+            //script to get age
+                function calculateAge(birthDate) {
+            var now = new Date();
+            var currentYear = now.getFullYear();
+                        var birthdayThisYear = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+                        var age = currentYear - birthDate.getFullYear();
+                        if (birthdayThisYear > now) {
+                                age--;
+                            }
+                        return age;
+                    }
+
+                var myBirthday = new Date('2004-10-23');
+                document.getElementById('myAge').textContent = calculateAge(myBirthday);
+                </script>
+        
         </div>
         <div class="spin-bee">
             <img src=/media/3d-bee.gif>

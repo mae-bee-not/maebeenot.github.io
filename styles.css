@@ -222,6 +222,9 @@ body {
     order: 1;
     flex: 0 0 35%; 
     background-color: transparent;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
     .index-introduction-area {
@@ -247,10 +250,13 @@ body {
     background-color: transparent;
 }
         .index-butterfly2 img {
-     width: 300px; 
+    width: 300px; 
     order: 1;
     flex: 0 0 35%; 
     background-color: transparent;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .index-middle-flex-container {
@@ -264,7 +270,7 @@ body {
 }
 
     .cbox-chat {
-    
+
 }
 
     .index-grasshopper {
@@ -279,6 +285,9 @@ body {
     order: 1;
     flex: 0 0 35%; 
     background-color:transparent;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
     .maeborder-area {
@@ -290,6 +299,9 @@ body {
         .maeborder-area img {
     width: 100%; 
     height: auto; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
         .jo\.llei-credit {
@@ -313,41 +325,44 @@ body {
     display: flex;
     gap: 20px;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
+    align-content: center;
     resize: both;
     overflow: auto;
     background-color: transparent;
 }
 
     .spin-bee {
-    max-width: 50%;
-    width: 300px; 
     order: 0;
     flex: 0 0 35%; 
     background-color: transparent;
+    margin-left: auto;
 }
         .spin-bee img {
     width: 350px;
     padding: 0;
-    margin-left: 0px;
     order: 1;
     flex: 0 0 35%; 
     background-color:transparent;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
     .about-text-area {
-    text-align: left;
-    margin-left: 0px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     flex-grow: 1; 
     padding: 0 20px; 
-    margin-top: 0px;
-    min-width: 300px;
+    margin-top: 1px;
+    min-width: 500px;
     min-height: 50px;
     padding-left: 0; 
     box-sizing: border-box;
     color: #ff53c3;
     font-family: "Lucida Console", monospace;
-    font-size: 18px;
+    font-size: 22px;
     background-color: transparent;
 }
 
