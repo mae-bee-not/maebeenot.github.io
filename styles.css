@@ -450,7 +450,7 @@ body {
     .server-info {
     width: 300px; 
     padding: 20px; 
-    border: 1px dotted fuchsia; 
+    border: 2px dotted fuchsia; 
     color: #fff; 
     background-color: #234b34d5; 
     overflow: auto; 
