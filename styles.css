@@ -239,7 +239,9 @@ body {
     color: #ff53c3;
     font-family: "Lucida Console", monospace;
     font-size: 24px;
-    background-color: transparent;
+    background-color: rgba(70, 0, 70, 0.45);
+    border: 5px solid rgba(255, 0, 255, 0.3);
+    border-radius: 50px;
 }
 
     .index-butterfly2 {
@@ -269,10 +271,6 @@ body {
     background-color: transparent;
 }
 
-    .cbox-chat {
-
-}
-
     .index-grasshopper {
     max-width: 25%;
     width: 300px; 
@@ -289,6 +287,15 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+    .cbox-chat {
+        padding: 15px;
+        border-radius: 10px;
+        border-top-right-radius: 200px;
+        border-top-left-radius: 200px;
+        border: 5px solid rgba(255, 0, 255, 0.3);
+
+    }
 
     .maeborder-area {
     flex: 0 0 35%; 
@@ -334,13 +341,14 @@ body {
 
     .spin-bee {
     order: 0;
-    flex: 0 0 35%; 
+    flex: 10 0 20%; 
     background-color: transparent;
     margin-left: auto;
+    margin-top: 100px;
 }
         .spin-bee img {
-    width: 350px;
-    padding: 0;
+    width: 250px;
+    padding: 0px;
     order: 1;
     flex: 0 0 35%; 
     background-color:transparent;
@@ -364,7 +372,45 @@ body {
     font-family: "Lucida Console", monospace;
     font-size: 22px;
     background-color: transparent;
+    border-radius: 50px;
+    background-color: rgba(70, 0, 70, 0.45);
+    border: 5px solid rgba(255, 0, 255, 0.3);
+    
 }
+
+.about-middle-flex-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    resize: both;
+    overflow: auto;
+    background-color: transparent;    
+}
+
+    .piclog {
+    flex: auto;
+    margin-left: auto;
+}
+        .piclog img {
+        width: 300px;
+        padding: 0px;
+        border: 10px dashed rgba(255, 0, 255, 0.3);
+        background-color: rgba(70, 0, 70, 0.45);
+        border-radius: 50px;
+        order: 1;
+        flex: 0 0 35%;
+        display: block;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .piclog-text {
+    margin-left: 100px;
+    font-size: 1em;
+    color: #ffffff;
+    }
 
 .socials-top-flex-container {
     display: flex;
@@ -406,7 +452,7 @@ body {
     padding: 20px; 
     border: 1px dotted fuchsia; 
     color: #fff; 
-    background-color: #234b34; 
+    background-color: #234b34d5; 
     overflow: auto; 
     margin-right: 10px; 
 }
