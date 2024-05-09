@@ -294,3 +294,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     init();
 })();
+
+
+//read more buttons
+function blogButton(blogNumber) {
+    var dots = document.getElementById("dots" + blogNumber);
+    var moreText = document.getElementById("more" + blogNumber);
+    var btnText = document.getElementById("blogButton" + blogNumber);
+
+    if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "more!";
+        moreText.style.display = "none";
+    } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "less!";
+        moreText.style.display = "inline";
+    }
+}
+
