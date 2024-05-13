@@ -399,17 +399,52 @@ body {
         border: 10px dashed rgba(255, 0, 255, 0.3);
         background-color: rgba(70, 0, 70, 0.45);
         border-radius: 50px;
-        order: 1;
-        flex: 0 0 35%;
+        order: 0;
+        flex: 0 0 30%;
         display: block;
-        margin-left: 0px;
-        margin-right: 0px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .piclog-text {
-    margin-left: 100px;
+    margin-left: 250px;
+    margin-right: auto;
     font-size: 1em;
     color: #ffffff;
+    }
+
+    .now-title a {
+        font-family: "Lucida Console", monospace;
+        width: 300px;
+        padding: 0px;
+        order: 1;
+        text-align: center;
+        font-weight: 600;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        flex: 0 0 50%;
+        font-size: 50px;
+        display: block;
+        color: fuchsia;
+    }
+
+    .now-container {
+        font-family: "Lucida Console", monospace;
+        width: 300px;
+        padding: 0px;
+        border: 10px dashed rgba(255, 0, 255, 0.3);
+        background-color: rgba(70, 0, 70, 0.45);
+        border-radius: 50px;
+        order: 1;
+        text-align: left;
+        padding-left: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        flex: 0 0 50%;
+        font-size: 25px;
+        display: block;
+        color: rgb(255, 113, 255);
     }
 
 .blog-top-flex-container {
@@ -460,6 +495,22 @@ body {
         background-color: rgba(70, 0, 70, 0.45);
         border: 5px solid rgba(255, 0, 255, 0.3);
         border-radius: 50px;
+    }
+
+    .blog a {
+        text-align: middle;
+        flex-grow: 1; 
+        padding: 0 20px; 
+        margin-top: 15px;
+        min-width: 300px;
+        min-height: 50px;
+        padding-left: 30px; 
+        box-sizing: border-box;
+        color: #ff53c3;
+        font-family: "Lucida Console", monospace;
+        font-size: 18px;
+        background-color: rgba(70, 0, 70, 0.45);
+        border-radius: 50px; 
     }
 
     .blog-hidden {
