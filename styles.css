@@ -244,6 +244,11 @@ body {
     border-radius: 50px;
 }
 
+    .button-link img {
+        min-width: 176px;
+        min-height: auto;
+    }
+
     .index-butterfly2 {
     max-width: 25%;
     width: 300px; 
