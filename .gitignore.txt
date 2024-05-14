@@ -1,2 +1,3 @@
 **/.DS_Store
 **/.phcode.json
+/config.js
