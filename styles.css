@@ -299,7 +299,7 @@ body {
         border-top-right-radius: 200px;
         border-top-left-radius: 200px;
         border: 5px solid rgba(255, 0, 255, 0.3);
-
+        padding-top: 90px;
     }
 
     .maeborder-area {
@@ -688,13 +688,3 @@ body {
     color: white;
     text-align: center;
 }
-
-.webring-bucket {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-}
-
-
-

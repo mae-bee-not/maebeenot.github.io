@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Callback</title>
+    <script>
+        // Handle the callback from Spotify
+        function handleCallback() {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const accessToken = params.get('access_token');
+            if (accessToken) {
+                localStorage.setItem('spotify_access_token', accessToken);
+                window.location.href = '/index.html';
+            }
+        }
+        // Execute the callback handling
+        handleCallback();
+    </script>
+</head>
+<body>
+</body>
+</html>
