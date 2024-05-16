@@ -533,7 +533,7 @@ body {
         flex-grow: 1; 
         padding: 0 20px; 
         margin-top: 15px;
-        min-width: 300px;
+        min-width: 400px;
         min-height: 50px;
         padding-left: 30px; 
         box-sizing: border-box;
@@ -545,7 +545,7 @@ body {
         border-radius: 50px;
     }
 
-    .blog a {
+    .blog-header {
         text-align: middle;
         flex-grow: 1; 
         padding: 0 20px; 
