@@ -1,3 +1,4 @@
+// Ensure the config file is loaded before this script
 // cat-explosion button
 document.addEventListener("DOMContentLoaded", function () {
     var button = document.querySelector(".cat-explosion-pushable");
@@ -294,7 +295,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     init();
 })();
-
 
 //read more buttons
 function blogButton(blogNumber) {
