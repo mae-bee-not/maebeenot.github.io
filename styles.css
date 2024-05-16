@@ -495,6 +495,43 @@ body {
         color: rgb(255, 113, 255);
     }
 
+    .tiny-deer {
+        max-width: 140px;
+        padding: 0px;
+        border-radius: 50px;
+        order: 0;
+        flex: 0 0 30%;
+        display: block;
+        margin-left: -20px;
+        margin-right: 0px;
+    }
+
+    .staring-deer {
+        min-width: 700px;
+        padding: 50px;
+        border-radius: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .inside-deer {
+        min-width: 700px;
+        padding: 50px;
+        border-radius: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    body.staring-deer {
+        background-image: url(/media/pulsing.gif);
+    }
+
+    body.inside-deer {
+        background-image: url(/media/peep-the-horror.gif);
+    }
+
 .blog-top-flex-container {
     display: flex;
     gap: 20px;
@@ -708,6 +745,13 @@ body {
     background: transparent; 
     text-align: center; 
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 0; 
+    background-color: transparent;
 }
 
     .gif-row-area {
