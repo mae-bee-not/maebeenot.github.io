@@ -524,6 +524,15 @@ body {
         margin-right: auto;
     }
 
+    .inside-deer a {
+        min-width: 700px;
+        padding: 50px;
+        border-radius: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     body.staring-deer {
         background-image: url(/media/pulsing.gif);
     }
