@@ -482,7 +482,7 @@ body {
         width: 300px;
         padding: 0px;
         border: 10px dashed rgba(255, 0, 255, 0.3);
-        background-color: rgba(70, 0, 70, 0.45);
+        background-color: rgba(70, 0, 70, 0.451);
         border-radius: 50px;
         order: 1;
         text-align: left;
@@ -545,8 +545,8 @@ body {
     display: flex;
     gap: 20px;
     flex-direction: row;
-    justify-content: flex-start;
-    align-content: flex-start;
+    justify-content: center;
+    align-content: center;
     resize: both;
     overflow: auto;
     background-color: transparent;  
@@ -646,12 +646,31 @@ body {
         border-radius: 20px;
     }
 
+    .toggleAllBlogs {
+        background-color: #6a5acd;  
+        color: #ffffff;             
+        border: none;               
+        border-radius: 10px;         
+        padding: 10px 16px;          
+        margin-bottom: 10px;
+        cursor: pointer;            
+        font-family: "Lucida Console", monospace;  
+        font-size: 13px;            
+        transition: all 0.3s ease;  
+        margin-top: 10px;
+    }
+
+    .toggleAllBlogs:hover {
+    background-color: #483d8b;  
+    transform: scale(1.1);
+    }
+
         button[id^="blogButton"] {
     background-color: #6a5acd;  
     color: #ffffff;             
     border: none;               
-    border-radius: 5px;         
-    padding: 8px 16px;          
+    border-radius: 10px;         
+    padding: 10px 16px;          
     margin-bottom: 10px;
     cursor: pointer;            
     font-family: "Lucida Console", monospace;  

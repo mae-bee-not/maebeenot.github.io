@@ -390,3 +390,27 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNowPlaying();
     setInterval(updateNowPlaying, 10000);  // Update every 10 seconds
 });
+
+function toggleAllBlogs() {
+    const allDots = document.querySelectorAll('[id^="dots"]');
+    const allMoreText = document.querySelectorAll('[id^="more"]');
+    const allButtons = document.querySelectorAll('button[id^="blogButton"]');
+
+    // Use the state of the first blog post to toggle all
+    const firstPostExpanded = allDots[0].style.display === "none";
+
+    allDots.forEach((dot, index) => {
+        if (firstPostExpanded) {
+            dot.style.display = "inline";
+            allMoreText[index].style.display = "none";
+            allButtons[index].innerHTML = "more!";
+        } else {
+            dot.style.display = "none";
+            allMoreText[index].style.display = "inline";
+            allButtons[index].innerHTML = "less!";
+        }
+    });
+
+    // Update the button text based on the action performed
+    document.getElementById('toggleAllBlogsButton').textContent = firstPostExpanded ? "Expand ALL!!" : "Collapse ALL!!";
+}
