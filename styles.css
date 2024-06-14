@@ -574,6 +574,17 @@ body {
     background-color: transparent; 
 }
 
+.blog-middle-3-flex-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    resize: both;
+    overflow: auto;
+    background-color: transparent; 
+}
+
     .blog {
         text-align: start;
         flex-grow: 1; 
