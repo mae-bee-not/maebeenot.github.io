@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     initCatExplosionButton();
     initRainbowCursor();
     initFakeBeeCursor();
@@ -6,7 +6,32 @@ document.addEventListener("DOMContentLoaded", () => {
     setupReadMoreButtons();
     setupSpotifyUpdate();
     setupToggleAllBlogs();
+    setupRandomAudioPlayer();
 });
+
+function setupRandomAudioPlayer() {
+    const audioFiles = [
+        '/media/antonympth.mp3',
+        '/media/puppycat.mp3',
+        '/media/spaces-inbetween.mp3',
+        '/media/nyan.mp3',
+        // Add more mp3 file paths as needed
+    ];
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    const randomIndex = getRandomInt(audioFiles.length);
+    const randomAudioSrc = audioFiles[randomIndex];
+
+    const audioPlayerContainer = document.getElementById('audio-player-container');
+    const audioElement = document.createElement('audio');
+    audioElement.src = randomAudioSrc;
+    audioElement.autoplay = true;
+    audioElement.controls = true;
+    audioPlayerContainer.appendChild(audioElement);
+}
 
 function initCatExplosionButton() {
     const button = document.querySelector(".cat-explosion-pushable");
@@ -89,16 +114,9 @@ function installOneko() {
         mousePosY = y;
     }
 
-    function onAnimationFrame(timestamp) {
-        if (!document.getElementById("oneko")) return;
-        requestFrame(() => {
-            frame();
-            window.requestAnimationFrame(onAnimationFrame);
-        });
-    }
-
-    function requestFrame(callback) {
-        requestAnimationFrame(callback => callback());
+    function onAnimationFrame() {
+        window.requestAnimationFrame(onAnimationFrame);
+        frame();
     }
 
     function frame() {
@@ -184,7 +202,8 @@ function installOneko() {
 
     function setSprite(name, frame) {
         const [x, y] = spriteSets[name][frame % spriteSets[name].length];
-        document.getElementById('oneko').style.backgroundPosition = `${x * 32}px ${y * 32}px`;
+        const nekoEl = document.getElementById('oneko');
+        nekoEl.style.backgroundPosition = `${x * 32}px ${y * 32}px`;
     }
 
     initNeko();
@@ -208,12 +227,12 @@ function blogButton(blogNumber) {
 }
 
 async function setupSpotifyUpdate() {
-    config && (await updateNowPlaying());
+    updateNowPlaying();
     setInterval(updateNowPlaying, 10000);
 }
 
 async function getAccessToken() {
-    const response = await fetch(`${TOKEN_ENDPOINT}`, {
+    const response = await fetch(TOKEN_ENDPOINT, {
         method: 'POST',
         headers: {
             Authorization: `Basic ${btoa(`${config.client_id}:${config.client_secret}`)}`,
