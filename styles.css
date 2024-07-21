@@ -389,22 +389,22 @@ body {
     display: flex;
     gap: 20px;
     flex-direction: row;
-    justify-content: space-between;
-    resize: both;
     overflow: auto;
     background-color: transparent;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
     .index-butterfly1 {
-    max-width: 25%;
-    width: 300px; 
-    order: 0;
-    flex: 0 0 35%; 
-    background-color: transparent;
+        order: 2;
+        flex: 0 0 35%; 
+        background-color: transparent;
 }
         .index-butterfly1 img {
-    width: 300px; 
-    order: 1;
+    height: 320px;
+    width: 400px; 
+    order: 0;
     flex: 0 0 35%; 
     background-color: transparent;
     display: block;
@@ -415,11 +415,11 @@ body {
     .index-introduction-area {
     text-align: center;
     flex-grow: 1; 
+    order: 1;
     padding: 0 20px; 
     margin-top: 15px;
-    min-width: 300px;
-    min-height: 50px;
-    padding-left: 30px; 
+    width: 480px;
+    height: 680px;
     box-sizing: border-box;
     color: #ff53c3;
     font-family: "Lucida Console", monospace;
@@ -434,21 +434,20 @@ body {
         min-height: auto;
     }
 
-    .index-butterfly2 {
-    max-width: 25%;
-    width: 300px; 
-    order: 0;
-    flex: 0 0 35%; 
-    background-color: transparent;
+    .index-butterfly2 { 
+        order: 0;
+        flex: 0 0 35%; 
+        background-color: transparent;
 }
         .index-butterfly2 img {
-    width: 300px; 
-    order: 1;
-    flex: 0 0 35%; 
-    background-color: transparent;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+            height: 320px;
+            width: 400px; 
+            order: 0;
+            flex: 0 0 35%; 
+            background-color: transparent;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
 }
 
 .index-middle-flex-container {
