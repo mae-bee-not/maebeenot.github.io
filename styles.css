@@ -566,9 +566,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    resize: both;
-    overflow: auto;
     background-color: transparent;
+    align-items: center;
 }
 
     .spin-bee {
@@ -580,24 +579,27 @@ body {
 }
         .spin-bee img {
     width: 250px;
+    height: 250px;
     padding: 0px;
-    order: 1;
+    order: 0;
     flex: 0 0 35%; 
     background-color:transparent;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 200px;
 }
 
     .about-text-area {
+    margin: 10px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     flex-grow: 1; 
     padding: 0 20px; 
     margin-top: 1px;
-    min-width: 500px;
-    min-height: 50px;
+    width: 700px;
+    height: 500px;
     padding-left: 0; 
     box-sizing: border-box;
     color: #ff53c3;
@@ -627,6 +629,7 @@ body {
 }
         .piclog img {
         width: 300px;
+        height: auto;
         padding: 0px;
         border: 10px dashed rgba(255, 0, 255, 0.3);
         background-color: rgba(70, 0, 70, 0.45);
@@ -675,12 +678,11 @@ body {
         margin-right: auto;
         flex: 0 0 50%;
         font-size: 25px;
-        display: block;
         color: rgb(255, 113, 255);
     }
 
     .tiny-deer {
-        max-width: 140px;
+        width: 140px;
         padding: 0px;
         border-radius: 50px;
         order: 0;
