@@ -418,8 +418,8 @@ body {
     order: 1;
     padding: 0 20px; 
     margin-top: 15px;
-    width: 480px;
-    height: 680px;
+    min-width: 580px;
+    height: 550px;
     box-sizing: border-box;
     color: #ff53c3;
     font-family: "Lucida Console", monospace;
