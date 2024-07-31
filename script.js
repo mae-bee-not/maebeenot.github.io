@@ -424,12 +424,12 @@ function setupRandomAudioPlayer() {
         '/media/puppycat.mp3',
         '/media/spaces-inbetween.mp3',
         '/media/nyan.mp3',
-        'm@gical-cure.mp3',
-        'you-deer.mp3',
-        'spookwave.mp3',
-        'Brb.mp3',
-        'stal.mp3',
-        
+        '/media/m@gical-cure.mp3',
+        '/media/you-deer.mp3',
+        '/media/spookwave.mp3',
+        '/media/Brb.mp3',
+        '/media/stal.mp3',
+
         // Add more mp3 file paths as needed
     ];
 
