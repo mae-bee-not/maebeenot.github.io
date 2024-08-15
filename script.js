@@ -418,6 +418,11 @@ function toggleAllBlogs() {
 }
 
 // Random Audio Player
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupRandomAudioPlayer();
+});
+
 function setupRandomAudioPlayer() {
     const audioFiles = [
         '/media/antonympth.mp3',
@@ -432,17 +437,40 @@ function setupRandomAudioPlayer() {
         // Add more mp3 file paths as needed
     ];
 
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
+    const pageSongs = {
+        "index.html": "/media/nyan.mp3",
+        "about.html": "/media/antonympth.mp3",
+        "blog.html": "/media/spookwave.mp3",
+        "socials.html": "/media/you-deer.mp3",
+        "minecraft.html": "/media/stal.mp3"
+        // Add more mappings as needed
+    };
+
+    function getCurrentPage() {
+        const path = window.location.pathname;
+        if (path === '/' || path === '') {
+            return 'index.html';
+        } else {
+            const page = path.substring(path.lastIndexOf('/') + 1);
+            return page;
+        }
     }
 
-    const randomIndex = getRandomInt(audioFiles.length);
-    const randomAudioSrc = audioFiles[randomIndex];
+    let audioSrc;
+
+    const currentPage = getCurrentPage();
+
+    if (pageSongs[currentPage]) {
+        audioSrc = pageSongs[currentPage];
+    } else {
+        const randomIndex = Math.floor(Math.random() * audioFiles.length);
+        audioSrc = audioFiles[randomIndex];
+    }
 
     const audioElement = document.createElement('audio');
-    audioElement.src = randomAudioSrc;
+    audioElement.src = audioSrc;
     audioElement.autoplay = true;
-    audioElement.loop = true; // Optionally, you can loop the audio
+    audioElement.loop = true; // Loop the audio if desired
     audioElement.style.display = 'none';  // Hide the audio element
     document.body.appendChild(audioElement);
 }
