@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setupOneko();
     setupBlogButtons();
     setupSpotifyNowPlaying();
-    setupRandomAudioPlayer();
+    setupRandomAudioPlayer(); 
 });
 
 function setupCatExplosion() {
@@ -157,7 +157,7 @@ function setupOneko() {
       nekoEl.style.imageRendering = "pixelated";
       nekoEl.style.left = `${nekoPosX - 16}px`;
       nekoEl.style.top = `${nekoPosY - 16}px`;
-      nekoEl.style.zIndex = 2147483647;
+      nekoEl.style.zIndex = 9999;
   
       let nekoFile = "./oneko.gif"
       const curScript = document.currentScript
@@ -415,18 +415,6 @@ function setupSpotifyNowPlaying() {
 }
 
 function setupRandomAudioPlayer() {
-    const audioFiles = [
-        '/media/antonympth.mp3',
-        '/media/puppycat.mp3',
-        '/media/spaces-inbetween.mp3',
-        '/media/nyan.mp3',
-        '/media/m@gical-cure.mp3',
-        '/media/you-deer.mp3',
-        '/media/spookwave.mp3',
-        '/media/Brb.mp3',
-        '/media/stal.mp3'
-    ];
-
     const pageSongs = {
         "index.html": "/media/nyan.mp3",
         "about.html": "/media/antonympth.mp3",
@@ -436,7 +424,7 @@ function setupRandomAudioPlayer() {
     };
 
     const currentPage = getCurrentPage();
-    const audioSrc = pageSongs[currentPage] || audioFiles[Math.floor(Math.random() * audioFiles.length)];
+    const audioSrc = pageSongs[currentPage] || "/media/nyan.mp3"; // Default to nyan.mp3 if page not found
 
     const audioElement = document.createElement('audio');
     audioElement.src = audioSrc;
@@ -453,7 +441,7 @@ function setupRandomAudioPlayer() {
 
 function getCurrentPage() {
     const path = window.location.pathname;
-    return path === '/' || path === '' ? 'index.html' : path.substring(path.lastIndexOf('/') + 1);
+    return path.substring(path.lastIndexOf('/') + 1) || 'index.html';
 }
 
 function toggleAllBlogs() {
