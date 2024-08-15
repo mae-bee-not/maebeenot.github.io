@@ -336,8 +336,6 @@ function setupBlogButtons() {
     }
 }
 
-import { config } from '/config.js';
-
 function setupSpotifyNowPlaying() {
     const { client_id, client_secret, refresh_token } = config;
 
