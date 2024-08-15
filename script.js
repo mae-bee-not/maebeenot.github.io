@@ -428,8 +428,7 @@ function setupRandomAudioPlayer() {
         '/media/you-deer.mp3',
         '/media/spookwave.mp3',
         '/media/Brb.mp3',
-        '/media/stal.mp3',
-
+        '/media/stal.mp3'
         // Add more mp3 file paths as needed
     ];
 
