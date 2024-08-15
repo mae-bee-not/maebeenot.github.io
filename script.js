@@ -424,6 +424,7 @@ function setupRandomAudioPlayer() {
     };
 
     const currentPage = getCurrentPage();
+    console.log("Current Page:", currentPage); // Debugging line
     const audioSrc = pageSongs[currentPage] || "/media/nyan.mp3"; // Default to nyan.mp3 if page not found
 
     const audioElement = document.createElement('audio');
@@ -435,7 +436,7 @@ function setupRandomAudioPlayer() {
 
     // Try to play immediately (this may not work due to autoplay policies)
     audioElement.play().catch(error => {
-        console.log("Autoplay prevented. User interaction required.");
+        console.log("Autoplay prevented. User interaction required.", error);
     });
 }
 
@@ -443,6 +444,7 @@ function getCurrentPage() {
     const path = window.location.pathname;
     return path.substring(path.lastIndexOf('/') + 1) || 'index.html';
 }
+
 
 function toggleAllBlogs() {
     const allDots = document.querySelectorAll('[id^="dots"]');
