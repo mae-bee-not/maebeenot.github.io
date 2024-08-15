@@ -159,7 +159,7 @@ function setupOneko() {
       nekoEl.style.top = `${nekoPosY - 16}px`;
       nekoEl.style.zIndex = 9999;
   
-      let nekoFile = "./oneko.gif"
+      let nekoFile = "/media/oneko.gif"
       const curScript = document.currentScript
       if (curScript && curScript.dataset.cat) {
         nekoFile = curScript.dataset.cat
@@ -335,6 +335,8 @@ function setupBlogButtons() {
         }
     }
 }
+
+import { config } from '/config.js';
 
 function setupSpotifyNowPlaying() {
     const { client_id, client_secret, refresh_token } = config;
