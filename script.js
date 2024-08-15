@@ -429,14 +429,14 @@ function setupRandomAudioPlayer() {
     const audioElement = document.createElement('audio');
     audioElement.src = audioSrc;
     audioElement.loop = true;
+    audioElement.autoplay = true; // Add autoplay attribute
     audioElement.style.display = 'none';
     document.body.appendChild(audioElement);
 
-    // Play audio on first user interaction
-    document.body.addEventListener('click', function onFirstClick() {
-        audioElement.play();
-        document.body.removeEventListener('click', onFirstClick);
-    }, { once: true });
+    // Try to play immediately (this may not work due to autoplay policies)
+    audioElement.play().catch(error => {
+        console.log("Autoplay prevented. User interaction required.");
+    });
 }
 
 function getCurrentPage() {
