@@ -336,83 +336,100 @@ function setupBlogButtons() {
     }
 }
 
-function setupSpotifyNowPlaying() {
-    const { client_id, client_secret, refresh_token } = config;
+document.addEventListener('DOMContentLoaded', () => {
+  async function setupSpotifyNowPlaying() {
+      const { client_id, client_secret, refresh_token } = config;
+      
+      const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
+      const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
+      
+      async function getAccessToken() {
+          const basic = btoa(`${client_id}:${client_secret}`);
+          try {
+              const response = await fetch(TOKEN_ENDPOINT, {
+                  method: 'POST',
+                  headers: {
+                      Authorization: `Basic ${basic}`,
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                  },
+                  body: `grant_type=refresh_token&refresh_token=${refresh_token}`
+              });
 
-    const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
-    const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
+              if (!response.ok) {
+                  const errorResponse = await response.json();
+                  throw new Error(`Error fetching access token: ${errorResponse.error_description}`);
+              }
 
-    async function getAccessToken() {
-        const basic = btoa(`${client_id}:${client_secret}`);
-        const response = await fetch(TOKEN_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                Authorization: `Basic ${basic}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `grant_type=refresh_token&refresh_token=${refresh_token}`
-        });
-        const data = await response.json();
-        return data.access_token;
-    }
+              const data = await response.json();
+              return data.access_token;
+          } catch (error) {
+              console.error('Error in getAccessToken:', error);
+          }
+      }
 
-    async function getNowPlaying() {
-        try {
-            const access_token = await getAccessToken();
-            const response = await fetch(NOW_PLAYING_ENDPOINT, {
-                headers: {
-                    Authorization: `Bearer ${access_token}`
-                }
-            });
+      async function getNowPlaying() {
+          try {
+              const access_token = await getAccessToken();
+              const response = await fetch(NOW_PLAYING_ENDPOINT, {
+                  headers: {
+                      Authorization: `Bearer ${access_token}`
+                  }
+              });
 
-            if (response.status === 204) {
-                throw new Error('No Content');
-            }
+              if (response.status === 204) {
+                  throw new Error('No Content');
+              }
 
-            const song = await response.json();
-            const albumImageUrl = song.item.album.images[0].url;
-            const artist = song.item.artists.map(artist => artist.name).join(', ');
-            const title = song.item.name;
-            const timePlayed = song.progress_ms;
-            const timeTotal = song.item.duration_ms;
+              const song = await response.json();
+              const albumImageUrl = song.item.album.images[0].url;
+              const artist = song.item.artists.map(artist => artist.name).join(', ');
+              const title = song.item.name;
+              const timePlayed = song.progress_ms;
+              const timeTotal = song.item.duration_ms;
 
-            return {
-                albumImageUrl,
-                artist,
-                title,
-                timePlayed,
-                timeTotal
-            };
-        } catch (error) {
-            console.error('Error fetching currently playing song: ', error);
-        }
-    }
+              return {
+                  albumImageUrl,
+                  artist,
+                  title,
+                  timePlayed,
+                  timeTotal
+              };
+          } catch (error) {
+              console.error('Error fetching currently playing song:', error);
+          }
+      }
 
-    function pad(n) {
-        return n < 10 ? '0' + n : n;
-    }
+      function pad(n) {
+          return n < 10 ? '0' + n : n;
+      }
 
-    function updateNowPlaying() {
-        getNowPlaying().then(data => {
-            if (data) {
-                document.getElementById('album-image').src = data.albumImageUrl;
-                document.getElementById('song-title').textContent = data.title;
-                document.getElementById('artist-name').textContent = data.artist;
+      async function updateNowPlaying() {
+          const data = await getNowPlaying();
+          if (data) {
+              try {
+                  document.getElementById('album-image').src = data.albumImageUrl;
+                  document.getElementById('song-title').textContent = data.title;
+                  document.getElementById('artist-name').textContent = data.artist;
 
-                const secondsPlayed = Math.floor(data.timePlayed / 1000);
-                const minutesPlayed = Math.floor(secondsPlayed / 60);
-                const secondsTotal = Math.floor(data.timeTotal / 1000);
-                const minutesTotal = Math.floor(secondsTotal / 60);
+                  const secondsPlayed = Math.floor(data.timePlayed / 1000);
+                  const minutesPlayed = Math.floor(secondsPlayed / 60);
+                  const secondsTotal = Math.floor(data.timeTotal / 1000);
+                  const minutesTotal = Math.floor(secondsTotal / 60);
 
-                document.getElementById('song-timer').textContent =
-                    `${pad(minutesPlayed)}:${pad(secondsPlayed % 60)} / ${pad(minutesTotal)}:${pad(secondsTotal % 60)}`;
-            }
-        });
-    }
+                  document.getElementById('song-timer').textContent =
+                      `${pad(minutesPlayed)}:${pad(secondsPlayed % 60)} / ${pad(minutesTotal)}:${pad(secondsTotal % 60)}`;
+              } catch (error) {
+                  console.error('Error updating DOM elements:', error);
+              }
+          }
+      }
 
-    updateNowPlaying();
-    setInterval(updateNowPlaying, 10000);  // Update every 10 seconds
-}
+      updateNowPlaying();
+      setInterval(updateNowPlaying, 10000);  // Update every 10 seconds
+  }
+
+  setupSpotifyNowPlaying();
+});
 
 function setupRandomAudioPlayer() {
     const pageSongs = {
