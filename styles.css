@@ -30,7 +30,7 @@ body {
 
 }
 
-    #title, .navigation a, p, .index-introduction-area, .the-glade-container, .server-info {
+    #title, .navigation a, p, .index-introduction-area, .the-glade-container, .glade-info {
     font-family: "Jersey 15", sans-serif;
 }
 
@@ -944,15 +944,45 @@ body {
     padding: 20px 0; 
     background-color: transparent;
 }
+
+.minecraft-bottom-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px 0; 
+  background-color: transparent;
+}
+
+.minecraft-middle-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px 0; 
+  background-color: transparent;
+}
     
-    .server-info {
+    .glade-info {
     width: 300px; 
-    padding: 20px; 
+    padding: 10px; 
     border: 2px dotted rgb(255, 0, 255); 
     color: #fff; 
     background-color: #234b34d5; 
     overflow: auto; 
     margin-right: 10px; 
+}
+
+    .den-info {
+  width: 300px; 
+  padding: 10px; 
+  border: 2px dotted rgb(0, 0, 255); 
+  color: #fff; 
+  background-color: #234b34d5; 
+  overflow: auto; 
+  margin-right: 10px; 
 }
 
     .dynmap-area {
@@ -967,6 +997,20 @@ body {
     width: 900px; 
     height: 500px; 
     border: 8px dotted fuchsia; 
+}
+
+.bluemap-area {
+  max-width: 50px;
+  flex-grow: 1; 
+  text-align: right; 
+  background-color: transparent;
+  font-size: 10px;
+  text-align: center;
+}
+      .bluemap-area iframe {
+  width: 900px; 
+  height: 500px; 
+  border: 8px dotted blue; 
 }
 
 .minecraft-middle-flex-container {
