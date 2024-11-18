@@ -385,7 +385,7 @@ body {
   }
 }
         
-.index-top-flex-container {
+.index-flex-container {
     display: flex;
     gap: 20px;
     flex-direction: row;
@@ -450,16 +450,6 @@ body {
             margin-right: auto;
 }
 
-.index-middle-flex-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 0; 
-    background-color: transparent;
-}
-
     .index-grasshopper {
     width: 0px; 
     order: 0;
@@ -505,16 +495,6 @@ body {
     margin-top: 10px;
     font-size: 1em;
     color: #ffffff;
-}
-
-.index-bottom-flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    padding: 20px 0; 
-    background-color: transparent;
 }
 
         .increment-counter {
@@ -727,40 +707,32 @@ body {
         background-image: url(/media/peep-the-horror.gif);
     }
 
-.blog-top-flex-container {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    resize: both;
-    overflow: auto;
-    background-color: transparent;  
-}
+    body.spinning-deer {
+      background-image: url(/media/spinning-deer.gif);
+  }
 
-.blog-middle-flex-container {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: flex-start;
-    resize: both;
-    overflow: auto;
-    background-color: transparent;  
-}
+    .spinning-deer {
+    height: 100%;
+    width: 100%; 
+    order: 0;
+    flex: 0 0 35%; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
 
-.blog-middle-2-flex-container {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: flex-start;
-    resize: both;
-    overflow: auto;
-    background-color: transparent; 
-}
+    .blog-top-container {
+      display: flex;
+      gap: 20px;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      resize: both;
+      overflow: auto;
+      background-color: transparent; 
+  }
 
-.blog-middle-3-flex-container {
+    .blog-flex-container {
     display: flex;
     gap: 20px;
     flex-direction: row;
@@ -881,7 +853,7 @@ body {
             #more {display: none;}
 
 
-.socials-top-flex-container {
+.socials-flex-container {
     display: flex;
     gap: 20px;
     flex-direction: row;
@@ -926,16 +898,33 @@ body {
     border-radius: 40px;
 }
 
+.socials-box a {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1; 
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding: 0 30px; 
+  min-width: 300px;
+  min-height: 50px;
+  padding-left: 30px; 
+  box-sizing: border-box;
+  color: #ff53c3;
+  font-family: "Lucida Console", monospace;
+  font-size: 30px;
+}
+
 .socials-logo {
-    width: 100%;
-    height: 250px;
+    width: 250px;
+    height: 200px;
     display: flex;
     order: 0;
     justify-content: center;
     margin: 10px;
 }
 
-.minecraft-top-flex-container {
+.minecraft-flex-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -943,26 +932,6 @@ body {
     align-items: flex-start;
     padding: 20px 0; 
     background-color: transparent;
-}
-
-.minecraft-bottom-flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 20px 0; 
-  background-color: transparent;
-}
-
-.minecraft-middle-flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 20px 0; 
-  background-color: transparent;
 }
     
     .glade-info {
