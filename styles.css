@@ -1,3 +1,4 @@
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
 body {
     background-image: url("/media/sparkling_background.gif");
     width:auto;
@@ -49,6 +50,8 @@ body {
     margin: 0;
     margin: 5px 0; 
 }
+
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
 
 
 .bee-area {
@@ -470,186 +473,230 @@ body {
   color: cyan;
 }
 
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
 
+/* General container for top section */
 .about-top-flex-container {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    background: transparent;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  background: transparent;
+  max-width: 1200px; /* Restrict width for desktop */
+  margin: 0 auto; /* Center content */
 }
 
-    .spin-bee {
-    order: 0;
-    flex: 10 0 20%; 
-    background: transparent;
-    margin-left: auto;
-    margin-top: 100px;
-}
-        .spin-bee img {
-    width: 250px;
-    height: 250px;
-    padding: 0px;
-    order: 0;
-    flex: 0 0 35%; 
-    background:transparent;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 200px;
+.spin-bee-1 {
+  order: 0;
+  flex: 1 1 200px; /* Allow flexibility but keep a minimum size */
+  text-align: center;
+  margin-top: 50px;
 }
 
-    .about-text-area {
-    margin: 10px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    flex-grow: 1; 
-    padding: 0 20px; 
-    margin-top: 1px;
-    width: 700px;
-    height: 500px;
-    padding-left: 0; 
-    box-sizing: border-box;
-    color: #ff53c3;
-    font: 22px "Lucida Console", monospace;
-    background: transparent;
-    border-radius: 50px;
-    background: rgba(70, 0, 70, 0.45);
-    border: 5px solid rgba(255, 0, 255, 0.3);
-    
+.spin-bee-2 {
+  order: 2;
+  flex: 1 1 200px; /* Allow flexibility but keep a minimum size */
+  text-align: center;
+  margin-top: 50px;
 }
 
+.spin-bee-1 img {
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  margin: 0 auto;
+}
+
+.spin-bee-2 img {
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  margin: 0 auto;
+}
+
+.about-text-area {
+  order: 1;
+  flex: 2 1 600px; /* Take up more space but stay responsive */
+  margin: 20px;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #ff53c3;
+  font: 22px "Lucida Console", monospace;
+  background: rgba(70, 0, 70, 0.45);
+  border-radius: 50px;
+  border: 5px solid rgba(255, 0, 255, 0.3);
+  max-width: 700px; /* Restrict maximum width */
+}
+
+/* Middle Section */
 .about-middle-flex-container {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: flex-start;
-    resize: both;
-    overflow: auto;
-    background: transparent;    
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: center; /* Center-align on desktop */
+  align-items: flex-start;
+  flex-wrap: wrap; /* Allow items to stack on smaller screens */
+  background: transparent;
+  max-width: 1200px;
+  margin: 20px auto;
 }
 
-    .piclog {
-    flex: auto;
-    margin-left: auto;
+.piclog {
+  order: 0;
+  flex: 1 1 300px; /* Maintain size but responsive */
+  text-align: center;
 }
-        .piclog img {
-        width: 300px;
-        height: auto;
-        padding: 0px;
-        border: 10px dashed rgba(255, 0, 255, 0.3);
-        background: rgba(70, 0, 70, 0.45);
-        border-radius: 50px;
-        order: 0;
-        flex: 0 0 30%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
-    .piclog-text {
-    margin-left: 250px;
-    margin-right: auto;
-    font-size: 1em;
-    color: #ffffff;
-    }
+.piclog img {
+  width: 100%;
+  max-width: 300px; /* Restrict maximum size */
+  height: auto;
+  border: 10px dashed rgba(255, 0, 255, 0.3);
+  background: rgba(70, 0, 70, 0.45);
+  border-radius: 50px;
+  margin: 0 auto;
+}
 
-    .now-title a {
-        font: 50px "Lucida Console", monospace;
-        width: 300px;
-        padding: 0px;
-        order: 1;
-        text-align: center;
-        font-weight: 600;
-        margin-top: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        flex: 0 0 50%;
-        display: block;
-        color: fuchsia;
-    }
+.piclog-text {
+  margin: 10px auto;
+  font-size: 1em;
+  color: #ffffff;
+  text-align: center;
+}
 
-    .now-container {
-        font: 25px "Lucida Console", monospace;
-        width: 300px;
-        padding: 0px;
-        border: 10px dashed rgba(255, 0, 255, 0.3);
-        background: rgba(70, 0, 70, 0.451);
-        border-radius: 50px;
-        order: 1;
-        text-align: left;
-        padding-left: 20px;
-        margin-left: auto;
-        margin-right: auto;
-        flex: 0 0 50%;
-        color: rgb(255, 113, 255);
-    }
+.now-title a {
+  font: 30px "Lucida Console", monospace;
+  font-weight: 600;
+  margin: 10px auto;
+  text-align: center;
+  color: fuchsia;
+}
 
-    .tiny-deer {
-        width: 140px;
-        padding: 0px;
-        border-radius: 50px;
-        order: 0;
-        flex: 0 0 30%;
-        display: block;
-        margin-left: -20px;
-        margin-right: 0px;
-    }
+.now-container {
+  flex: 1 1 300px; /* Flexible for responsiveness */
+  font: 18px "Lucida Console", monospace;
+  padding: 20px;
+  border: 10px dashed rgba(255, 0, 255, 0.3);
+  background: rgba(70, 0, 70, 0.45);
+  border-radius: 50px;
+  margin: 20px auto;
+  text-align: left;
+  color: rgb(255, 113, 255);
+}
 
-    .staring-deer {
-        min-width: 700px;
-        padding: 50px;
-        border-radius: 120px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .inside-deer {
-        min-width: 700px;
-        padding: 50px;
-        border-radius: 120px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .inside-deer a {
-        min-width: 700px;
-        padding: 50px;
-        border-radius: 120px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    body.staring-deer {
-        background-image: url(/media/pulsing.gif);
-    }
-
-    body.inside-deer {
-        background-image: url(/media/peep-the-horror.gif);
-    }
-
-    body.spinning-deer {
-      background-image: url(/media/spinning-deer.gif);
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+  .about-top-flex-container {
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center;
   }
 
-    .spinning-deer {
-    height: 100%;
-    width: 100%; 
-    order: 0;
-    flex: 0 0 35%; 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    }
+  .spin-bee {
+      margin-top: 20px;
+  }
 
-    .blog-top-container {
+  .spin-bee img {
+      width: 100px;
+      height: 100px; /* Reduce size on mobile */
+  }
+
+  .about-text-area {
+      width: 90%; /* Use full width on mobile */
+      margin: 10px auto;
+      font-size: 18px; /* Adjust text size for readability */
+  }
+
+  .about-middle-flex-container {
+      flex-direction: column; /* Stack middle section */
+      align-items: center;
+  }
+
+  .piclog, .now-container {
+      width: 90%; /* Full width on mobile */
+      margin: 10px auto;
+  }
+
+  .piclog img {
+      max-width: 200px; /* Smaller image size for mobile */
+  }
+
+  .now-title a {
+      font-size: 24px; /* Adjust font size */
+  }
+
+  .now-container {
+      font-size: 16px;
+  }
+}
+
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
+
+.tiny-deer {
+  width: 140px;
+  padding: 0px;
+  border-radius: 50px;
+  order: 0;
+  flex: 0 0 30%;
+  display: block;
+  margin-left: -20px;
+  margin-right: 0px;
+}
+
+.staring-deer {
+  min-width: 700px;
+  padding: 50px;
+  border-radius: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inside-deer {
+  min-width: 700px;
+  padding: 50px;
+  border-radius: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inside-deer a {
+  min-width: 700px;
+  padding: 50px;
+  border-radius: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.staring-deer {
+  background-image: url(/media/pulsing.gif);
+}
+
+body.inside-deer {
+  background-image: url(/media/peep-the-horror.gif);
+}
+
+body.spinning-deer {
+background-image: url(/media/spinning-deer.gif);
+}
+
+.spinning-deer {
+height: 100%;
+width: 100%; 
+order: 0;
+flex: 0 0 35%; 
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+    /* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
+
+.blog-top-container {
       display: flex;
       gap: 20px;
       flex-direction: row;
@@ -660,7 +707,7 @@ body {
       background: transparent; 
   }
 
-    .blog-flex-container {
+.blog-flex-container {
     display: flex;
     gap: 20px;
     flex-direction: row;
@@ -671,7 +718,7 @@ body {
     background: transparent; 
 }
 
-    .blog {
+.blog {
         text-align: start;
         flex-grow: 1; 
         padding: 0 20px; 
@@ -687,7 +734,7 @@ body {
         border-radius: 50px;
     }
 
-    .blog-header {
+  .blog-header {
         text-align: middle;
         flex-grow: 1; 
         padding: 0 20px; 
@@ -774,6 +821,7 @@ body {
 }
             #more {display: none;}
 
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
 
 .socials-flex-container {
     display: flex;
@@ -842,6 +890,8 @@ body {
     justify-content: center;
     margin: 10px;
 }
+
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
 
 .minecraft-flex-container {
     display: flex;
@@ -925,6 +975,8 @@ body {
     flex: 0 0 35%; 
     background: transparent;
 }
+
+/* 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 */
 
 .footer-container {
     border-top: 2px solid #fff; 
