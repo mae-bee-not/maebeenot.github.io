@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     setupRandomAudioPlayer(); 
 });
 
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
 function setupCatExplosion() {
     const button = document.querySelector(".cat-explosion-pushable");
     if (button) {
@@ -24,6 +26,8 @@ function setupCatExplosion() {
     }
 }
 
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
 function setupRainbowCursor() {
     const beeArea = document.querySelector(".bee-area");
     if (beeArea && typeof cursoreffects !== 'undefined') {
@@ -35,6 +39,8 @@ function setupRainbowCursor() {
         });
     }
 }
+
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupBeeCursor() {
     const beeArea = document.querySelector(".bee-area");
@@ -59,6 +65,8 @@ function setupBeeCursor() {
         }
     });
 }
+
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupOneko() {
    // oneko.js: https://github.com/adryd325/oneko.js
@@ -302,39 +310,7 @@ function setupOneko() {
   })();
 }
 
-function blogButton(blogNumber) {
-    const dots = document.getElementById("dots" + blogNumber);
-    const moreText = document.getElementById("more" + blogNumber);
-    const btnText = document.getElementById("blogButton" + blogNumber);
-
-    if (dots.style.display === "none") {
-        dots.style.display = "inline";
-        btnText.innerHTML = "more!";
-        moreText.style.display = "none";
-    } else {
-        dots.style.display = "none";
-        btnText.innerHTML = "less!";
-        moreText.style.display = "inline";
-    }
-}
-
-function setupBlogButtons() {
-    function setupBlogButtons() {
-        // Get all blog buttons
-        const blogButtons = document.querySelectorAll('[id^="blogButton"]');
-    
-        // Add click event listener to each button
-        blogButtons.forEach((button, index) => {
-            button.addEventListener('click', () => blogButton(index + 1));
-        });
-    
-        // Setup the "Toggle All" button if it exists
-        const toggleAllButton = document.getElementById('toggleAllBlogsButton');
-        if (toggleAllButton) {
-            toggleAllButton.addEventListener('click', toggleAllBlogs);
-        }
-    }
-}
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 document.addEventListener('DOMContentLoaded', () => {
   async function setupSpotifyNowPlaying() {
@@ -431,6 +407,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSpotifyNowPlaying();
 });
 
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
 function setupRandomAudioPlayer() {
     const pageSongs = {
         "index.html": "/media/nyan.mp3",
@@ -441,17 +419,17 @@ function setupRandomAudioPlayer() {
     };
 
     const currentPage = getCurrentPage();
-    console.log("Current Page:", currentPage); // Debugging line
-    const audioSrc = pageSongs[currentPage] || "/media/nyan.mp3"; // Default to nyan.mp3 if page not found
+    const audioSrc = pageSongs[currentPage] || "/media/nyan.mp3";
 
     const audioElement = document.createElement('audio');
-    audioElement.src = audioSrc;
-    audioElement.loop = true;
-    audioElement.autoplay = true; // Add autoplay attribute
+    Object.assign(audioElement, {
+        src: audioSrc,
+        loop: true,
+        autoplay: true
+    });
     audioElement.style.display = 'none';
     document.body.appendChild(audioElement);
 
-    // Try to play immediately (this may not work due to autoplay policies)
     audioElement.play().catch(error => {
         console.log("Autoplay prevented. User interaction required.", error);
     });
@@ -462,6 +440,38 @@ function getCurrentPage() {
     return path.substring(path.lastIndexOf('/') + 1) || 'index.html';
 }
 
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
+function blogButton(blogNumber) {
+  const dots = document.getElementById("dots" + blogNumber);
+  const moreText = document.getElementById("more" + blogNumber);
+  const btnText = document.getElementById("blogButton" + blogNumber);
+
+  if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "more!";
+      moreText.style.display = "none";
+  } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "less!";
+      moreText.style.display = "inline";
+  }
+}
+
+function setupBlogButtons() {
+  function setupBlogButtons() {
+      const blogButtons = document.querySelectorAll('[id^="blogButton"]');
+  
+      blogButtons.forEach((button, index) => {
+          button.addEventListener('click', () => blogButton(index + 1));
+      });
+  
+      const toggleAllButton = document.getElementById('toggleAllBlogsButton');
+      if (toggleAllButton) {
+          toggleAllButton.addEventListener('click', toggleAllBlogs);
+      }
+  }
+}
 
 function toggleAllBlogs() {
     const allDots = document.querySelectorAll('[id^="dots"]');

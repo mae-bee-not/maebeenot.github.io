@@ -1,14 +1,8 @@
 body {
-    background-color: #000000;
     background-image: url("/media/sparkling_background.gif");
-    background-size: auto;
-    background-repeat: repeat;
-    background-position: center;
-    font-family: "Jersey 15", sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+    width:auto;
+    height:auto;
+    color:black;
 }
 
 @keyframes wiggle {
@@ -30,7 +24,7 @@ body {
 
 }
 
-    #title, .navigation a, p, .index-introduction-area, .the-glade-container, .glade-info {
+    #title, .navigation a, p {
     font-family: "Jersey 15", sans-serif;
 }
 
@@ -53,8 +47,7 @@ body {
         #000000 20px  
     );
     margin: 0;
-    margin-top: 5px; 
-    margin-bottom: 5px; 
+    margin: 5px 0; 
 }
 
 
@@ -64,11 +57,10 @@ body {
 
     #ascii-art {
     color: #ff93f4;
-    font-weight: 900; /* max bold */
+    font-weight: 900;
     text-align: center;
     white-space: pre;
-    font-size: 7px;
-    font-family: "Lucida Console", monospace;
+    font: 7px "Lucida Console", monospace;
 }
 
 /* https://uiverse.io/StealthWorm/pretty-lion-68 code for button stolen from */
@@ -91,17 +83,8 @@ body {
 }
 
   
-  a:link { 
-    text-decoration: none; 
-  } 
-  a:visited { 
-    text-decoration: none; 
-  } 
-  a:hover { 
-    text-decoration: none; 
-  } 
-  a:active { 
-    text-decoration: none; 
+  a {
+    text-decoration: none;
   }
   
   #container-stars {
@@ -117,8 +100,7 @@ body {
   
   .btn strong {
     z-index: 2;
-    font-family: 'Avalors Personal Use';
-    font-size: 30px;
+    font: 30px 'Avalors Personal Use';
     letter-spacing: 5px;
     color: #FFFFFF;
     text-shadow: 0 0 4px white;
@@ -148,7 +130,7 @@ body {
   
   .btn:hover #container-stars {
     z-index: 1;
-    background-color: #212121;
+    background: #212121;
   }
   
   .btn:hover {
@@ -257,7 +239,7 @@ body {
 
     .navigation {
     text-align: center;
-    background-color: rgba(
+    background: rgba(
         255,
         154,
         154,
@@ -297,14 +279,13 @@ body {
     cursor: pointer; 
 }
 
-    .button-container {
-    text-align: center; 
-    padding-top: 0px;
-    background-color: transparent;
-    order: 2;
+.button-container {
+  text-align: center;
+  background: transparent;
+  order: 2;
 }
 
-        .cat-explosion-pushable {
+.cat-explosion-pushable {
   margin: auto;
   position: relative;
   border: none;
@@ -312,61 +293,54 @@ body {
   padding: 0;
   cursor: pointer;
   outline-offset: 4px;
-  transition: filter 250ms;
+  transition: filter 250ms, transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
   user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
 }
-            .cat-explosion-pushable:hover {
+
+.cat-explosion-pushable:hover {
   filter: brightness(110%);
 }
-            .cat-explosion-pushable:hover .cat-explosion-front {
+
+.cat-explosion-pushable:hover .cat-explosion-front {
   transform: translateY(-6px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
-            .cat-explosion-pushable:active .cat-explosion-front {
+
+.cat-explosion-pushable:active .cat-explosion-front {
   transform: translateY(-15px);
   transition: transform 34ms;
 }
-            .cat-explosion-pushable:hover .cat-explosion-shadow {
+
+.cat-explosion-pushable:hover .cat-explosion-shadow {
   transform: translateY(4px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
-            .cat-explosion-pushable:active .cat-explosion-shadow {
+
+.cat-explosion-pushable:active .cat-explosion-shadow {
   transform: translateY(1px);
   transition: transform 34ms;
 }
-            .cat-explosion-pushable:focus:not(:focus-visible) {
+
+.cat-explosion-pushable:focus:not(:focus-visible) {
   outline: none;
 }
 
-            .cat-explosion-shadow {
+.cat-explosion-shadow {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0; /* Shorthand for top, right, bottom, left */
   border-radius: 12px;
   background: hsl(330deg 100% 70% / 0.25);
-  will-change: transform;
   transform: translateY(2px);
-  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
-            .cat-explosion-edge {
+
+.cat-explosion-edge {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   border-radius: 12px;
-  background: linear-gradient(
-    to right,
-    hsl(330deg 100% 70%) 0%,
-    hsl(330deg 100% 70%) 0%,
-    hsl(330deg 100% 70%) 0%
-  );
+  background: hsl(330deg 100% 70%);
 }
-            .cat-explosion-front {
+
+.cat-explosion-front {
   display: block;
   position: relative;
   padding: 12px 27px;
@@ -374,169 +348,126 @@ body {
   font-size: 1.1rem;
   color: white;
   background: hsl(330deg 100% 75%);
-  will-change: transform;
   transform: translateY(-4px);
-  transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
-            @media (min-width: 768px) {
+
+@media (min-width: 768px) {
   .cat-explosion-front {
     font-size: 1.7rem;
     padding: 12px 42px;
   }
 }
+
         
 .index-flex-container {
-    display: flex;
-    gap: 20px;
-    flex-direction: row;
-    overflow: auto;
-    background-color: transparent;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  overflow: hidden; 
+  background: transparent;
 }
 
-    .index-butterfly1 {
-        order: 2;
-        flex: 0 0 35%; 
-        background-color: transparent;
-}
-        .index-butterfly1 img {
-    height: 320px;
-    width: 400px; 
-    order: 0;
-    flex: 0 0 35%; 
-    background-color: transparent;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.index-butterfly1, 
+.index-butterfly2, 
+.index-grasshopper, 
+.maeborder-area {
+  flex: 1 1 300px; 
+  max-width: 400px; 
+  text-align: center; 
+  background: transparent;
 }
 
-    .index-introduction-area {
-    text-align: center;
-    flex-grow: 1; 
-    order: 1;
-    padding: 0 20px; 
-    margin-top: 15px;
-    min-width: 580px;
-    height: 550px;
-    box-sizing: border-box;
-    color: #ff53c3;
-    font-family: "Lucida Console", monospace;
-    font-size: 24px;
-    background-color: #46004673;
-    border: 5px solid rgba(255, 0, 255, 0.3);
-    border-radius: 50px;
+.index-butterfly1 img, 
+.index-butterfly2 img, 
+.index-grasshopper img, 
+.maeborder-area img {
+  height: auto;
+  max-width: 100%; 
+  display: block;
+  margin: 0 auto;
 }
 
-    .button-link img {
-        min-width: 176px;
-        min-height: auto;
-    }
-
-    .index-butterfly2 { 
-        order: 0;
-        flex: 0 0 35%; 
-        background-color: transparent;
-}
-        .index-butterfly2 img {
-            height: 320px;
-            width: 400px; 
-            order: 0;
-            flex: 0 0 35%; 
-            background-color: transparent;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+.index-introduction-area {
+  text-align: center;
+  flex: 1 1 580px; 
+  max-width: 800px; 
+  padding: 20px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  color: #ff53c3;
+  font: 24px "Lucida Console", monospace;
+  background: rgba(70, 0, 70, 0.45);
+  border: 5px solid rgba(255, 0, 255, 0.3);
+  border-radius: 50px;
 }
 
-    .index-grasshopper {
-    width: 0px; 
-    order: 0;
-    flex: 0 0 35%; 
-    background-color: transparent;
-}
-        .index-grasshopper img {
-    padding-left: 100px;
-    width: 500px; 
-    order: 1;
-    flex: 0 0 35%; 
-    background-color:transparent;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.button-link img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
-    .cbox-chat {
-        padding: 15px;
-        border-radius: 10px;
-        border-top-right-radius: 200px;
-        border-top-left-radius: 200px;
-        border: 5px solid rgba(255, 0, 255, 0.3);
-        padding-top: 90px;
-    }
-
-    .maeborder-area {
-    flex: 0 0 35%; 
-    max-width: 350px; 
-    padding: 0px;
-    padding-left: 200px;
-}
-        .maeborder-area img {
-    width: 350px; 
-    height: auto; 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.cbox-chat {
+  padding: 15px;
+  border-radius: 10px;
+  border-top-right-radius: 200px;
+  border-top-left-radius: 200px;
+  border: 5px solid rgba(255, 0, 255, 0.3);
+  padding-top: 90px;
 }
 
-        .jo\.llei-credit {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1em;
-    color: #ffffff;
+.jo\.llei-credit {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1em;
+  color: #ffffff;
 }
 
-        .increment-counter {
-            margin-right: 200px;
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            order: 1;
-            margin-left: 120px;
-        }
-
-    #now-playing {
-    display: flex;
-    align-items: center;
-    background-color: rgba(70, 0, 70, 0.45);
-    border-radius: 20px;
-    padding: 7px;
-    order: 3;
-    margin-left: 200px;
-    color: #ff53c3;
-    border: 5px solid rgba(255, 0, 255, 0.3);
-    margin-right: 30px;
+.increment-counter {
+  margin: 0 auto; 
+  display: flex;
+  align-items: center;
+  padding: 20px;
 }
 
-        #album-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    margin-right: 20px;
-}
-        #song-title {
-            margin: 0;
-            margin-top: -10px;
-        }
-
-       #artist-name {
-    margin: 0;
+#now-playing {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  background: rgba(70, 0, 70, 0.45);
+  border-radius: 20px;
+  padding: 10px;
+  color: #ff53c3;
+  border: 5px solid rgba(255, 0, 255, 0.3);
+  max-width: 800px; 
+  margin: 20px auto;
 }
 
-        #song-timer {
-    margin-top: 10px;
-    color: cyan;
+#album-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+#song-title, 
+#artist-name, 
+#song-timer {
+  margin: 0;
+}
+
+#song-title {
+  margin-top: -10px;
+}
+
+#song-timer {
+  margin-top: 10px;
+  color: cyan;
 }
 
 
@@ -546,14 +477,14 @@ body {
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    background-color: transparent;
+    background: transparent;
     align-items: center;
 }
 
     .spin-bee {
     order: 0;
     flex: 10 0 20%; 
-    background-color: transparent;
+    background: transparent;
     margin-left: auto;
     margin-top: 100px;
 }
@@ -563,7 +494,7 @@ body {
     padding: 0px;
     order: 0;
     flex: 0 0 35%; 
-    background-color:transparent;
+    background:transparent;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -583,11 +514,10 @@ body {
     padding-left: 0; 
     box-sizing: border-box;
     color: #ff53c3;
-    font-family: "Lucida Console", monospace;
-    font-size: 22px;
-    background-color: transparent;
+    font: 22px "Lucida Console", monospace;
+    background: transparent;
     border-radius: 50px;
-    background-color: rgba(70, 0, 70, 0.45);
+    background: rgba(70, 0, 70, 0.45);
     border: 5px solid rgba(255, 0, 255, 0.3);
     
 }
@@ -600,7 +530,7 @@ body {
     align-content: flex-start;
     resize: both;
     overflow: auto;
-    background-color: transparent;    
+    background: transparent;    
 }
 
     .piclog {
@@ -612,7 +542,7 @@ body {
         height: auto;
         padding: 0px;
         border: 10px dashed rgba(255, 0, 255, 0.3);
-        background-color: rgba(70, 0, 70, 0.45);
+        background: rgba(70, 0, 70, 0.45);
         border-radius: 50px;
         order: 0;
         flex: 0 0 30%;
@@ -629,7 +559,7 @@ body {
     }
 
     .now-title a {
-        font-family: "Lucida Console", monospace;
+        font: 50px "Lucida Console", monospace;
         width: 300px;
         padding: 0px;
         order: 1;
@@ -639,17 +569,16 @@ body {
         margin-left: auto;
         margin-right: auto;
         flex: 0 0 50%;
-        font-size: 50px;
         display: block;
         color: fuchsia;
     }
 
     .now-container {
-        font-family: "Lucida Console", monospace;
+        font: 25px "Lucida Console", monospace;
         width: 300px;
         padding: 0px;
         border: 10px dashed rgba(255, 0, 255, 0.3);
-        background-color: rgba(70, 0, 70, 0.451);
+        background: rgba(70, 0, 70, 0.451);
         border-radius: 50px;
         order: 1;
         text-align: left;
@@ -657,7 +586,6 @@ body {
         margin-left: auto;
         margin-right: auto;
         flex: 0 0 50%;
-        font-size: 25px;
         color: rgb(255, 113, 255);
     }
 
@@ -729,7 +657,7 @@ body {
       align-content: center;
       resize: both;
       overflow: auto;
-      background-color: transparent; 
+      background: transparent; 
   }
 
     .blog-flex-container {
@@ -740,7 +668,7 @@ body {
     align-content: flex-start;
     resize: both;
     overflow: auto;
-    background-color: transparent; 
+    background: transparent; 
 }
 
     .blog {
@@ -753,9 +681,8 @@ body {
         padding-left: 30px; 
         box-sizing: border-box;
         color: #ff53c3;
-        font-family: "Lucida Console", monospace;
-        font-size: 17px;
-        background-color: rgba(70, 0, 70, 0.45);
+        font: 17px "Lucida Console", monospace;
+        background: rgba(70, 0, 70, 0.45);
         border: 5px solid rgba(255, 0, 255, 0.3);
         border-radius: 50px;
     }
@@ -770,9 +697,8 @@ body {
         padding-left: 30px; 
         box-sizing: border-box;
         color: #ff53c3;
-        font-family: "Lucida Console", monospace;
-        font-size: 18px;
-        background-color: rgba(70, 0, 70, 0.45);
+        font: 18px "Lucida Console", monospace;
+        background: rgba(70, 0, 70, 0.45);
         border-radius: 50px; 
     }
 
@@ -786,9 +712,8 @@ body {
         padding-left: 30px; 
         box-sizing: border-box;
         color: #ff53c3;
-        font-family: "Lucida Console", monospace;
-        font-size: 17px;
-        background-color: rgba(70, 0, 70, 0.45);
+        font: 17px "Lucida Console", monospace;
+        background: rgba(70, 0, 70, 0.45);
         border: 5px solid rgba(255, 0, 255, 0.3);
         border-radius: 50px;
         visibility:hidden;
@@ -801,8 +726,7 @@ body {
         box-sizing: border-box;
         border: 1px solid transparent;
         color: #ff53c3;
-        font-family: "Lucida Console", monospace;
-        font-size: 27px;
+        font: 27px "Lucida Console", monospace;
         margin-bottom: -10px;
         margin-top: 20px;
     }
@@ -816,38 +740,36 @@ body {
     }
 
     .toggleAllBlogs {
-        background-color: #6a5acd;  
+        background: #6a5acd;  
         color: #ffffff;             
         border: none;               
         border-radius: 10px;         
         padding: 10px 16px;          
         margin-bottom: 10px;
         cursor: pointer;            
-        font-family: "Lucida Console", monospace;  
-        font-size: 13px;            
+        font: 13px "Lucida Console", monospace;  
         transition: all 0.3s ease;  
         margin-top: 10px;
     }
 
     .toggleAllBlogs:hover {
-    background-color: #483d8b;  
+    background: #483d8b;  
     transform: scale(1.1);
     }
 
         button[id^="blogButton"] {
-    background-color: #6a5acd;  
+    background: #6a5acd;  
     color: #ffffff;             
     border: none;               
     border-radius: 10px;         
     padding: 10px 16px;          
     margin-bottom: 10px;
     cursor: pointer;            
-    font-family: "Lucida Console", monospace;  
-    font-size: 8px;            
+    font: 8px "Lucida Console", monospace;  
     transition: all 0.3s ease;  
 }
             button[id^="blogButton"]:hover {
-    background-color: #483d8b;  
+    background: #483d8b;  
     transform: scale(1.1);     
 }
             #more {display: none;}
@@ -860,7 +782,7 @@ body {
     justify-content: space-between;
     resize: both;
     overflow: auto;
-    background-color: transparent;
+    background: transparent;
 }
 
 .socials-text-area {
@@ -873,9 +795,8 @@ body {
     padding-left: 30px; 
     box-sizing: border-box;
     color: #ff53c3;
-    font-family: "Lucida Console", monospace;
-    font-size: 24px;
-    background-color: transparent;
+    font: 24px "Lucida Console", monospace;
+    background: transparent;
 }
 
 .socials-box {
@@ -891,9 +812,8 @@ body {
     padding-left: 30px; 
     box-sizing: border-box;
     color: #ff53c3;
-    font-family: "Lucida Console", monospace;
-    font-size: 30px;
-    background-color: #46004673;
+    font: 30px "Lucida Console", monospace;
+    background: #46004673;
     border: 5px solid rgba(255, 0, 255, 0.3);
     border-radius: 40px;
 }
@@ -911,8 +831,7 @@ body {
   padding-left: 30px; 
   box-sizing: border-box;
   color: #ff53c3;
-  font-family: "Lucida Console", monospace;
-  font-size: 30px;
+  font: 30px "Lucida Console", monospace;
 }
 
 .socials-logo {
@@ -931,7 +850,7 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 20px 0; 
-    background-color: transparent;
+    background: transparent;
 }
     
     .glade-info {
@@ -939,7 +858,7 @@ body {
     padding: 10px; 
     border: 2px dotted rgb(255, 0, 255); 
     color: #fff; 
-    background-color: #234b34d5; 
+    background: #234b34d5; 
     overflow: auto; 
     margin-right: 10px; 
 }
@@ -949,7 +868,7 @@ body {
   padding: 10px; 
   border: 2px dotted rgb(0, 0, 255); 
   color: #fff; 
-  background-color: #234b34d5; 
+  background: #234b34d5; 
   overflow: auto; 
   margin-right: 10px; 
 }
@@ -958,7 +877,7 @@ body {
     max-width: 50px;
     flex-grow: 1; 
     text-align: right; 
-    background-color: transparent;
+    background: transparent;
     font-size: 10px;
     text-align: center;
 }
@@ -972,7 +891,7 @@ body {
   max-width: 50px;
   flex-grow: 1; 
   text-align: right; 
-  background-color: transparent;
+  background: transparent;
   font-size: 10px;
   text-align: center;
 }
@@ -989,14 +908,14 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     padding: 0px 0; 
-    background-color: transparent;
+    background: transparent;
 }
 
     .minecraft-bug {
     max-width: 300px; 
     order: 0;
     flex: 0 0 35%; 
-    background-color: transparent;
+    background: transparent;
     margin-top: -350px;
     margin-left: -80px;
 }
@@ -1004,7 +923,7 @@ body {
     width: 500px; 
     order: 1;
     flex: 0 0 35%; 
-    background-color: transparent;
+    background: transparent;
 }
 
 .footer-container {
@@ -1018,7 +937,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0px 0; 
-    background-color: transparent;
+    background: transparent;
 }
 
     .gif-row-area {
