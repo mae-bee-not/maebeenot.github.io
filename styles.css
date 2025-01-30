@@ -796,3 +796,48 @@ button[id^="blogButton"]:hover {
   flex: 0 0 35%; 
   background: transparent;
   margin-bottom: -10px; }
+  /* Media Queries for Mobile */
+@media (max-width: 768px) {
+  .minecraft-flex-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .glade-info,
+  .den-info,
+  .wii-info {
+    width: 90%;
+    margin-right: 0;
+    order: 1;
+  }
+
+  .dynmap-area,
+  .bluemap-area,
+  .wiimap-area {
+    max-width: 100%;
+    order: 2;
+    text-align: center;
+  }
+
+  .dynmap-area iframe,
+  .bluemap-area iframe,
+  .wiimap-area iframe {
+    width: 100%;
+    height: 300px;
+  }
+
+  .minecraft-bug,
+  .minecraft-wii {
+    max-width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    order: 3;
+    text-align: center;
+  }
+
+  .minecraft-bug img,
+  .minecraft-wii img {
+    width: 80%;
+    max-width: 300px;
+  }}
