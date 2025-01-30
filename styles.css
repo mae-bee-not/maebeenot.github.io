@@ -377,7 +377,6 @@ header, footer, nav, ul, li, img, pre, h1 { }
 #song-timer {
   margin-top: 10px;
   color: cyan;}
-#catBOOM {}
 
 /* Media Queries for Mobile */
 @media (min-width: 768px) {
@@ -763,12 +762,37 @@ button[id^="blogButton"]:hover {
   width: 900px; 
   height: 500px; 
   border: 8px dotted blue; }
-.minecraft-bottom-flex-container {
-  display: flex; 
-  flex-direction: row; 
-  flex-wrap: wrap; 
-  justify-content: flex-start; 
-  align-items: flex-start; 
-  padding: 20px 0; 
-  background: transparent;}
-#catBOOM {}
+.wii-info {
+  width: 300px; 
+  padding: 10px; 
+  border: 2px dotted whitesmoke; 
+  color: #fff; 
+  background: #234b34d5; 
+  overflow: auto; 
+  margin-right: 10px;}
+.wiimap-area {
+  max-width: 50px; 
+  flex-grow: 1; 
+  text-align: right; 
+  background: transparent; 
+  font-size: 10px; 
+  text-align: center;}
+.wiimap-area iframe {
+  width: 900px; 
+  height: 500px; 
+  border: 8px dotted whitesmoke; }
+.minecraft-wii {
+  max-width: 550px;
+  max-height: 275px; 
+  order: 0; 
+  flex: 0 0 35%; 
+  background: transparent;
+  margin-top: -350px; 
+  margin-left: 0px; 
+  overflow: hidden; }
+.minecraft-wii img {
+  width: 300px; 
+  order: 1; 
+  flex: 0 0 35%; 
+  background: transparent;
+  margin-bottom: -10px; }
