@@ -442,55 +442,40 @@ function getCurrentPage() {
 
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
-function blogButton(blogNumber) {
-  const dots = document.getElementById("dots" + blogNumber);
-  const moreText = document.getElementById("more" + blogNumber);
-  const btnText = document.getElementById("blogButton" + blogNumber);
-
-  if (dots.style.display === "none") {
-      dots.style.display = "inline";
-      btnText.innerHTML = "more!";
-      moreText.style.display = "none";
-  } else {
-      dots.style.display = "none";
-      btnText.innerHTML = "less!";
-      moreText.style.display = "inline";
-  }
-}
-
 function setupBlogButtons() {
-  function setupBlogButtons() {
-      const blogButtons = document.querySelectorAll('[id^="blogButton"]');
+  const blogButtons = document.querySelectorAll('[id^="blogButton"]');
   
-      blogButtons.forEach((button, index) => {
-          button.addEventListener('click', () => blogButton(index + 1));
-      });
-  
-      const toggleAllButton = document.getElementById('toggleAllBlogsButton');
-      if (toggleAllButton) {
-          toggleAllButton.addEventListener('click', toggleAllBlogs);
-      }
-  }
-}
-
-function toggleAllBlogs() {
-    const allDots = document.querySelectorAll('[id^="dots"]');
-    const allMoreText = document.querySelectorAll('[id^="more"]');
-    const allButtons = document.querySelectorAll('button[id^="blogButton"]');
-
-    const firstPostExpanded = allDots[0].style.display === "none";
-
-    allDots.forEach((dot, index) => {
-        if (firstPostExpanded) {
-            dot.style.display = "inline";
-            allMoreText[index].style.display = "none";
-            allButtons[index].innerHTML = "more!";
-        } else {
-            dot.style.display = "none";
-            allMoreText[index].style.display = "inline";
-            allButtons[index].innerHTML = "less!";
-        }
+  // Set up individual blog toggles
+  blogButtons.forEach((button, index) => {
+    button.addEventListener('click', (e) => {
+      const blogNumber = index + 1;
+      const dots = document.getElementById(`dots${blogNumber}`);
+      const moreText = document.getElementById(`more${blogNumber}`);
+      const isExpanded = dots.style.display === "none";
+      dots.style.display = isExpanded ? "inline" : "none";
+      moreText.style.display = isExpanded ? "none" : "inline";
+      e.target.innerHTML = isExpanded ? "more!" : "less!";
+      e.target.setAttribute('aria-expanded', !isExpanded);
     });
+  });
 
-    document.getElementById('toggleAllBlogsButton').textContent = firstPostExpanded ? "Expand ALL!!" : "Collapse ALL!!";
+  // Set up toggle all button
+  const toggleAllButton = document.getElementById('toggleAllBlogsButton');
+  if (toggleAllButton) {
+    toggleAllButton.addEventListener('click', () => {
+      const anyExpanded = Array.from(document.querySelectorAll('[id^="more"]'))
+        .some(more => more.style.display === "inline");
+      
+      document.querySelectorAll('[id^="dots"], [id^="more"]').forEach((el, index) => {
+        if (el.id.startsWith('dots')) {
+          el.style.display = anyExpanded ? "inline" : "none";
+          document.getElementById(`blogButton${index + 1}`).innerHTML = anyExpanded ? "more!" : "less!";
+        } else {
+          el.style.display = anyExpanded ? "none" : "inline";
+        }
+      });
+      
+      toggleAllButton.textContent = anyExpanded ? "Expand ALL!!" : "Collapse ALL!!";
+    });
+  }
 }
