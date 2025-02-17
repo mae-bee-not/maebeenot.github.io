@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupCatExplosion() {
-    const button = document.querySelector(".cat-explosion-pushable");
+    const button = document.querySelector(".btn-explode-pushable");
     if (button) {
         button.addEventListener("click", function () {
             const audio = document.getElementById("catBOOM");
@@ -29,7 +29,7 @@ function setupCatExplosion() {
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupRainbowCursor() {
-    const beeArea = document.querySelector(".bee-area");
+    const beeArea = document.querySelector(".bee-container");
     if (beeArea && typeof cursoreffects !== 'undefined') {
         new cursoreffects.rainbowCursor({
             element: beeArea,
@@ -43,7 +43,7 @@ function setupRainbowCursor() {
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupBeeCursor() {
-    const beeArea = document.querySelector(".bee-area");
+    const beeArea = document.querySelector(".bee-container");
     const beeCursor = document.createElement("div");
     beeCursor.style.position = "absolute";
     beeCursor.style.pointerEvents = "none";

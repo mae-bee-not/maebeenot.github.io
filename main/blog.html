@@ -8,7 +8,6 @@
         <title>cool blogz :3</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" /> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" as="font" type="font/woff2" crossorigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet" />
-        <script defer src="https://analytics.us.umami.is/script.js" data-website-id="c3c4bc5e-2834-450b-bb48-17f840f60add"></script>
         <script defer src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
         <link rel="icon" type="image/png" sizes="16x16" href="/media/bee-bee-pink16x16.png" /> <link rel="icon" type="image/png" sizes="32x32" href="/media/bee-bee-pink32x32.png" /> <link rel="icon" type="image/png" sizes="64x64" href="/media/bee-bee-pink64x64.png" />
         <link rel="stylesheet" href="/styles.css" />
@@ -16,9 +15,9 @@
         <script src="/script.js" ></script>
     </head>
 <body>
-    <header class="bee-area">
+    <header class="bee-container">
         <h1 id="title">welcome to my</h1>
-        <pre id="ascii-art">
+        <pre id="ascii-container">
  _______      .---.          ,-----.       .-_'''-.    
 \  ____  \    | ,_|        .'  .-,  '.    '_( )_   \   
 | |    \ |  ,-./  )       / ,-.|  \ _ \  |(_ o _)|  '  
@@ -42,7 +41,7 @@
     <hr />
     <hr />
         
-    <div class="blog-top-container">
+    <div class="flex-container">
         <button class="toggleAllBlogs" onclick="toggleAllBlogs()" id="toggleAllBlogsButton">Expand All</button>
     </div>
     {# Row 1 #}
@@ -288,7 +287,7 @@
 </div>
         <hr />
     <footer class="footer-container">
-        <div class="gif-row-area">
+        <div class="gif-container">
                 <a href="chrome://restart" target="_blank">
                     <img
                         src="/media/not-secure-88x31.gif"
