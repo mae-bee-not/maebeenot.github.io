@@ -1,12 +1,21 @@
 // Ensure this script is loaded after the DOM is ready and config.js is loaded
 document.addEventListener("DOMContentLoaded", function () {
-    setupCatExplosion();
-    setupRainbowCursor();
-    setupBeeCursor();
-    setupOneko();
-    setupBlogButtons();
-    setupSpotifyNowPlaying();
-    setupRandomAudioPlayer(); 
+  // setup
+  setupCatExplosion();
+  setupRainbowCursor();
+  setupBeeCursor();
+  setupOneko();
+  setupBlogButtons();
+  setupRandomAudioPlayer(); 
+  setupSpotifyNowPlaying();
+
+  // age calc
+  var myBirthday = new Date('2004-10-23');
+  var ageElement = document.getElementById('myAge');
+  if (ageElement) {
+      ageElement.textContent = calculateAge(myBirthday);
+  }
+
 });
 
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
@@ -312,7 +321,6 @@ function setupOneko() {
 
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
-document.addEventListener('DOMContentLoaded', () => {
   async function setupSpotifyNowPlaying() {
       const { client_id, client_secret, refresh_token } = config;
       
@@ -404,9 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setInterval(updateNowPlaying, 10000);  // Update every 10 seconds
   }
 
-  setupSpotifyNowPlaying();
-});
-
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupRandomAudioPlayer() {
@@ -478,4 +483,17 @@ function setupBlogButtons() {
       toggleAllButton.textContent = anyExpanded ? "Expand ALL!!" : "Collapse ALL!!";
     });
   }
+}
+
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
+function calculateAge(birthDate) {
+  var now = new Date();
+  var currentYear = now.getFullYear();
+  var birthdayThisYear = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+  var age = currentYear - birthDate.getFullYear();
+  if (birthdayThisYear > now) {
+      age--;
+  }
+  return age;
 }
