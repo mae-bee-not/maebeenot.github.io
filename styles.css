@@ -536,7 +536,7 @@ body.spinning-deer {
   align-content: center;
   text-align: center;
   padding: 0 30px;
-  min-width: 300px;
+  min-width: 200px;
   min-height: 50px;
   box-sizing: border-box;
   color: var(--space-pink);
@@ -551,14 +551,14 @@ body.spinning-deer {
   justify-content: center;
   align-content: center;
   text-align: center;
-  padding: 0 30px;
-  min-width: 300px;
+  padding: 0 3px;
+  min-width: 100px;
   min-height: 50px;
   box-sizing: border-box;
   color: var(--space-pink);
   font: 30px "Jersey 15", monospace;}
 .socials-logo {
-  width: 250px;
+  width: 200px;
   height: 200px;
   display: flex;
   order: 0;
