@@ -571,7 +571,6 @@ body.spinning-deer {
   gap: 20px;
   flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap;
   align-content: flex-start;
   overflow: auto;
   background: transparent;
@@ -702,6 +701,7 @@ button[id^="blogButton"]:focus {
   .blog-flex-container {
       padding: 5px;
       gap: 15px;
+      flex-wrap: wrap;
   }
 }
 
