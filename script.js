@@ -448,39 +448,49 @@ function getCurrentPage() {
 // 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
 
 function setupBlogButtons() {
-  const blogButtons = document.querySelectorAll('[id^="blogButton"]');
-  
-  // Set up individual blog toggles
-  blogButtons.forEach((button, index) => {
+  const blogButtons = document.querySelectorAll('[id^="blogButton"]'); 
+
+  blogButtons.forEach((button) => { 
     button.addEventListener('click', (e) => {
-      const blogNumber = index + 1;
+      const blogNumber = e.target.id.replace('blogButton', '');
       const dots = document.getElementById(`dots${blogNumber}`);
       const moreText = document.getElementById(`more${blogNumber}`);
-      const isExpanded = dots.style.display === "none";
-      dots.style.display = isExpanded ? "inline" : "none";
-      moreText.style.display = isExpanded ? "none" : "inline";
-      e.target.innerHTML = isExpanded ? "more!" : "less!";
-      e.target.setAttribute('aria-expanded', !isExpanded);
+
+      if (dots && moreText) {
+          const isExpanded = dots.style.display === "none";
+          dots.style.display = isExpanded ? "inline" : "none";
+          moreText.style.display = isExpanded ? "none" : "inline";
+          e.target.innerHTML = isExpanded ? "more!" : "less!";
+          e.target.setAttribute('aria-expanded', !isExpanded);
+      } else {
+          console.error(`Could not find dots${blogNumber} or more${blogNumber}`);
+      }
     });
   });
 
   // Set up toggle all button
   const toggleAllButton = document.getElementById('toggleAllBlogsButton');
   if (toggleAllButton) {
+    toggleAllButton.textContent = "Expand ALL!!";
+
     toggleAllButton.addEventListener('click', () => {
-      const anyExpanded = Array.from(document.querySelectorAll('[id^="more"]'))
-        .some(more => more.style.display === "inline");
-      
-      document.querySelectorAll('[id^="dots"], [id^="more"]').forEach((el, index) => {
-        if (el.id.startsWith('dots')) {
-          el.style.display = anyExpanded ? "inline" : "none";
-          document.getElementById(`blogButton${index + 1}`).innerHTML = anyExpanded ? "more!" : "less!";
-        } else {
-          el.style.display = anyExpanded ? "none" : "inline";
-        }
+      const shouldExpand = Array.from(document.querySelectorAll('[id^="dots"]'))
+                                .every(dots => dots.style.display !== "none"); 
+
+      blogButtons.forEach(button => {
+          const blogNumber = button.id.replace('blogButton', '');
+          const dots = document.getElementById(`dots${blogNumber}`);
+          const moreText = document.getElementById(`more${blogNumber}`);
+
+          if(dots && moreText) {
+              dots.style.display = shouldExpand ? "none" : "inline";
+              moreText.style.display = shouldExpand ? "inline" : "none";
+              button.innerHTML = shouldExpand ? "less!" : "more!";
+              button.setAttribute('aria-expanded', shouldExpand);
+          }
       });
-      
-      toggleAllButton.textContent = anyExpanded ? "Expand ALL!!" : "Collapse ALL!!";
+
+      toggleAllButton.textContent = shouldExpand ? "Collapse ALL!!" : "Expand ALL!!";
     });
   }
 }
