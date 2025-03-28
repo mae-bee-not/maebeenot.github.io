@@ -258,3 +258,9 @@ function setupSpotifyControls() {
          // console.log("Spotify Skip button not found.");
     }
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSpotifyControls);
+} else {
+    setupSpotifyControls();
+}
