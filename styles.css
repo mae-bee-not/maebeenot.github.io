@@ -347,18 +347,6 @@ p {
   display: flex;
   align-items: center;
   padding: 20px;}
-#spotify-container {
-  display: flex;
-  order: 2;
-  align-items: center;
-  justify-content: center;
-  background: rgba(70, 0, 70, 0.45);
-  border-radius: 20px;
-  padding: 10px;
-  color: var(--space-pink);
-  border: 5px solid var(--space-purple);
-  max-width: 800px;
-  margin: 20px auto;}
 
 /* ===== Spotify Styles ===== */
 
@@ -373,16 +361,19 @@ p {
   color: var(--space-pink);
   border: 5px solid var(--space-purple);
   max-width: 800px; 
-  margin: 20px auto;}
+  margin: 20px auto;
+  -webkit-appearance: none;}
 .spotify-info {
   display: flex;          
   flex-direction: column; 
   align-items: start;    
-  text-align: start;}
+  text-align: start;
+  -webkit-appearance: none;}
 .spotify-button-group {
   display: flex;     
   gap: 15px;         
-  margin-top: 12px;}
+  margin-top: 12px;
+  -webkit-appearance: none;}
 #spotifyPlayPause,
 #spotifySkip {
   background-color: #7a3db8; 
@@ -393,7 +384,8 @@ p {
   font-size: 1.3em;        
   cursor: pointer;
   line-height: 1;          
-  transition: background-color 0.2s ease, transform 0.2s ease;}
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  -webkit-appearance: none;}
 #spotifyPlayPause:hover,
 #spotifySkip:hover {
   background-color: #5a2d8a; 
