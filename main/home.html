@@ -30,6 +30,7 @@
         setupOneko();
         setupRandomAudioPlayer();
         setupSpotifyNowPlaying(); 
+        setupSpotifyControls();
         setupCatExplosion();      
       });
     </script>
@@ -140,6 +141,13 @@
               <p id="song-timer">0:00 / 0:00</p>
           </div>
       </div>
+
+       <!-- NEW Spotify Control Buttons -->
+    <div class="spotify-controls" style="text-align: center; margin-top: 10px;">
+        <button id="spotifyPlayPause" style="font-size: 1.5em; padding: 5px 10px; margin: 0 5px;">▶️ Play</button>
+        <button id="spotifySkip" style="font-size: 1.5em; padding: 5px 10px; margin: 0 5px;">⏭️ Skip</button>
+        <!-- You can add a 'previous' button similarly if desired -->
+    </div>
         
     </div>
   </main>
