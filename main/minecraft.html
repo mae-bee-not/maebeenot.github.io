@@ -15,9 +15,20 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/media/bee-bee-pink32x32.png"/>
     <script src="/config.js"></script>
     <link rel="stylesheet" href="/styles.css" />
-    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/leonardosnt/mc-player-counter/dist/mc-player-counter.min.js"></script>
-    <script src="/script.js"></script>
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
+    <script src="/scripts/effects.js" defer></script>
+    <script src="/scripts/oneko.js" defer></script>
+    <script src="/scripts/audio.js" defer></script>
+  
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        setupRainbowCursor(); 
+        setupBeeCursor();     
+        setupOneko();
+        setupRandomAudioPlayer();
+      });
+    </script>
 </head>
   <body>
     <!-- Header Section -->
@@ -105,7 +116,7 @@
             </div>
     </div>
             <div class="minecraft-wii">
-                <img src=/media/spinning-wii.gif>
+                <a href="https://myrient.erista.me/files/Redump/Nintendo%20-%20Wii%20-%20NKit%20RVZ%20%5Bzstd-19-128k%5D/"><img src=/media/spinning-wii.gif></a>
             </div>
 
   <hr />
@@ -168,4 +179,3 @@
         
 </body>
 </html>
-    

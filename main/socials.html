@@ -15,7 +15,18 @@
     <link rel="icon" type="image/png" sizes="64x64" href="/media/bee-bee-pink64x64.png"/>
     <link rel="stylesheet" href="/styles.css" />
     <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
-    <script src="/script.js"></script>
+    <script src="/scripts/effects.js" defer></script>
+    <script src="/scripts/oneko.js" defer></script>
+    <script src="/scripts/audio.js" defer></script>
+    
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        setupRainbowCursor(); 
+        setupBeeCursor();     
+        setupOneko();
+        setupRandomAudioPlayer();
+      });
+    </script>
 </head>
   <body>
     <!-- Header Section -->
@@ -170,6 +181,3 @@
           </div>
       </div>
   </footer>
-
-</body>
-</html>

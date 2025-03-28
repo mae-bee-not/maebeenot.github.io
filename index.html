@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
     <link rel="icon" type="image/png" sizes="16x16" href="/media/bee-bee-pink16x16.png"> <link rel="icon" type="image/png" sizes="32x32" href="/media/bee-bee-pink32x32.png"> <link rel="icon" type="image/png" sizes="64x64" href="/media/bee-bee-pink64x64.png">
-    <script src="/config.js" ></script>
-    <script src="/script.js" ></script>
     <link rel="stylesheet" href="/styles.css">
     <style> body {
             background-image: url("/media/flying-space.gif");
@@ -22,6 +20,23 @@
             min-height: 200px;
                 }
     </style>
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
+    <script src="/scripts/effects.js" defer></script>
+    <script src="/scripts/oneko.js" defer></script>
+    <script src="/scripts/spotify.js" defer></script>
+    <script src="/scripts/audio.js" defer></script>
+    <script src="/scripts/page-init.js" defer></script>
+    
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        setupRainbowCursor(); 
+        setupBeeCursor();     
+        setupOneko();
+        setupRandomAudioPlayer();
+        setupSpotifyNowPlaying(); 
+        setupCatExplosion();     
+      });
+    </script>
 </head>
   <body>
     <!-- Header Section -->
