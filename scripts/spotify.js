@@ -155,7 +155,7 @@ async function setupSpotifyNowPlaying() {
 
                     // Update Play/Pause button based on state
                     if(playPauseButton) {
-                       playPauseButton.textContent = data.isPlaying ? '⏸️ Pause' : '▶️ Play';
+                       playPauseButton.textContent = data.isPlaying ? '⏸ Pause' : '▶ Play';
                     }
 
                 } else {
@@ -164,7 +164,7 @@ async function setupSpotifyNowPlaying() {
                     artistEl.textContent = "Check back soon";
                     timerEl.textContent = "0:00 / 0:00";
                      if(playPauseButton) {
-                       playPauseButton.textContent = '▶️ Play'; // Default to Play if nothing loads
+                       playPauseButton.textContent = '▶ Play'; // Default to Play if nothing loads
                     }
                 }
             } catch (error) {

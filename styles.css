@@ -335,8 +335,7 @@ p {
   border-radius: 10px;
   border-top-right-radius: 200px;
   border-top-left-radius: 200px;
-  border: 5px solid var(--space-purple);
-}
+  border: 5px solid var(--space-purple);}
 .jo\.llei-credit {
   text-align: center;
   margin-top: 10px;
@@ -360,6 +359,58 @@ p {
   border: 5px solid var(--space-purple);
   max-width: 800px;
   margin: 20px auto;}
+
+/* ===== Spotify Styles ===== */
+
+#spotify-container {
+  display: flex;
+  order: 2;
+  align-items: center;
+  justify-content: center; 
+  background: rgba(70, 0, 70, 0.45);
+  border-radius: 20px;
+  padding: 10px;
+  color: var(--space-pink);
+  border: 5px solid var(--space-purple);
+  max-width: 800px; 
+  margin: 20px auto;}
+.spotify-info {
+  display: flex;          
+  flex-direction: column; 
+  align-items: start;    
+  text-align: start;}
+.spotify-button-group {
+  display: flex;     
+  gap: 15px;         
+  margin-top: 12px;}
+#spotifyPlayPause,
+#spotifySkip {
+  background-color: #7a3db8; 
+  color: white;
+  border: 1px solid var(--space-pink); 
+  border-radius: 8px;
+  padding: 6px 12px;       
+  font-size: 1.3em;        
+  cursor: pointer;
+  line-height: 1;          
+  transition: background-color 0.2s ease, transform 0.2s ease;}
+#spotifyPlayPause:hover,
+#spotifySkip:hover {
+  background-color: #5a2d8a; 
+  transform: scale(1.05);    }
+#spotifyPlayPause:focus,
+#spotifySkip:focus {
+  outline: 2px solid #ff00ff; 
+  outline-offset: 2px;}
+#spotify-container .spotify-info p,
+#spotify-container .spotify-info h2,
+#spotify-container .spotify-info h3 {
+  margin-top: 2px;
+  margin-bottom: 2px;}
+#spotify-container .spotify-info #song-title {
+   margin-top: 4px; }
+#spotify-container .spotify-info #song-timer {
+  margin-top: 5px;}
 #album-image {
   width: 100px;
   height: 100px;
