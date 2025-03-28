@@ -12,10 +12,9 @@ async function getSpotifyAccessToken() {
     const { client_id, client_secret, refresh_token } = config;
 
     // Add simple caching to avoid redundant token requests within a short time
-    // IMPORTANT: This is very basic; a robust solution would handle expiry better.
     if (getSpotifyAccessToken.cachedToken &&
         getSpotifyAccessToken.cacheTime &&
-        (Date.now() - getSpotifyAccessToken.cacheTime < 3000 * 1000)) { // Cache for 50 mins (tokens last 60)
+        (Date.now() - getSpotifyAccessToken.cacheTime < 3000 * 1000)) { // Cache for 50 mins
           // console.log("Using cached Spotify token");
           return getSpotifyAccessToken.cachedToken;
     }
@@ -60,6 +59,8 @@ async function getSpotifyAccessToken() {
 getSpotifyAccessToken.cachedToken = null;
 getSpotifyAccessToken.cacheTime = null;
 
+// --- Variable to hold reference to the update function ---
+let _updateNowPlayingFunc = null; // Changed name to avoid potential global conflicts
 
 // --- Now Playing Functionality ---
 async function setupSpotifyNowPlaying() {
@@ -75,6 +76,7 @@ async function setupSpotifyNowPlaying() {
 
     // --- GetNowPlaying (uses the standalone token function) ---
     async function getNowPlaying() {
+        // ... (keep the inner getNowPlaying function exactly as it was) ...
         try {
             const access_token = await getSpotifyAccessToken(); // Use standalone function
             if (!access_token) return null;
@@ -124,12 +126,14 @@ async function setupSpotifyNowPlaying() {
         }
     }
 
-    // --- Helper and Update Logic (mostly unchanged) ---
+    // --- Helper and Update Logic ---
     function pad(n) {
         return n < 10 ? '0' + n : n;
     }
     let intervalId = null;
-    async function updateNowPlaying() {
+
+    // Define the actual update logic function
+    async function updateDisplay() { // Renamed from updateNowPlaying to avoid confusion
         const data = await getNowPlaying();
         requestAnimationFrame(() => { // Update UI in animation frame
             try {
@@ -137,7 +141,7 @@ async function setupSpotifyNowPlaying() {
                 const titleEl = document.getElementById('song-title');
                 const artistEl = document.getElementById('artist-name');
                 const timerEl = document.getElementById('song-timer');
-                const playPauseButton = document.getElementById('spotifyPlayPause'); // Get play/pause button
+                const playPauseButton = document.getElementById('spotifyPlayPause');
 
                 if (!imgEl || !titleEl || !artistEl || !timerEl) return;
 
@@ -153,7 +157,6 @@ async function setupSpotifyNowPlaying() {
                     timerEl.textContent =
                         `${pad(minutesPlayed)}:${pad(secondsPlayed % 60)} / ${pad(minutesTotal)}:${pad(secondsTotal % 60)}`;
 
-                    // Update Play/Pause button based on state
                     if(playPauseButton) {
                        playPauseButton.textContent = data.isPlaying ? '⏸ Pause' : '▶ Play';
                     }
@@ -164,7 +167,7 @@ async function setupSpotifyNowPlaying() {
                     artistEl.textContent = "Check back soon";
                     timerEl.textContent = "0:00 / 0:00";
                      if(playPauseButton) {
-                       playPauseButton.textContent = '▶ Play'; // Default to Play if nothing loads
+                       playPauseButton.textContent = '▶ Play';
                     }
                 }
             } catch (error) {
@@ -172,14 +175,19 @@ async function setupSpotifyNowPlaying() {
             }
         });
     }
-    updateNowPlaying();
-    intervalId = setInterval(updateNowPlaying, 1000); // Keep updating display
+
+    // --- Assign the function to the globally accessible variable ---
+    _updateNowPlayingFunc = updateDisplay; // Now _updateNowPlayingFunc points to updateDisplay
+
+    // Initial call and interval setup
+    updateDisplay(); // Initial call uses the renamed function
+    intervalId = setInterval(updateDisplay, 10000); // Interval uses the renamed function
 }
 
 
-// --- NEW Playback Control Functions ---
+// --- Playback Control Functions ---
 
-async function spotifyControl(endpoint, method = 'PUT') { // Default to PUT
+async function spotifyControl(endpoint, method = 'PUT') {
     const access_token = await getSpotifyAccessToken();
     if (!access_token) {
         console.error("Cannot control Spotify: No access token.");
@@ -194,23 +202,21 @@ async function spotifyControl(endpoint, method = 'PUT') { // Default to PUT
             }
         });
 
-        // Check for common errors
         if (response.status === 401) {
              console.error("Spotify Control Error: Unauthorized (Token likely expired or invalid scope).");
-             getSpotifyAccessToken.cachedToken = null; // Clear bad token cache
+             getSpotifyAccessToken.cachedToken = null;
         } else if (response.status === 403) {
              console.error("Spotify Control Error: Forbidden (Missing scope or premium required?).");
-             // Check if refresh token includes 'user-modify-playback-state' scope
         } else if (response.status === 404) {
              console.error("Spotify Control Error: No active device found.");
-             // Maybe display a message to the user?
         } else if (!response.ok) {
              console.error(`Spotify Control Error: Status ${response.status}`);
         } else {
-            // console.log(`Spotify action ${method} ${endpoint} successful.`);
-             // Optional: Force an immediate UI update after control action
-             if (typeof updateNowPlaying === 'function') { // Check if update function is available
-                setTimeout(updateNowPlaying, 500); // Update after slight delay
+             console.log(`Spotify action ${method} ${endpoint} successful.`);
+             // --- Call the exposed update function ---
+             if (typeof _updateNowPlayingFunc === 'function') { // Check the global reference
+                // Delay needed because Spotify API state might take a moment to update
+                setTimeout(_updateNowPlayingFunc, 500); // Call the correct function after 500ms
              }
         }
 
@@ -219,6 +225,7 @@ async function spotifyControl(endpoint, method = 'PUT') { // Default to PUT
     }
 }
 
+// --- play/pause/skip functions remain the same ---
 function playSpotify() {
     console.log("Attempting to Play Spotify");
     spotifyControl('https://api.spotify.com/v1/me/player/play', 'PUT');
@@ -234,14 +241,13 @@ function skipSpotifyNext() {
     spotifyControl('https://api.spotify.com/v1/me/player/next', 'POST');
 }
 
-// --- NEW Setup function for controls ---
+// --- Setup function for controls remains the same ---
 function setupSpotifyControls() {
     const playPauseButton = document.getElementById('spotifyPlayPause');
     const skipButton = document.getElementById('spotifySkip');
 
     if (playPauseButton) {
         playPauseButton.addEventListener('click', () => {
-            // Basic toggle logic - assumes button text reflects current state
             if (playPauseButton.textContent.includes('Play')) {
                 playSpotify();
             } else {
@@ -249,16 +255,17 @@ function setupSpotifyControls() {
             }
         });
     } else {
-        // console.log("Spotify Play/Pause button not found.");
+         // console.log("Spotify Play/Pause button not found.");
     }
 
     if (skipButton) {
         skipButton.addEventListener('click', skipSpotifyNext);
     } else {
-         // console.log("Spotify Skip button not found.");
+          // console.log("Spotify Skip button not found.");
     }
 }
 
+// --- Setup controls (this part remains the same at the end of the file) ---
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupSpotifyControls);
 } else {
