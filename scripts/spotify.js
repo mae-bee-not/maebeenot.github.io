@@ -173,7 +173,7 @@ async function setupSpotifyNowPlaying() {
         });
     }
     updateNowPlaying();
-    intervalId = setInterval(updateNowPlaying, 10000); // Keep updating display
+    intervalId = setInterval(updateNowPlaying, 1000); // Keep updating display
 }
 
 
