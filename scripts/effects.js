@@ -38,3 +38,69 @@ function setupBeeCursor() {
         }
     });
 }
+
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
+// Trailing Cursor Logic
+// 🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 //
+
+let trailingCursorInstance = null; 
+
+function createTrailingCursor() {
+    if (!trailingCursorInstance && typeof cursoreffects !== 'undefined') {
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (!mediaQuery || !mediaQuery.matches) {
+            trailingCursorInstance = new cursoreffects.trailingCursor({
+                // Add any customizations from the docs here if you want
+                 particles: 10,
+                 rate: 0.8,
+                 baseImageSrc: "/media/purple-cursor.png"
+            });
+            // console.log("Trailing cursor created"); // For debugging
+        } else {
+            // console.log("Trailing cursor not created due to prefers-reduced-motion."); // For debugging
+        }
+    }
+}
+
+// Function to destroy the trailing cursor
+function destroyTrailingCursor() {
+    if (trailingCursorInstance) {
+        trailingCursorInstance.destroy();
+        trailingCursorInstance = null; 
+        // console.log("Trailing cursor destroyed"); // For debugging
+    }
+}
+
+function setupTrailingCursorExclusion() {
+    const beeArea = document.querySelector(".bee-container");
+
+    createTrailingCursor();
+
+    if (beeArea) {
+        beeArea.addEventListener("mouseenter", () => {
+            // console.log("Mouse entered bee-container"); // For debugging
+            destroyTrailingCursor();
+        });
+
+        beeArea.addEventListener("mouseleave", () => {
+            // console.log("Mouse left bee-container"); // For debugging
+            createTrailingCursor();
+        });
+    } else {
+        console.warn(".bee-container not found. Trailing cursor will remain active everywhere.");
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery) {
+        mediaQuery.addEventListener("change", () => {
+            if (mediaQuery.matches) {
+                destroyTrailingCursor();
+            } else {
+                if (!beeArea || !beeArea.matches(':hover')) {
+                     createTrailingCursor();
+                }
+            }
+        });
+    }
+}
