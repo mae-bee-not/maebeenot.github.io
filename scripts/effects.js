@@ -79,12 +79,12 @@ function setupTrailingCursorExclusion() {
 
     if (beeArea) {
         beeArea.addEventListener("mouseenter", () => {
-            // console.log("Mouse entered bee-container"); // For debugging
+             console.log("Mouse entered bee-container"); // For debugging
             destroyTrailingCursor();
         });
 
         beeArea.addEventListener("mouseleave", () => {
-            // console.log("Mouse left bee-container"); // For debugging
+             console.log("Mouse left bee-container"); // For debugging
             createTrailingCursor();
         });
     } else {

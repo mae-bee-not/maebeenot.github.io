@@ -365,19 +365,16 @@ p {
   color: var(--space-pink);
   border: 5px solid var(--space-purple);
   max-width: 800px; 
-  margin: 20px auto;
-  -webkit-appearance: none;}
+  margin: 20px auto;}
 .spotify-info {
   display: flex;          
   flex-direction: column; 
   align-items: start;    
-  text-align: start;
-  -webkit-appearance: none;}
+  text-align: start;}
 .spotify-button-group {
   display: flex;     
   gap: 15px;         
-  margin-top: 12px;
-  -webkit-appearance: none;}
+  margin-top: 12px;}
 #spotifyPlayPause,
 #spotifySkip {
   background-color: #7a3db8; 
@@ -387,8 +384,7 @@ p {
   padding: 6px 12px;       
   font-size: 1.3em;        
   line-height: 1;          
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  -webkit-appearance: none;}
+  transition: background-color 0.2s ease, transform 0.2s ease;}
 #spotifyPlayPause:hover,
 #spotifySkip:hover {
   background-color: #5a2d8a; 
