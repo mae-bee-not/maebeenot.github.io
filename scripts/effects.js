@@ -56,9 +56,9 @@ function createTrailingCursor() {
                  rate: 0.8,
                  baseImageSrc: "/media/purple-cursor.png"
             });
-            // console.log("Trailing cursor created"); // For debugging
+             console.log("Trailing cursor created"); // For debugging
         } else {
-            // console.log("Trailing cursor not created due to prefers-reduced-motion."); // For debugging
+             console.log("Trailing cursor not created due to prefers-reduced-motion."); // For debugging
         }
     }
 }
@@ -89,18 +89,5 @@ function setupTrailingCursorExclusion() {
         });
     } else {
         console.warn(".bee-container not found. Trailing cursor will remain active everywhere.");
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery) {
-        mediaQuery.addEventListener("change", () => {
-            if (mediaQuery.matches) {
-                destroyTrailingCursor();
-            } else {
-                if (!beeArea || !beeArea.matches(':hover')) {
-                     createTrailingCursor();
-                }
-            }
-        });
     }
 }
