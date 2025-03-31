@@ -163,7 +163,7 @@ async function setupSpotifyNowPlaying() {
 
                 } else {
                     imgEl.src = "/media/pink-default-album.png";
-                    titleEl.textContent = "Nothing!";
+                    titleEl.textContent = "𖢥 Nothing! 𖢥";
                     artistEl.textContent = "Check back soon";
                     timerEl.textContent = "0:00 / 0:00";
                      if(playPauseButton) {
