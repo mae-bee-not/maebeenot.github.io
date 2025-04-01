@@ -3,7 +3,7 @@ const context = canvas.getContext('2d');
 const grid = 15;
 const paddleHeight = grid * 5; // 80
 const maxPaddleY = canvas.height - grid - paddleHeight;
-var paddleSpeed = 6;
+var paddleSpeed = 10;
 var ballSpeed = 5;
 const leftPaddle = {
 // start in the middle of the game on the left side
@@ -63,7 +63,7 @@ else if (rightPaddle.y > maxPaddleY) {
 rightPaddle.y = maxPaddleY;
 }
 // draw paddles
-context.fillStyle = 'white';
+context.fillStyle = 'magenta';
 context.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
 context.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
 // move ball by its velocity
@@ -104,7 +104,7 @@ ball.x = rightPaddle.x - ball.width;
 // draw ball
 context.fillRect(ball.x, ball.y, ball.width, ball.height);
 // draw walls
-context.fillStyle = 'lightgrey';
+context.fillStyle = 'purple';
 context.fillRect(0, 0, canvas.width, grid);
 context.fillRect(0, canvas.height - grid, canvas.width, canvas.height);
 // draw dotted line down the middle
@@ -116,12 +116,12 @@ context.fillRect(canvas.width / 2 - grid / 2, i, grid, grid);
 document.addEventListener('keydown', function(e) {
 // Changed controls: O key for right paddle up
 if (e.which === 79) {
-e.preventDefault(); // Prevent any default browser behavior
+e.preventDefault();
 rightPaddle.dy = -paddleSpeed;
 }
 // Changed controls: K key for right paddle down
 else if (e.which === 75) {
-e.preventDefault(); // Prevent any default browser behavior
+e.preventDefault();
 rightPaddle.dy = paddleSpeed;
 }
 // w key

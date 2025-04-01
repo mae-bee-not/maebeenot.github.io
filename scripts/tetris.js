@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('tetris-game');
     const context = canvas.getContext('2d');
-    const grid = 25; // Adjusted for smaller canvas
+    const grid = 25; 
     const tetrominoSequence = [];
     // keep track of what is in every cell of the game using a 2d array
     // tetris playfield is 10x20, with a few rows offscreen
@@ -156,13 +156,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     // color of each tetromino
     const colors = {
-    'I': 'cyan',
-    'O': 'yellow',
-    'T': 'purple',
-    'S': 'green',
-    'Z': 'red',
-    'J': 'blue',
-    'L': 'orange'
+    'I': 'deeppink',
+    'O': 'violet',
+    'T': 'pink',
+    'S': 'mediumorchid',
+    'Z': 'hotpink',
+    'J': 'fuchsia',
+    'L': 'orchid'
     };
     let count = 0;
     let tetromino = getNextTetromino();

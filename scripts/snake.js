@@ -2,20 +2,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     var canvas = document.getElementById('snake-game');
     var context = canvas.getContext('2d');
-    // Adjusted for 250x250 canvas
-    var grid = 10; // Changed from 16 to 10 (making cells smaller)
+    var grid = 10; 
     var count = 0;
     var snake = {
-    x: 120, // Adjusted starting position (was 160)
-    y: 120, // Adjusted starting position (was 160)
+    x: 120, 
+    y: 120, 
     dx: grid,
     dy: 0,
     cells: [],
     maxCells: 4
     };
     var apple = {
-    x: 200, // Adjusted position (was 320)
-    y: 200  // Adjusted position (was 320)
+    x: 200, 
+    y: 200  
     };
     function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loop() {
     requestAnimationFrame(loop);
     // slow game loop to 15 fps instead of 60 (60/15 = 4)
-    if (++count < 4) {
+    if (++count < 6) {
     return;
     }
     count = 0;
@@ -52,10 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     snake.cells.pop();
     }
     // draw apple
-    context.fillStyle = 'red';
+    context.fillStyle = 'magenta';
     context.fillRect(apple.x, apple.y, grid-1, grid-1);
     // draw snake one cell at a time
-    context.fillStyle = 'green';
+    context.fillStyle = 'purple';
     snake.cells.forEach(function(cell, index) {
     // drawing 1 px smaller than the grid creates a grid effect in the snake body
     context.fillRect(cell.x, cell.y, grid-1, grid-1);
@@ -63,15 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cell.x === apple.x && cell.y === apple.y) {
     snake.maxCells++;
     // Canvas is now 250x250 - adjust grid calculation
-    apple.x = getRandomInt(0, 25) * grid; // 25 cells of 10px each
+    apple.x = getRandomInt(0, 25) * grid; 
     apple.y = getRandomInt(0, 25) * grid;
     }
     // check collision with all cells after this one
     for (var i = index + 1; i < snake.cells.length; i++) {
     // snake occupies same space as a body part. reset game
     if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-    snake.x = 120; // Adjusted reset position (was 160)
-    snake.y = 120; // Adjusted reset position (was 160)
+    snake.x = 120; 
+    snake.y = 120; 
     snake.cells = [];
     snake.maxCells = 4;
     snake.dx = grid;
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     });
     }
-    // WASD controls (unchanged)
+    // WASD controls
     document.addEventListener('keydown', function(e) {
     // A key (left)
     if (e.which === 65 && snake.dx === 0) {

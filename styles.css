@@ -148,7 +148,7 @@ p {
   text-align: center;
   padding: 15px 0;
   background: transparent;
-  max-width: 1000px;
+  max-width: 100%;
   margin: auto;}
 .gif-row a {
   margin: 0 5px;
@@ -393,13 +393,13 @@ p {
   flex-direction: column;
   align-items: center;}
   #snake-game {
-  border: 2px solid white;
+  border: 2px solid var(--space-purple);
   background: transparent;}
   #tetris-game {
-  border: 2px solid white;
+  border: 2px solid var(--space-purple);
   background: transparent;}
   #game {
-  border: 2px solid white;
+  border: 2px solid var(--space-purple);
   background: transparent;
   width: 250px; 
   height: 187px; }
@@ -830,6 +830,7 @@ button[id^="blogButton"]:focus {
 /* ===== MINECRAFT STYLES ===== */
 .minecraft-flex-container {
   display: flex;
+  margin: 10px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -843,9 +844,8 @@ button[id^="blogButton"]:focus {
   color: #fff;
   background: #234b34d5;
   overflow: auto;
-  margin-right: 10px; }
+  margin-right: 10px;}
 .dynmap-area {
-  max-width: 50px;
   flex-grow: 1;
   text-align: right;
   background: transparent;
@@ -864,6 +864,7 @@ button[id^="blogButton"]:focus {
   margin-left: -80px;}
 .minecraft-bug img {
   width: 500px;
+  margin-top: 50px;
   order: 1;
   flex: 0 0 35%;
   background: transparent;}
@@ -876,7 +877,6 @@ button[id^="blogButton"]:focus {
   overflow: auto;
   margin-right: 10px;}
 .bluemap-area {
-  max-width: 50px;
   flex-grow: 1;
   text-align: right;
   background: transparent;
@@ -895,7 +895,6 @@ button[id^="blogButton"]:focus {
   overflow: auto;
   margin-right: 10px;}
 .wiimap-area {
-  max-width: 50px;
   flex-grow: 1;
   text-align: right;
   background: transparent;
@@ -911,15 +910,14 @@ button[id^="blogButton"]:focus {
   order: 0;
   flex: 0 0 35%;
   background: transparent;
-  margin-top: -350px;
+  margin-top: -320px;
   margin-left: 0px;
   overflow: hidden; }
 .minecraft-wii img {
   width: 300px;
   order: 1;
   flex: 0 0 35%;
-  background: transparent;
-  margin-bottom: -10px; }
+  background: transparent; }
 
   /* Media Queries for Mobile */
 @media (max-width: 768px) {
@@ -941,14 +939,15 @@ button[id^="blogButton"]:focus {
   .wiimap-area {
     max-width: 100%;
     order: 2;
-    text-align: center;
   }
 
   .dynmap-area iframe,
   .bluemap-area iframe,
   .wiimap-area iframe {
-    width: 100%;
-    height: 300px;
+   width: 100%; 
+   max-width: 900px; 
+   height: 500px;
+   border: 8px dotted
   }
 
   .minecraft-bug,
