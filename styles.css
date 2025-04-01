@@ -20,9 +20,19 @@ body {
   gap: 20px;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-}
-
+  flex-wrap: wrap;}
+/* Viewport
+.coolbugs {
+  box-sizing: border-box;
+  color: var(--space-pink);
+  background: clear;
+  border: 8px ridge var(--space-purple);
+  border-radius: 30%;
+  border-left: 3px ridge var(--space-purple);
+  border-right: 3px ridge var(--space-purple);
+  overflow-y: auto;
+  height: 98dvh;} 
+  */
 
 hr {
   border: none;
@@ -40,8 +50,7 @@ a {
   cursor: pointer;
   text-decoration: none;}
 button, [role="button"], input[type="submit"], input[type="button"] {
-  cursor: pointer;
-}
+  cursor: pointer;}
 #title {
   font-family: "Jersey 15", sans-serif;
   color: purple;
@@ -188,7 +197,6 @@ p {
   background-clip: content-box, border-box;}
 .btn-space strong {
   z-index: 2;
-  font: 30px 'Avalors Personal Use';
   letter-spacing: 5px;
   color: white;
   text-shadow: 0 0 4px white;}
@@ -358,13 +366,59 @@ p {
   margin-top: 10px;
   font-size: 1em;
   color: #ffffff;}
-.increment-counter {
+.increment-container {
   margin: 0 auto;
   order: 0;
   display: flex;
   align-items: center;
-  padding: 20px;}
-
+  padding: 20px;
+  border-radius: 10px;
+  border: 5px dotted var(--space-purple);
+  background: rgba(255, 83, 195, 0.5);}
+  .pong-container,
+  .tetris-container,
+  .snake-container {
+  display: flex;
+  flex: 1 1 300px;
+  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-right: 90px;}
+  .pong-container > div,
+  .tetris-container > div,
+  .snake-container > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
+  #snake-game {
+  border: 2px solid white;
+  background: transparent;}
+  #tetris-game {
+  border: 2px solid white;
+  background: transparent;}
+  #game {
+  border: 2px solid white;
+  background: transparent;
+  width: 250px; 
+  height: 187px; }
+  .pong-container canvas + * {
+  display: none;}
+  .tetris-instructions {
+  text-align: center;
+  margin-top: 10px;
+  color: var(--space-pink);
+  font: 16px "Jersey 15", monospace;}
+  @media (max-width: 768px) {
+  .flex-container {
+  flex-direction: column;}
+  .pong-container,
+  .tetris-container,
+  .snake-container {
+  max-width: 100%;
+  margin: 15px 0;}}
+  
 /* ===== Spotify Styles ===== */
 
 #spotify-container {

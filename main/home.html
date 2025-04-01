@@ -22,6 +22,9 @@
     <script src="/scripts/spotify.js" defer></script>
     <script src="/scripts/audio.js" defer></script>
     <script src="/scripts/page-init.js" defer></script>
+    <script src="/scripts/pong.js" defer></script>
+    <script src="/scripts/snake.js" defer></script>
+    <script src="/scripts/tetris.js" defer></script>
     
     <script defer>
       document.addEventListener("DOMContentLoaded", function () {
@@ -35,8 +38,9 @@
         setupCatExplosion();      
       });
     </script>
-</head>
-  <body>
+ </head>
+<div class="coolbugs">
+ <body>
     <!-- Header Section -->
     <header class="bee-container">
       <h1 id="title">𖢥 hi! i'm 𖢥    </h1>
@@ -77,8 +81,7 @@
 
       <div class="index-introduction-area">
         <p>
-            hiii! im mae <sub>(she/they)</sub> and this is my website,
-            <strong>COOL BUGS WIN !!!</strong>
+            hiii! im mae <sub>(she/they)</sub> and this is my website, <strong>COOL BUGS WIN !!!</strong>
             <br /><br />
             i think i'll just use this for like, posting <strong>blogs</strong>, and <strong>images</strong>, and
             links to my stuff, and silly secret <strong>fun lil interactive things!</strong>
@@ -119,7 +122,8 @@
     </div>
     <!-- Third Row -->
     <div class="flex-container">
-      <div class="increment-counter">
+      
+        <div class="increment-container">
           <iframe src="https://incr.easrng.net/badge?key=coolbugs" style="background: url(//incr.easrng.net/bg.gif)" title="increment badge" width="88" height="31" frameborder="0"></iframe>
       </div>
 
@@ -146,10 +150,34 @@
                 </div>
             </div>
         </div>
-        
-    </div>
   </main>
+
+  <!-- Fourth Row -->
+  <div class="flex-container">
+    <div class="snake-container">
+        <div>
+    <canvas width="250px" height="250px" id="snake-game"></canvas>
+        </div>
+    </div>
+
+    <div class="tetris-container">
+        <div>
+    <canvas width="250" height="500" id="tetris-game"></canvas>
+            <div class="tetris-instructions">
+            </div>
+        </div>
+    </div>
+
+    <div class="pong-container">
+        <div>
+    <canvas width="1000" height="750" id="game"></canvas>~
+        </div>
+    </div>
+
+</div>
+</div>
   <hr />
+
   <!-- Footer -->
   <footer class="footer-container">
         <div class="gif-container">
@@ -207,5 +235,6 @@
         </div>
   </footer>
 
-</body>
+ </body>
+</div>
 </html>
