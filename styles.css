@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  /* Base colours */
+  --bg-color: #0d1117; /* background */
+  --terminal-bg-color: #05070b; /* container for terminal area */
+  --card-bg: #11161d; /* card background */
+  --hover-bg: #1c2130; /* background hover/focus */
+  /* Text and Accent colours */
+  --text-color: #f5c1de; /* text */
+  --accent-color: #ff79c6; /* prompts and interactive */
+  --border-color: #323c4d; /* border for cards and inputs */
+  --link-color: #ff79c6; /* links share the accent colour */
+  /* Focus indicator */
+  --focus-outline: 2px dashed var(--accent-color);
+  /* Typography */
+  --font-family: 'VT323', monospace;
+  --font-size-base: 18px;
+}
+
+/* Global resets */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:focus,
+ a:hover {
+  text-decoration: underline;
+}
+
+/* Terminal Container */
+.terminal {
+  background-color: var(--terminal-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  margin: 2rem auto;
+  overflow-y: auto;
+  color: var(--text-color);
+}
+
+/* History */
+.history {
+  white-space: pre-wrap;
+  margin-bottom: 0.5rem;
+}
+
+/* Input Line */
+.input-line {
+  display: block;
+  position: relative;
+  outline: none;
+  padding-left: 1.2em; /* space for prompt */
+  min-height: 1.2em;
+  caret-color: var(--accent-color);
+}
+
+.input-line::before {
+  content: '> ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-color);
+}
+
+/* Focus Ring */
+.input-line:focus {
+  outline: none;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+/* Terminal Output */
+.terminal-output {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* System Messages */
+.system-message {
+  color: var(--accent-color);
+}
+
+/* ===== Pages with cards ===== */
+.page-container {
+  width: 90%;
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: var(--terminal-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1rem;
+  width: 260px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.card:hover,
+ .card:focus-within {
+  background-color: var(--hover-bg);
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 0.1rem;
+  filter: var(--img-filter, none);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: -20px;
+  text-decoration: underline;
+}
+
+.card p {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* Action Button/Link */
+.card .action {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  color: var(--accent-color);
+  font-family: var(--font-family);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.card .action:hover,
+ .card .action:focus {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  text-decoration: none;
+}
+
+.card .action:focus {
+  outline: var(--focus-outline);
+}
+
+.card:focus-within {
+  outline: var(--focus-outline);
+  outline-offset: 2px;
+}
+
+/* Back Link */
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.back-link:hover,
+ .back-link:focus {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.back-link:focus {
+  outline: var(--focus-outline);
+}
+
+/* Terminal Prompt in History. */
+.prompt {
+  color: var(--accent-color);
+}
+
+.history-line strong {
+  color: var(--accent-color);
+}
+
+.history-line .prompt {
+  color: var(--accent-color);
+}

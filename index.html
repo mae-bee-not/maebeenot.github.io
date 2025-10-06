@@ -1,13 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>WIP !</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <main class="terminal" aria-label="Terminal">
+        <section id="history" class="history" aria-live="polite"></section>
+        <div id="input-line" class="input-line" contenteditable="true"
+             spellcheck="false" role="textbox"
+             aria-label="Command line. Type a command and press Enter."></div>
+    </main>
 
-<h1>Hey! Making a fully new coolbugs.win soon!</h1>
-<p>In the meantime, my old site is still hosted at <a href="https://old.coolbugs.win">old.coolbugs.win</a></p>
-<img src="/spinning-deer.gif" alt="">
+    <script>
+    // add more by extending the "commands" object below
+    (function() {
+        const historyEl = document.getElementById('history');
+        const inputEl = document.getElementById('input-line');
+        const commands = {
+            help: function() {
+                printToHistory('Available commands:');
+                printToHistory('<strong>apps</strong> – view self hosted apps');
+                printToHistory('<strong>socials</strong> – view socials');
+                printToHistory('<strong>clear</strong> – clear this terminal');
+                printToHistory('<strong>help</strong> – show this help message');
+            },
+            clear: function() {
+                historyEl.innerHTML = '';
+            },
+            apps: function() {
+                window.location.href = 'apps.html';
+            },
+            socials: function() {
+                window.location.href = 'socials.html';
+            }
+        };
+
+        // command history
+        const history = [];
+        let historyIndex = -1;
+
+        /**
+         * Writes a message to the history panel.
+         * @param {string} message
+         */
+        function printToHistory(message) {
+            const line = document.createElement('div');
+            line.classList.add('history-line');
+            line.innerHTML = message;
+            historyEl.appendChild(line);
+            historyEl.scrollTop = historyEl.scrollHeight;
+        }
+
+        function executeCommand(cmd) {
+            const trimmed = cmd.trim();
+            if (!trimmed) return;
+            printToHistory(`<span class="prompt">$</span> ${escapeHtml(trimmed)}`);
+            history.push(trimmed);
+            historyIndex = history.length;
+            if (commands[trimmed]) {
+                commands[trimmed]();
+            } else {
+                printToHistory(`Command not recognized: <strong>${escapeHtml(trimmed)}</strong>`);
+            }
+        }
+
+        function escapeHtml(unsafe) {
+            return unsafe.replace(/[&<"'>]/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '"': '&quot;',
+                    "'": '&#039;',
+                    '>': '&gt;'
+                }[m];
+            });
+        }
+
+        window.addEventListener('load', () => {
+            inputEl.focus();
+            // welcome message.
+            printToHistory('Welcome! Type <strong>help</strong> to see available commands 𐂂');
+        });
+
+        inputEl.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const commandText = inputEl.textContent;
+                executeCommand(commandText);
+                inputEl.textContent = '';
+                return;
+            }
+            // up arrow: recall
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    inputEl.textContent = history[historyIndex];
+                    placeCaretAtEnd(inputEl);
+                }
+                return;
+            }
+            // down arrow: move back in history
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex < history.length - 1) {
+                    historyIndex++;
+                    inputEl.textContent = history[historyIndex];
+                } else {
+                    historyIndex = history.length;
+                    inputEl.textContent = '';
+                }
+                placeCaretAtEnd(inputEl);
+                return;
+            }
+        });
+
+        function placeCaretAtEnd(el) {
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            range.collapse(false);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    })();
+    </script>
 </body>
 </html>
-
