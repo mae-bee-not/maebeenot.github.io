@@ -161,7 +161,7 @@
       await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ alias, message }),
+        body: JSON.stringify({ alias, text: message }),
       });
       document.getElementById("message").value = "";
       loadMessages();
