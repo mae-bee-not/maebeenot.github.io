@@ -27,6 +27,7 @@
                 printToHistory('<strong>socials</strong> – view socials');
                 printToHistory('<strong>clear</strong> – clear this terminal');
                 printToHistory('<strong>help</strong> – show this help message');
+                printToHistory('<strong>old</strong> – visit the old site');
             },
             clear: function() {
                 historyEl.innerHTML = '';
@@ -36,6 +37,9 @@
             },
             socials: function() {
                 window.location.href = 'socials.html';
+            },
+            old: function() {
+                window.location.href = 'https://old.coolbugs.win'; 
             }
         };
 
