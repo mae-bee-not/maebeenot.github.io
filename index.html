@@ -28,6 +28,7 @@
                 printToHistory('<strong>clear</strong> – clear this terminal');
                 printToHistory('<strong>help</strong> – show this help message');
                 printToHistory('<strong>old</strong> – visit the old site');
+                printToHistory('<strong>message</strong> – leave a message');
             },
             clear: function() {
                 historyEl.innerHTML = '';
@@ -40,7 +41,10 @@
             },
             old: function() {
                 window.location.href = 'https://old.coolbugs.win'; 
-            }
+            },
+            message: function() {
+                window.location.href = 'messages.html'; 
+            },
         };
 
         // command history
@@ -131,6 +135,7 @@
             selection.removeAllRanges();
             selection.addRange(range);
         }
+       
     })();
     </script>
 </body>
