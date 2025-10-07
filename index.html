@@ -69,8 +69,31 @@
                 '<strong>Cookies Enabled:</strong> ' + navigator.cookieEnabled,
             ];
                 printToHistory(browserInfo.join('<br>'));
+                },
+            deer: function() {
+                const deerImages = [
+                    '/assets/deer1.png',
+                    '/assets/deer2.png',
+                    '/assets/deer3.webp',
+                    '/assets/deer4.webp',
+                    '/assets/deer5.png',
+                    '/assets/deer6.png'
+                ];
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const deer = document.createElement('img');
+                        deer.className = 'deer';
+                        deer.src = deerImages[Math.floor(Math.random() * deerImages.length)];
+                        deer.style.top = Math.random() * 80 + 10 + '%';
+                        deer.style.animationDuration = Math.random() * 5 + 5 + 's';
+                        document.body.appendChild(deer);
+                        setTimeout(() => {
+                            deer.remove();
+                        }, 10000);
+                    }, i * 500);
                 }
-            };
+            }
+        };
 
         const history = [];
         let historyIndex = -1;
