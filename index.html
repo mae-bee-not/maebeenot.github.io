@@ -16,7 +16,6 @@
     </main>
 
     <script>
-    // add more by extending the "commands" object below
     (function() {
         const historyEl = document.getElementById('history');
         const inputEl = document.getElementById('input-line');
@@ -28,6 +27,9 @@
                 printToHistory('<strong>message</strong> – leave a message');
                 printToHistory('<strong>minecraft</strong> – view my servers');
                 printToHistory('<strong>old</strong> – visit the old site');
+                printToHistory('<strong>date</strong> – display date');
+                printToHistory('<strong>echo [text]</strong> – print text to the terminal');
+                printToHistory('<strong>neofetch</strong> – display user information');
                 printToHistory('<strong>help</strong> – show this help message');
                 printToHistory('<strong>clear</strong> – clear this terminal');
             },
@@ -41,24 +43,38 @@
                 window.location.href = 'socials.html';
             },
             old: function() {
-                window.location.href = 'https://old.coolbugs.win'; 
+                window.location.href = 'https://old.coolbugs.win';
             },
             message: function() {
-                window.location.href = 'messages.html'; 
+                window.location.href = 'messages.html';
             },
             minecraft: function() {
-                window.location.href = 'dynmap.html'; 
+                window.location.href = 'dynmap.html';
             },
-        };
+            echo: function(args) {
+                printToHistory(escapeHtml(args));
+            },
+            date: function() {
+                printToHistory(new Date().toLocaleString());
+            },
 
-        // command history
+            neofetch: function() {
+                const browserInfo = [
+                '<strong>Vendor:</strong> ' + navigator.vendor,
+                '<strong>User Agent:</strong> ' + navigator.userAgent,
+                '<strong>Platform:</strong> ' + navigator.platform,
+                '<strong>CPU Cores:</strong> ' + navigator.hardwareConcurrency,
+                '<strong>Resolution:</strong> ' + screen.width + 'x' + screen.height,
+                '<strong>Language:</strong> ' + navigator.language,
+                '<strong>Cookies Enabled:</strong> ' + navigator.cookieEnabled,
+            ];
+                printToHistory(browserInfo.join('<br>'));
+                }
+            };
+
         const history = [];
         let historyIndex = -1;
 
-        /**
-         * Writes a message to the history panel.
-         * @param {string} message
-         */
         function printToHistory(message) {
             const line = document.createElement('div');
             line.classList.add('history-line');
@@ -73,10 +89,15 @@
             printToHistory(`<span class="prompt">$</span> ${escapeHtml(trimmed)}`);
             history.push(trimmed);
             historyIndex = history.length;
-            if (commands[trimmed]) {
-                commands[trimmed]();
+
+            const parts = trimmed.split(' ');
+            const command = parts[0];
+            const args = parts.slice(1).join(' ');
+
+            if (commands[command]) {
+                commands[command](args);
             } else {
-                printToHistory(`Command not recognized: <strong>${escapeHtml(trimmed)}</strong>`);
+                printToHistory(`Command not recognized: <strong>${escapeHtml(command)}</strong>`);
             }
         }
 
@@ -94,7 +115,6 @@
 
         window.addEventListener('load', () => {
             inputEl.focus();
-            // welcome message.
             printToHistory('Welcome! Type <strong>help</strong> to see available commands 𐂂');
         });
 
@@ -106,7 +126,6 @@
                 inputEl.textContent = '';
                 return;
             }
-            // up arrow: recall
             if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 if (historyIndex > 0) {
@@ -116,7 +135,6 @@
                 }
                 return;
             }
-            // down arrow: move back in history
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 if (historyIndex < history.length - 1) {
@@ -139,7 +157,7 @@
             selection.removeAllRanges();
             selection.addRange(range);
         }
-       
+
     })();
     </script>
 </body>
