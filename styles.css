@@ -238,7 +238,7 @@ a:focus,
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 0.5rem;
-  flex: 1 1 750px;
+  flex: 1 1 750px; /* Allows cards to sit side-by-side */
   max-width: 750px;
   display: flex;
   flex-direction: column;
@@ -276,7 +276,7 @@ a:focus,
 .deer {
     position: fixed;
     left: -100px;
-    width: 100px;
+    width: 100px; /* Adjust size as needed */
     height: auto;
     animation: run-across 10s linear;
 }
@@ -287,5 +287,55 @@ a:focus,
     }
     to {
         left: 100%;
+    }
+}
+
+.zigzagoon-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 250px; /* Adjust size as needed */
+    height: auto;
+    animation: pop-in-out 3s ease-in-out;
+}
+
+@keyframes pop-in-out {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    40%, 80% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+.bday-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px; /* Adjust size as needed */
+    height: auto;
+    transform-origin: center;
+    animation: spin-and-fade 4s ease-in-out;
+}
+
+@keyframes spin-and-fade {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1) rotate(720deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0) rotate(1440deg);
+        opacity: 0;
     }
 }

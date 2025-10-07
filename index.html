@@ -19,6 +19,31 @@
     (function() {
         const historyEl = document.getElementById('history');
         const inputEl = document.getElementById('input-line');
+
+        function zigzagoonAnimation() {
+            const imageUrl = '/assets/zigzagoon.png';
+            const zImage = document.createElement('img');
+            zImage.src = imageUrl;
+            zImage.className = 'zigzagoon-animation';
+            document.body.appendChild(zImage);
+
+            setTimeout(() => {
+                zImage.remove();
+            }, 3000); 
+        }
+        
+        function bdayAnimation() {
+            const imageUrl = '/assets/neil.jpeg' ;
+            const bdayImage = document.createElement('img');
+            bdayImage.src = imageUrl;
+            bdayImage.className = 'bday-animation';
+            document.body.appendChild(bdayImage);
+
+            setTimeout(() => {
+                bdayImage.remove();
+            }, 4000); 
+        }
+
         const commands = {
             help: function() {
                 printToHistory('Available commands:');
@@ -57,7 +82,6 @@
             date: function() {
                 printToHistory(new Date().toLocaleString());
             },
-
             neofetch: function() {
                 const browserInfo = [
                 '<strong>Vendor:</strong> ' + navigator.vendor,
@@ -72,12 +96,9 @@
                 },
             deer: function() {
                 const deerImages = [
-                    '/assets/deer1.png',
-                    '/assets/deer2.png',
-                    '/assets/deer3.webp',
-                    '/assets/deer4.webp',
-                    '/assets/deer5.png',
-                    '/assets/deer6.png'
+                    'https://i.imgur.com/tH8v2S0.gif',
+                    'https://i.imgur.com/4a0d1jJ.gif',
+                    'https://i.imgur.com/sN03s4g.gif'
                 ];
                 for (let i = 0; i < 15; i++) {
                     setTimeout(() => {
@@ -92,6 +113,10 @@
                         }, 10000);
                     }, i * 500);
                 }
+            },
+            sal: function() {
+                const audio = new Audio('/assets/sal.mp3');
+                audio.play();
             }
         };
 
@@ -112,6 +137,15 @@
             printToHistory(`<span class="prompt">$</span> ${escapeHtml(trimmed)}`);
             history.push(trimmed);
             historyIndex = history.length;
+            
+            if (trimmed.toLowerCase() === 'zigzagoon i choose you') {
+                zigzagoonAnimation();
+                return;
+            }
+            if (trimmed === '04/13/06') {
+                bdayAnimation();
+                return;
+            }
 
             const parts = trimmed.split(' ');
             const command = parts[0];
