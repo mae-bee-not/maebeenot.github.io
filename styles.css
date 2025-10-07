@@ -68,7 +68,7 @@ a:focus,
   display: block;
   position: relative;
   outline: none;
-  padding-left: 1.2em; /* space for prompt */
+  padding-left: 1.2em;
   min-height: 1.2em;
   caret-color: var(--accent-color);
 }
@@ -236,7 +236,7 @@ a:focus,
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 0.5rem;
-  flex: 1 1 750px; /* Allows cards to sit side-by-side */
+  flex: 1 1 750px; /* cards sit side-by-side */
   max-width: 750px;
   display: flex;
   flex-direction: column;
@@ -274,7 +274,7 @@ a:focus,
 .deer {
     position: fixed;
     left: -100px;
-    width: 100px; /* Adjust size as needed */
+    width: 100px;
     height: auto;
     animation: run-across 10s linear;
 }
@@ -288,12 +288,13 @@ a:focus,
     }
 }
 
+/* === Easter Egg Animations === */
 .zigzagoon-animation {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    width: 250px; /* Adjust size as needed */
+    width: 250px;
     height: auto;
     animation: pop-in-out 3s ease-in-out;
 }
@@ -317,7 +318,7 @@ a:focus,
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 300px; /* Adjust size as needed */
+    width: 300px;
     height: auto;
     transform-origin: center;
     animation: spin-and-fade 4s ease-in-out;
