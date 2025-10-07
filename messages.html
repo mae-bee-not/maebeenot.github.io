@@ -4,9 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>messages</title>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap"></noscript>
   <link rel="stylesheet" href="../styles.css" />
   <style>
     /* Local overrides for the message page */
+    body {
+      font-family: 'VT323', monospace;
+    }
+
     .terminal-box {
       background-color: var(--terminal-bg-color);
       border: 1px solid var(--border-color);
@@ -38,7 +44,7 @@
       border: 1px solid var(--border-color);
       border-radius: 4px;
       color: var(--text-color);
-      font-family: var(--font-family);
+      font-family: inherit;
       font-size: 1rem;
       padding: 0.5rem;
       resize: vertical;
@@ -57,7 +63,7 @@
       color: var(--accent-color);
       border-radius: 4px;
       padding: 0.4rem 1rem;
-      font-family: var(--font-family);
+      font-family: inherit;
       cursor: pointer;
       transition: all 0.2s;
     }
