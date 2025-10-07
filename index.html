@@ -25,10 +25,11 @@
                 printToHistory('Available commands:');
                 printToHistory('<strong>apps</strong> – view self hosted apps');
                 printToHistory('<strong>socials</strong> – view socials');
-                printToHistory('<strong>clear</strong> – clear this terminal');
-                printToHistory('<strong>help</strong> – show this help message');
-                printToHistory('<strong>old</strong> – visit the old site');
                 printToHistory('<strong>message</strong> – leave a message');
+                printToHistory('<strong>minecraft</strong> – view my servers');
+                printToHistory('<strong>old</strong> – visit the old site');
+                printToHistory('<strong>help</strong> – show this help message');
+                printToHistory('<strong>clear</strong> – clear this terminal');
             },
             clear: function() {
                 historyEl.innerHTML = '';
@@ -44,6 +45,9 @@
             },
             message: function() {
                 window.location.href = 'messages.html'; 
+            },
+            minecraft: function() {
+                window.location.href = 'dynmap.html'; 
             },
         };
 
