@@ -21,6 +21,27 @@
         const historyEl = document.getElementById('history');
         const inputEl = document.getElementById('input-line');
 
+        // --- music player code ---
+        const playlist = [
+            {title: 'Nyan', path: '/assets/playlist/nyan.mp3'},
+            {title: 'Antonymph', path: '/assets/playlist/antonymph.mp3'},
+            {title: 'Brb', path: '/assets/playlist/brb.mp3'},
+            {title: 'Spookwave', path: '/assets/playlist/spookwave.mp3'},
+
+            // add songs here in format: {title: 'Song Title', path: '/assets/song.mp3'}
+        ];
+        let currentSongIndex = 0;
+        let audio = new Audio();
+
+        function playSong(index) {
+            if (index >= 0 && index < playlist.length) {
+                currentSongIndex = index;
+                audio.src = playlist[currentSongIndex].path;
+                audio.play();
+                printToHistory(`Now playing: <strong>${playlist[currentSongIndex].title}</strong>`);
+            }
+        }
+
         function zigzagoonAnimation() {
             const imageUrl = '/assets/zigzagoon.png';
             const zImage = document.createElement('img');
@@ -30,9 +51,9 @@
 
             setTimeout(() => {
                 zImage.remove();
-            }, 3000); 
+            }, 3000);
         }
-        
+
         function bdayAnimation() {
             const imageUrl = '/assets/neil.jpeg' ;
             const bdayImage = document.createElement('img');
@@ -42,7 +63,7 @@
 
             setTimeout(() => {
                 bdayImage.remove();
-            }, 4000); 
+            }, 4000);
         }
 
         const commands = {
@@ -52,10 +73,12 @@
                 printToHistory('<strong>socials</strong> – view socials');
                 printToHistory('<strong>message</strong> – leave a message');
                 printToHistory('<strong>minecraft</strong> – view my servers');
+                printToHistory('<strong>music</strong> – play, pause, skip, or see now playing');
                 printToHistory('<strong>old</strong> – visit the old site');
                 printToHistory('<strong>date</strong> – display date');
                 printToHistory('<strong>echo [text]</strong> – print text to the terminal');
                 printToHistory('<strong>neofetch</strong> – display user information');
+                printToHistory('<strong>tetris</strong> – play Tetris');
                 printToHistory('<strong>help</strong> – show this help message');
                 printToHistory('<strong>clear</strong> – clear this terminal');
             },
@@ -63,25 +86,61 @@
                 historyEl.innerHTML = '';
             },
             apps: function() {
-                window.location.href = 'apps.html';
+                window.location.href = '/pages/apps.html';
             },
             socials: function() {
-                window.location.href = 'socials.html';
+                window.location.href = '/pages/socials.html';
             },
             old: function() {
                 window.location.href = 'https://old.coolbugs.win';
             },
             message: function() {
-                window.location.href = 'messages.html';
+                window.location.href = '/pages/messages.html';
             },
             minecraft: function() {
-                window.location.href = 'dynmap.html';
+                window.location.href = '/pages/dynmap.html';
             },
             echo: function(args) {
                 printToHistory(escapeHtml(args));
             },
             date: function() {
                 printToHistory(new Date().toLocaleString());
+            },
+            tetris: function() {
+        window.location.href = '/pages/tetris.html';
+            },
+            music: function(args) {
+                const parts = args.split(' ');
+                const subCommand = parts[0].toLowerCase();
+
+                switch (subCommand) {
+                    case 'play':
+                        if (audio.paused) {
+                            audio.play();
+                            printToHistory('Resumed playback.');
+                        } else {
+                            playSong(currentSongIndex);
+                        }
+                        break;
+                    case 'pause':
+                        audio.pause();
+                        printToHistory('Playback paused.');
+                        break;
+                    case 'skip':
+                        let nextSongIndex = (currentSongIndex + 1) % playlist.length;
+                        playSong(nextSongIndex);
+                        break;
+                    case 'nowplaying':
+                        if (!audio.paused) {
+                            printToHistory(`Currently playing: <strong>${playlist[currentSongIndex].title}</strong>`);
+                        } else {
+                            printToHistory('Nothing is currently playing.');
+                        }
+                        break;
+                    default:
+                        printToHistory('Usage: music [play|pause|skip|nowplaying]');
+                        break;
+                }
             },
             neofetch: function() {
                 const browserInfo = [
@@ -141,7 +200,7 @@
             printToHistory(`<span class="prompt">$</span> ${escapeHtml(trimmed)}`);
             history.push(trimmed);
             historyIndex = history.length;
-            
+
             if (trimmed.toLowerCase() === 'zigzagoon i choose you') {
                 zigzagoonAnimation();
                 return;

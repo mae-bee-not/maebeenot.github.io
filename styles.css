@@ -338,3 +338,40 @@ a:focus,
         opacity: 0;
     }
 }
+
+/* tetris */
+.game-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+#tetris, #next {
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-color);
+}
+
+.game-info {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.game-info h3, .game-info h4 {
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.controls {
+    margin-top: 1.5rem;
+    text-align: left;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.controls p {
+    margin: 0.2rem 0;
+}

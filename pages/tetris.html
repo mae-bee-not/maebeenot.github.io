@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <main class="page-container">
+        <nav>
+            <a href="/index.html" class="back-link">&larr; Back to Terminal</a>
+        </nav>
+        <h1>Tetris</h1>
+        <div class="game-container">
+            <canvas id="tetris" width="240" height="480"></canvas>
+            <div class="game-info">
+                <h3>Score: <span id="score">0</span></h3>
+                <h4>Next:</h4>
+                <canvas id="next" width="96" height="96"></canvas>
+                <div class="controls">
+                    <p><strong>Controls:</strong></p>
+                    <p>A: left</p>
+                    <p>D: right</p>
+                    <p>S: soft drop</p>
+                    <p>W: rotate</p>
+                    <p>Space: hard Drop</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/tetris.js"></script>
+</body>
+</html>
