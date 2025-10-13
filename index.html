@@ -21,12 +21,31 @@
         const historyEl = document.getElementById('history');
         const inputEl = document.getElementById('input-line');
 
+        // --- Themes ---
+        const themes = {
+            'dark': 'pink on grey',
+            'matrix': 'green on black',
+            'ocean': 'mint on navy',
+            'light': 'blue on whote',
+            'scary': 'red on black'
+        };
+
+        function applyTheme(themeName) {
+            document.body.className = ''; 
+            if (themeName !== 'dark') { // default
+                document.body.classList.add(`theme-${themeName}`);
+            }
+            localStorage.setItem('terminal-theme', themeName);
+        }
+
+
         // --- music player code ---
         const playlist = [
             {title: 'Nyan', path: '/assets/playlist/nyan.mp3'},
             {title: 'Antonymph', path: '/assets/playlist/antonympth.mp3'},
             {title: 'Brb', path: '/assets/playlist/brb.mp3'},
             {title: 'Spookwave', path: '/assets/playlist/spookwave.mp3'},
+            {title: 'Stal', path: '/assets/playlist/stal.mp3'},
 
             // add songs here in format: {title: 'Song Title', path: '/assets/song.mp3'}
         ];
@@ -75,6 +94,7 @@
                 printToHistory('<strong>minecraft</strong> – view my servers');
                 printToHistory('<strong>music</strong> – play, pause, skip, or see now playing');
                 printToHistory('<strong>old</strong> – visit the old site');
+                printToHistory('<strong>theme</strong> – change the terminal theme');
                 printToHistory('<strong>date</strong> – display date');
                 printToHistory('<strong>echo [text]</strong> – print text to the terminal');
                 printToHistory('<strong>neofetch</strong> – display user information');
@@ -107,7 +127,21 @@
                 printToHistory(new Date().toLocaleString());
             },
             tetris: function() {
-        window.location.href = '/pages/tetris.html';
+                 window.location.href = '/pages/tetris.html';
+            },
+            theme: function(args) {
+                const themeName = args.trim().toLowerCase();
+                if (!themeName || themeName === 'list') {
+                    printToHistory('Available Themes:');
+                    for (const name in themes) {
+                        printToHistory(`- <strong>${name}</strong>: ${themes[name]}`);
+                    }
+                } else if (themes[themeName]) {
+                    applyTheme(themeName);
+                    printToHistory(`Theme changed to <strong>${themeName}</strong>.`);
+                } else {
+                    printToHistory(`Theme not found: <strong>${themeName}</strong>.`);
+                }
             },
             music: function(args) {
                 const parts = args.split(' ');
@@ -234,6 +268,12 @@
         }
 
         window.addEventListener('load', () => {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('terminal-theme') || 'dark';
+            if (themes[savedTheme]) {
+                applyTheme(savedTheme);
+            }
+
             inputEl.focus();
             printToHistory('Welcome! Type <strong>help</strong> to see available commands 𐂂');
         });

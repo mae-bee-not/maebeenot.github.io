@@ -1,5 +1,5 @@
 :root {
-  /* Base colours */
+  /* Base colours (Dark Theme) */
   --bg-color: #0d1117; /* background */
   --terminal-bg-color: #05070b; /* container for terminal area */
   --card-bg: #11161d; /* card background */
@@ -16,6 +16,52 @@
   --font-size-base: 18px;
 }
 
+/* --- Themes --- */
+body.theme-matrix {
+  --bg-color: #000000;
+  --terminal-bg-color: #020202;
+  --card-bg: #050505;
+  --hover-bg: #111111;
+  --text-color: #00ff41;
+  --accent-color: #00ff41;
+  --border-color: #005a18;
+  --link-color: #00ff41;
+}
+
+body.theme-ocean {
+  --bg-color: #0a192f;
+  --terminal-bg-color: #020c1b;
+  --card-bg: #112240;
+  --hover-bg: #172a45;
+  --text-color: #8892b0;
+  --accent-color: #64ffda;
+  --border-color: #233554;
+  --link-color: #64ffda;
+}
+
+body.theme-scary {
+  --bg-color: #0a0a0a;
+  --terminal-bg-color: #000000;
+  --card-bg: #0f0f0f;
+  --hover-bg: #1a1a1a;
+  --text-color: #ff0000;
+  --accent-color: #ff0000;
+  --border-color: #5a0000;
+  --link-color: #ff0000;
+}
+
+body.theme-light {
+    --bg-color: #e6e6e6;
+    --terminal-bg-color: #f2f2f2;
+    --card-bg: #ffffff;
+    --hover-bg: #f0f0f0;
+    --text-color: #333333;
+    --accent-color: #0055ff;
+    --border-color: #cccccc;
+    --link-color: #0055ff;
+}
+
+
 /* Global resets */
 * {
   box-sizing: border-box;
@@ -31,6 +77,8 @@ html, body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: 1.6;
+  /* Add a transition for smooth color changes */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 a {
