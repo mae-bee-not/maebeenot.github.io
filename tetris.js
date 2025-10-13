@@ -3,22 +3,24 @@ const context = canvas.getContext('2d');
 const nextCanvas = document.getElementById('next');
 const nextContext = nextCanvas.getContext('2d');
 const scoreElement = document.getElementById('score');
+const leaderboardList = document.getElementById('leaderboard-list');
+
+// --- Backend API URL ---
+const API_URL = 'https://tetris-leaderboard.coolbugs.win'; 
 
 const grid = 24;
 const tetrominoSequence = [];
 
-// colors
 const tetrominos = {
-  'I': { shape: [[1,1,1,1]], color: 'deeppink' }, 
-  'L': { shape: [[0,0,1],[1,1,1]], color: 'orchid' }, 
-  'J': { shape: [[1,0,0],[1,1,1]], color: 'fuchsia' }, 
-  'S': { shape: [[0,1,1],[1,1,0]], color: 'mediumorchid' }, 
-  'Z': { shape: [[1,1,0],[0,1,1]], color: 'hotpink' }, 
-  'O': { shape: [[1,1],[1,1]], color: 'violet' }, 
-  'T': { shape: [[0,1,0],[1,1,1]], color: 'pink' }  
+  'I': { shape: [[1,1,1,1]], color: 'deeppink' },
+  'L': { shape: [[0,0,1],[1,1,1]], color: 'orchid' },
+  'J': { shape: [[1,0,0],[1,1,1]], color: 'fuchsia' },
+  'S': { shape: [[0,1,1],[1,1,0]], color: 'mediumorchid' },
+  'Z': { shape: [[1,1,0],[0,1,1]], color: 'hotpink' },
+  'O': { shape: [[1,1],[1,1]], color: 'violet' },
+  'T': { shape: [[0,1,0],[1,1,1]], color: 'pink' }
 };
 
-// Game state
 let score = 0;
 let playfield = [];
 for (let row = -2; row < 20; row++) {
@@ -32,6 +34,39 @@ let count = 0;
 let tetromino = getNextTetromino();
 let rAF = null;
 let gameOver = false;
+
+// --- Leaderboard Functions ---
+async function fetchLeaderboard() {
+  try {
+    const response = await fetch(`${API_URL}/api/leaderboard`);
+    const scores = await response.json();
+    leaderboardList.innerHTML = '';
+    scores.forEach(score => {
+      const li = document.createElement('li');
+      li.textContent = `${score.name}: ${score.score}`;
+      leaderboardList.appendChild(li);
+    });
+  } catch (error) {
+    console.error('Failed to fetch leaderboard:', error);
+    leaderboardList.innerHTML = '<li>Could not load scores</li>';
+  }
+}
+
+async function submitScore(name, score) {
+  try {
+    await fetch(`${API_URL}/api/scores`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, score }),
+    });
+    fetchLeaderboard(); 
+  } catch (error) {
+    console.error('Failed to submit score:', error);
+  }
+}
+
 
 function generateSequence() {
   const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
@@ -65,7 +100,6 @@ function rotate(matrix) {
   }
   return newMatrix;
 }
-
 
 function isValidMove(matrix, cellRow, cellCol) {
   for (let row = 0; row < matrix.length; row++) {
@@ -126,7 +160,18 @@ function showGameOver() {
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+
+  // Show the modal to enter name
+  const modal = document.getElementById('nameModal');
+  document.getElementById('finalScore').textContent = score;
+  modal.style.display = 'block';
 }
+
+document.getElementById('submitScore').addEventListener('click', () => {
+    const name = document.getElementById('playerName').value || 'Anonymous';
+    submitScore(name, score);
+    document.getElementById('nameModal').style.display = 'none';
+});
 
 function drawNextTetromino() {
     nextContext.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
@@ -134,7 +179,7 @@ function drawNextTetromino() {
     const next = tetrominoSequence[tetrominoSequence.length - 1];
     const { shape, color } = tetrominos[next];
     nextContext.fillStyle = color;
-    
+
     const boxSize = nextCanvas.width;
     const pieceWidth = shape[0].length * grid;
     const pieceHeight = shape.length * grid;
@@ -204,7 +249,7 @@ document.addEventListener('keydown', function(e) {
          matrix = rotate(matrix);
          matrix = rotate(matrix);
      }
-     
+
      const kicks = [0, 1, -1, 2, -2];
      for (const kick of kicks) {
          if (isValidMove(matrix, tetromino.row, tetromino.col + kick)) {
@@ -234,5 +279,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// --- Initialize ---
+fetchLeaderboard();
 generateSequence();
 rAF = requestAnimationFrame(loop);

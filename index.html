@@ -24,7 +24,7 @@
         // --- music player code ---
         const playlist = [
             {title: 'Nyan', path: '/assets/playlist/nyan.mp3'},
-            {title: 'Antonymph', path: '/assets/playlist/antonymph.mp3'},
+            {title: 'Antonymph', path: '/assets/playlist/antonympth.mp3'},
             {title: 'Brb', path: '/assets/playlist/brb.mp3'},
             {title: 'Spookwave', path: '/assets/playlist/spookwave.mp3'},
 
@@ -115,7 +115,7 @@
 
                 switch (subCommand) {
                     case 'play':
-                        if (audio.paused) {
+                        if (audio.paused && audio.src) {
                             audio.play();
                             printToHistory('Resumed playback.');
                         } else {
