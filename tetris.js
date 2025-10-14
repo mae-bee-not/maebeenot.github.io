@@ -227,6 +227,23 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (tetromino) {
+        // Draw ghost piece
+        const ghost = { ...tetromino };
+        while (isValidMove(ghost.matrix, ghost.row + 1, ghost.col)) {
+          ghost.row++;
+        }
+        context.globalAlpha = 0.3;
+        context.fillStyle = tetrominos[tetromino.name].color;
+        for (let row = 0; row < ghost.matrix.length; row++) {
+          for (let col = 0; col < ghost.matrix[row].length; col++) {
+            if (ghost.matrix[row][col]) {
+              context.fillRect((ghost.col + col) * grid, (ghost.row + row) * grid, grid - 1, grid - 1);
+            }
+          }
+        }
+        context.globalAlpha = 1;
+
+
         if (++count > 35) {
           tetromino.row++;
           count = 0;
