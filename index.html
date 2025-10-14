@@ -244,6 +244,8 @@
                             const angle = Math.atan2(dy, dx);
                             bug.vx = Math.cos(angle);
                             bug.vy = Math.sin(angle);
+                            const angleInDegrees = angle * (180 / Math.PI);
+                            bug.element.style.transform = `rotate(${angleInDegrees + 90}deg)`;
                         }
 
                         bug.x += bug.vx;
