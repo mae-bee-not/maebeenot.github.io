@@ -4,11 +4,13 @@
   --terminal-bg-color: #05070b; /* container for terminal area */
   --card-bg: #11161d; /* card background */
   --hover-bg: #1c2130; /* background hover/focus */
+
   /* Text and Accent colours */
   --text-color: #f5c1de; /* text */
   --accent-color: #ff79c6; /* prompts and interactive */
   --border-color: #323c4d; /* border for cards and inputs */
   --link-color: #ff79c6; /* links share the accent colour */
+
   /* Focus indicator */
   --focus-outline: 2px dashed var(--accent-color);
   /* Typography */
@@ -77,7 +79,6 @@ html, body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: 1.6;
-  /* Add a transition for smooth color changes */
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -284,7 +285,7 @@ a:focus,
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 0.5rem;
-  flex: 1 1 750px; /* cards sit side-by-side */
+  flex: 1 1 750px; 
   max-width: 750px;
   display: flex;
   flex-direction: column;

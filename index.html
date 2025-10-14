@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/ico" href="/assets/terminal.ico">
+    <script src="/themes.js"></script>
 </head>
 <body>
     <main class="terminal" aria-label="Terminal">
@@ -21,24 +22,6 @@
         const historyEl = document.getElementById('history');
         const inputEl = document.getElementById('input-line');
 
-        // --- Themes ---
-        const themes = {
-            'dark': 'pink on grey',
-            'matrix': 'green on black',
-            'ocean': 'mint on navy',
-            'light': 'blue on whote',
-            'scary': 'red on black'
-        };
-
-        function applyTheme(themeName) {
-            document.body.className = ''; 
-            if (themeName !== 'dark') { // default
-                document.body.classList.add(`theme-${themeName}`);
-            }
-            localStorage.setItem('terminal-theme', themeName);
-        }
-
-
         // --- music player code ---
         const playlist = [
             {title: 'Nyan', path: '/assets/playlist/nyan.mp3'},
@@ -46,8 +29,6 @@
             {title: 'Brb', path: '/assets/playlist/brb.mp3'},
             {title: 'Spookwave', path: '/assets/playlist/spookwave.mp3'},
             {title: 'Stal', path: '/assets/playlist/stal.mp3'},
-
-            // add songs here in format: {title: 'Song Title', path: '/assets/song.mp3'}
         ];
         let currentSongIndex = 0;
         let audio = new Audio();
@@ -60,7 +41,7 @@
                 printToHistory(`Now playing: <strong>${playlist[currentSongIndex].title}</strong>`);
             }
         }
-
+        
         function zigzagoonAnimation() {
             const imageUrl = '/assets/zigzagoon.png';
             const zImage = document.createElement('img');
@@ -131,13 +112,21 @@
             },
             theme: function(args) {
                 const themeName = args.trim().toLowerCase();
+                const themes = {
+                    'dark': 'pink on grey',
+                    'matrix': 'green on black',
+                    'ocean': 'mint on navy',
+                    'light': 'blue on white',
+                    'scary': 'red on black'
+                };
+
                 if (!themeName || themeName === 'list') {
                     printToHistory('Available Themes:');
                     for (const name in themes) {
                         printToHistory(`- <strong>${name}</strong>: ${themes[name]}`);
                     }
                 } else if (themes[themeName]) {
-                    applyTheme(themeName);
+                    window.terminalThemes.apply(themeName); // Use the global function
                     printToHistory(`Theme changed to <strong>${themeName}</strong>.`);
                 } else {
                     printToHistory(`Theme not found: <strong>${themeName}</strong>.`);
@@ -216,7 +205,7 @@
                 audio.play();
             }
         };
-
+        
         const history = [];
         let historyIndex = -1;
 
@@ -234,7 +223,7 @@
             printToHistory(`<span class="prompt">$</span> ${escapeHtml(trimmed)}`);
             history.push(trimmed);
             historyIndex = history.length;
-
+            
             if (trimmed.toLowerCase() === 'zigzagoon i choose you') {
                 zigzagoonAnimation();
                 return;
@@ -268,12 +257,6 @@
         }
 
         window.addEventListener('load', () => {
-            // Load saved theme
-            const savedTheme = localStorage.getItem('terminal-theme') || 'dark';
-            if (themes[savedTheme]) {
-                applyTheme(savedTheme);
-            }
-
             inputEl.focus();
             printToHistory('Welcome! Type <strong>help</strong> to see available commands 𐂂');
         });
@@ -308,7 +291,7 @@
                 return;
             }
         });
-
+        
         function placeCaretAtEnd(el) {
             const range = document.createRange();
             range.selectNodeContents(el);
