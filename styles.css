@@ -424,3 +424,10 @@ a:focus,
 .controls p {
     margin: 0.2rem 0;
 }
+
+.bug {
+    position: fixed;
+    width: 64px;  
+    height: 64px; 
+    pointer-events: none;
+}
