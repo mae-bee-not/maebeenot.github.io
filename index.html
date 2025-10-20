@@ -22,6 +22,88 @@
         const historyEl = document.getElementById('history');
         const inputEl = document.getElementById('input-line');
 
+        // --- Ball stuff ---
+        let bouncingBalls = [];
+        let ballAnimationId = null;
+
+        function animateBalls() {
+            bouncingBalls.forEach((ball, index) => {
+                // gravity
+                ball.vy += ball.gravity;
+
+                // position
+                ball.x += ball.vx;
+                ball.y += ball.vy;
+
+                // wall collisions
+                if (ball.x + ball.radius * 2 > window.innerWidth) {
+                    ball.x = window.innerWidth - ball.radius * 2;
+                    ball.vx *= -0.8; // a little energy loss
+                } else if (ball.x < 0) {
+                    ball.x = 0;
+                    ball.vx *= -0.8;
+                }
+
+                // ground collision
+                if (ball.y + ball.radius * 2 > window.innerHeight) {
+                    ball.y = window.innerHeight - ball.radius * 2;
+                    ball.vy *= -0.8; // bounce
+                }
+                // ceiling collision
+                if (ball.y < 0) {
+                    ball.y = 0;
+                    ball.vy *= -0.8;
+                }
+
+                // Ball-to-ball collisions
+                for (let i = index + 1; i < bouncingBalls.length; i++) {
+                    const otherBall = bouncingBalls[i];
+                    const dx = otherBall.x - ball.x;
+                    const dy = otherBall.y - ball.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const minDistance = ball.radius + otherBall.radius;
+
+                    if (distance < minDistance) {
+                        const nx = dx / distance;
+                        const ny = dy / distance;
+                        const rvx = ball.vx - otherBall.vx;
+                        const rvy = ball.vy - otherBall.vy;
+                        const velAlongNormal = rvx * nx + rvy * ny;
+
+                        if (velAlongNormal > 0) continue;
+                        
+                        const totalMass = ball.mass + otherBall.mass;
+                        const massRatio1 = (2 * otherBall.mass) / totalMass;
+                        const massRatio2 = (2 * ball.mass) / totalMass;
+
+                        const v1x = ball.vx;
+                        const v1y = ball.vy;
+                        const v2x = otherBall.vx;
+                        const v2y = otherBall.vy;
+
+                        ball.vx = v1x - massRatio1 * velAlongNormal * nx;
+                        ball.vy = v1y - massRatio1 * velAlongNormal * ny;
+                        otherBall.vx = v2x + massRatio2 * velAlongNormal * nx;
+                        otherBall.vy = v2y + massRatio2 * velAlongNormal * ny;
+
+                        // prevent overlap
+                        const overlap = (minDistance - distance) / 2;
+                        ball.x -= overlap * nx;
+                        ball.y -= overlap * ny;
+                        otherBall.x += overlap * nx;
+                        otherBall.y += overlap * ny;
+                    }
+                }
+
+                // update element position
+                ball.element.style.left = ball.x + 'px';
+                ball.element.style.top = ball.y + 'px';
+            });
+
+            ballAnimationId = requestAnimationFrame(animateBalls);
+        }
+        // --- End ball stuff ---
+
         // --- music player code ---
         const playlist = [
             {title: 'Nyan', path: '/assets/playlist/nyan.mp3'},
@@ -80,13 +162,24 @@
                 printToHistory('<strong>echo [text]</strong> – print text to the terminal');
                 printToHistory('<strong>neofetch</strong> – display user information');
                 printToHistory('<strong>tetris</strong> – play Tetris');
+                printToHistory('<strong>ball [size] [speed] [gravity]</strong> – make a bouncing ball');
                 printToHistory('<strong>help</strong> – show this help message');
                 printToHistory('<strong>clear</strong> – clear this terminal');
             },
             clear: function() {
                 historyEl.innerHTML = '';
+                
+                // Clear bugs
                 const bugs = document.querySelectorAll('.bug');
                 bugs.forEach(bug => bug.remove());
+
+                // Clear balls
+                if (ballAnimationId) {
+                    cancelAnimationFrame(ballAnimationId);
+                    ballAnimationId = null;
+                }
+                bouncingBalls.forEach(ball => ball.element.remove());
+                bouncingBalls = [];
             },
             apps: function() {
                 window.location.href = '/pages/apps.html';
@@ -259,6 +352,38 @@
                 }
 
                 animateBugs();
+            },
+            ball: function(args) {
+                const argsArray = args.split(' ').map(Number);
+                
+                const size = isNaN(argsArray[0]) || argsArray[0] <= 0 ? Math.random() * 20 + 10 : argsArray[0];
+                const speed = isNaN(argsArray[1]) || argsArray[1] <= 0 ? Math.random() * 5 + 2 : argsArray[1] / 10;
+                const gravity = isNaN(argsArray[2]) || argsArray[2] < 0 ? 0.5 : argsArray[2] / 10;
+
+                const ball = document.createElement('div');
+                ball.className = 'ball';
+                ball.style.width = size + 'px';
+                ball.style.height = size + 'px';
+                ball.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+                document.body.appendChild(ball);
+
+                const ballObj = {
+                    element: ball,
+                    x: Math.random() * (window.innerWidth - size),
+                    y: Math.random() * (window.innerHeight / 2),
+                    vx: (Math.random() - 0.5) * speed * 2,
+                    vy: (Math.random() - 0.5) * speed,
+                    radius: size / 2,
+                    gravity: gravity,
+                    mass: Math.PI * (size / 2) * (size / 2) // mass proportional to area
+                };
+                
+                bouncingBalls.push(ballObj);
+
+                if (!ballAnimationId) {
+                    animateBalls();
+                }
+                printToHistory(`Ball created (Size: ${size.toFixed(0)}, Speed val: ${speed.toFixed(1)}, Gravity val: ${gravity.toFixed(1)})`);
             }
         };
         

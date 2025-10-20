@@ -80,6 +80,7 @@ html, body {
   font-size: var(--font-size-base);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s;
+  overflow: hidden; /* Hide scrollbars that might appear from balls */
 }
 
 a {
@@ -104,6 +105,8 @@ a:focus,
   margin: 2rem auto;
   overflow-y: auto;
   color: var(--text-color);
+  position: relative; /* Keep terminal on top */
+  z-index: 10;
 }
 
 /* History */
@@ -326,6 +329,7 @@ a:focus,
     width: 100px;
     height: auto;
     animation: run-across 10s linear;
+    z-index: 5; /* Below terminal */
 }
 
 @keyframes run-across {
@@ -346,6 +350,7 @@ a:focus,
     width: 250px;
     height: auto;
     animation: pop-in-out 3s ease-in-out;
+    z-index: 20; /* On top of everything */
 }
 
 @keyframes pop-in-out {
@@ -371,6 +376,7 @@ a:focus,
     height: auto;
     transform-origin: center;
     animation: spin-and-fade 4s ease-in-out;
+    z-index: 20; /* On top of everything */
 }
 
 @keyframes spin-and-fade {
@@ -430,4 +436,23 @@ a:focus,
     width: 64px;  
     height: 64px; 
     pointer-events: none;
+    z-index: 5;
+}
+
+/* === Bouncing Ball === */
+.ball {
+    position: fixed;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    will-change: left, top;
+    z-index: 20; /* On top of terminal */
+    cursor: grab;
+    user-select: none; /* Prevent text selection while dragging */
+}
+
+.ball.dragging {
+    cursor: grabbing;
+    /* Optional: make it slightly transparent or bigger */
+    opacity: 0.8;
+    transform: scale(1.1);
 }
