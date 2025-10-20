@@ -25,77 +25,114 @@
         // --- Ball stuff ---
         let bouncingBalls = [];
         let ballAnimationId = null;
+        let draggedBall = null;
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+
+        const ballThemeColors = {
+          dark: ['#ff79c6', '#ff008cff', '#fde3f2ff', '#5e0034ff', '#ff82c9ff', '#ffffffff', '#3d0023ff'],
+          matrix: ['#00ff41', '#049c2aff', '#145825ff', '#0aff16ff', '#44ff73ff', '#00771eff', '#00ff40ff'],
+          ocean: ['#64ffda', '#0040ffff', '#00c496ff', '#8892b0', '#ffffffff', '#066affff', '#0f006eff'],
+          scary: ['#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000'],
+          light: ['#0055ff', '#ff9679ff', '#0dd7ffff', '#73ff00ff', '#fffb00ff', '#ff4b4bff', '#ff9100ff']
+        };
+
+        function getBallColor() {
+            const themeName = document.body.className.replace('theme-', '').trim() || 'dark';
+            const colors = ballThemeColors[themeName] || ballThemeColors.dark;
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function mouseMoveHandler(e) {
+            if (!draggedBall) return;
+            e.preventDefault();
+            draggedBall.x = e.clientX - dragOffsetX;
+            draggedBall.y = e.clientY - dragOffsetY;
+        }
+
+        function mouseUpHandler() {
+            if (!draggedBall) return;
+            draggedBall.element.classList.remove('dragging');
+            draggedBall.isDragging = false;
+            draggedBall.gravity = draggedBall.originalGravity; // Restore gravity
+            draggedBall = null;
+            
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
+        }
 
         function animateBalls() {
             bouncingBalls.forEach((ball, index) => {
-                // gravity
+                if (ball.isDragging) return;
+
                 ball.vy += ball.gravity;
 
-                // position
                 ball.x += ball.vx;
                 ball.y += ball.vy;
 
-                // wall collisions
                 if (ball.x + ball.radius * 2 > window.innerWidth) {
                     ball.x = window.innerWidth - ball.radius * 2;
-                    ball.vx *= -0.8; // a little energy loss
+                    ball.vx *= -0.8;
                 } else if (ball.x < 0) {
                     ball.x = 0;
                     ball.vx *= -0.8;
                 }
 
-                // ground collision
                 if (ball.y + ball.radius * 2 > window.innerHeight) {
                     ball.y = window.innerHeight - ball.radius * 2;
-                    ball.vy *= -0.8; // bounce
-                }
-                // ceiling collision
-                if (ball.y < 0) {
+                    ball.vy *= -0.8;
+                } else if (ball.y < 0) {
                     ball.y = 0;
                     ball.vy *= -0.8;
                 }
+            });
 
-                // Ball-to-ball collisions
-                for (let i = index + 1; i < bouncingBalls.length; i++) {
-                    const otherBall = bouncingBalls[i];
-                    const dx = otherBall.x - ball.x;
-                    const dy = otherBall.y - ball.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    const minDistance = ball.radius + otherBall.radius;
+            const iterations = 5;
+            for (let k = 0; k < iterations; k++) {
+                bouncingBalls.forEach((ball, index) => {
+                    for (let i = index + 1; i < bouncingBalls.length; i++) {
+                        const otherBall = bouncingBalls[i];
 
-                    if (distance < minDistance) {
-                        const nx = dx / distance;
-                        const ny = dy / distance;
-                        const rvx = ball.vx - otherBall.vx;
-                        const rvy = ball.vy - otherBall.vy;
-                        const velAlongNormal = rvx * nx + rvy * ny;
+                        const dx = otherBall.x - ball.x;
+                        const dy = otherBall.y - ball.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const minDistance = ball.radius + otherBall.radius;
 
-                        if (velAlongNormal > 0) continue;
-                        
-                        const totalMass = ball.mass + otherBall.mass;
-                        const massRatio1 = (2 * otherBall.mass) / totalMass;
-                        const massRatio2 = (2 * ball.mass) / totalMass;
+                        // check for collision
+                        if (distance < minDistance) {
 
-                        const v1x = ball.vx;
-                        const v1y = ball.vy;
-                        const v2x = otherBall.vx;
-                        const v2y = otherBall.vy;
+                            const overlap = minDistance - distance;
+                            const nx = distance === 0 ? 1 : dx / distance; // collision normal x
+                            const ny = distance === 0 ? 0 : dy / distance; // collision normal y
 
-                        ball.vx = v1x - massRatio1 * velAlongNormal * nx;
-                        ball.vy = v1y - massRatio1 * velAlongNormal * ny;
-                        otherBall.vx = v2x + massRatio2 * velAlongNormal * nx;
-                        otherBall.vy = v2y + massRatio2 * velAlongNormal * ny;
+                            const halfOverlap = overlap * 0.5;
+                            ball.x -= halfOverlap * nx;
+                            ball.y -= halfOverlap * ny;
+                            otherBall.x += halfOverlap * nx;
+                            otherBall.y += halfOverlap * ny;
 
-                        // prevent overlap
-                        const overlap = (minDistance - distance) / 2;
-                        ball.x -= overlap * nx;
-                        ball.y -= overlap * ny;
-                        otherBall.x += overlap * nx;
-                        otherBall.y += overlap * ny;
+                            const rvx = ball.vx - otherBall.vx; // relative velocity x
+                            const rvy = ball.vy - otherBall.vy; // relative velocity y
+                            const velAlongNormal = rvx * nx + rvy * ny;
+
+                            if (velAlongNormal <= 0) continue;
+                            
+                            const restitution = 0.8; // bouncy
+                            const totalMass = ball.mass + otherBall.mass;
+                            const massRatio1 = ((1 + restitution) * otherBall.mass) / totalMass;
+                            const massRatio2 = ((1 + restitution) * ball.mass) / totalMass;
+
+                            // apply new velocities
+                            ball.vx = ball.vx - massRatio1 * velAlongNormal * nx;
+                            ball.vy = ball.vy - massRatio1 * velAlongNormal * ny;
+                            otherBall.vx = otherBall.vx + massRatio2 * velAlongNormal * nx;
+                            otherBall.vy = otherBall.vy + massRatio2 * velAlongNormal * ny;
+                        }
                     }
-                }
+                });
+            }
 
-                // update element position
+            bouncingBalls.forEach(ball => {
                 ball.element.style.left = ball.x + 'px';
                 ball.element.style.top = ball.y + 'px';
             });
@@ -180,6 +217,7 @@
                 }
                 bouncingBalls.forEach(ball => ball.element.remove());
                 bouncingBalls = [];
+                mouseUpHandler();
             },
             apps: function() {
                 window.location.href = '/pages/apps.html';
@@ -364,21 +402,44 @@
                 ball.className = 'ball';
                 ball.style.width = size + 'px';
                 ball.style.height = size + 'px';
-                ball.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+                ball.style.backgroundColor = getBallColor();
                 document.body.appendChild(ball);
 
                 const ballObj = {
-                    element: ball,
-                    x: Math.random() * (window.innerWidth - size),
-                    y: Math.random() * (window.innerHeight / 2),
-                    vx: (Math.random() - 0.5) * speed * 2,
-                    vy: (Math.random() - 0.5) * speed,
-                    radius: size / 2,
-                    gravity: gravity,
-                    mass: Math.PI * (size / 2) * (size / 2) // mass proportional to area
-                };
-                
-                bouncingBalls.push(ballObj);
+                element: ball,
+                x: Math.random() * (window.innerWidth - size),
+                y: Math.random() * (window.innerHeight / 2),
+                vx: (Math.random() - 0.5) * speed * 2,
+                vy: (Math.random() - 0.5) * speed,
+                radius: size / 2,
+                gravity: gravity,
+                originalGravity: gravity,
+                mass: Math.PI * (size / 2) * (size / 2), 
+                isDragging: false
+            };
+
+            // --- drag logic ---
+            ball.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                e.preventDefault();
+
+                draggedBall = ballObj;
+                draggedBall.isDragging = true;
+                draggedBall.element.classList.add('dragging');
+
+                draggedBall.vx = 0;
+                draggedBall.vy = 0;
+                draggedBall.gravity = 0;
+
+                dragOffsetX = e.clientX - draggedBall.x;
+                dragOffsetY = e.clientY - draggedBall.y;
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+            });
+            // --- end drag logic ---
+
+            bouncingBalls.push(ballObj);
 
                 if (!ballAnimationId) {
                     animateBalls();
