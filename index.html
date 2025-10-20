@@ -400,12 +400,11 @@
                 const speedArg = argsArray[1];
                 const gravityArg = argsArray[2];
                 // === NEW: Read count from 4th arg, default to 1, max of 50 ===
-                const count = isNaN(argsArray[3]) || argsArray[3] <= 0 ? 1 : Math.min(Math.floor(argsArray[3]), 50);
+                const count = isNaN(argsArray[3]) || argsArray[3] <= 0 ? 1 : Math.min(Math.floor(argsArray[3]), 500);
 
-                // === NEW: Loop 'count' times ===
                 for (let i = 0; i < count; i++) {
-                    const size = isNaN(sizeArg) || sizeArg <= 0 ? Math.random() * 20 + 10 : sizeArg;
-                    const speed = isNaN(speedArg) || speedArg <= 0 ? Math.random() * 5 + 2 : speedArg / 10;
+                    const size = isNaN(sizeArg) || sizeArg <= 0 ? Math.random() * 100 + 10 : sizeArg;
+                    const speed = isNaN(speedArg) || speedArg <= 0 ? Math.random() * 50 + 2 : speedArg / 10;
                     const gravity = gravityArg == null || gravityArg < 0 || isNaN(gravityArg) ? 0.5 : gravityArg / 10;
 
                     const ball = document.createElement('div');
