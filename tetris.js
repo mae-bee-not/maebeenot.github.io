@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Theme Colors for Tetrominos ---
     const themeColors = {
-      dark: ['#ff79c6', '#ff008cff', '#fde3f2ff', '#ff008cff', '#ff82c9ff', '#ffffffff', '#b95b91ff'],
+      dark: ['#ff79c6', '#ff008cff', '#fde3f2ff', '#ff008cff', '#ff82c9ff', '#ffffffff', '#ff92d0ff'],
       matrix: ['#00ff41', '#049c2aff', '#145825ff', '#0aff16ff', '#44ff73ff', '#00771eff', '#00ff40ff'],
       ocean: ['#64ffda', '#0040ffff', '#00c496ff', '#8892b0', '#ffffffff', '#066affff', '#cdc7f1ff'],
       scary: ['#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000'],
