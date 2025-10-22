@@ -27,46 +27,65 @@
         if (!draggedBall) return;
         e.preventDefault();
 
-        // --- MODIFICATION: Calculate mouse velocity ---
         const deltaX = e.clientX - draggedBall.lastMouseX;
         const deltaY = e.clientY - draggedBall.lastMouseY;
 
-        // --- MODIFICATION: Apply velocity to the ball, with a cap to prevent extreme "throws" ---
         draggedBall.vx = Math.max(-40, Math.min(40, deltaX));
         draggedBall.vy = Math.max(-40, Math.min(40, deltaY));
 
-        // Update the ball's position to follow the cursor
         draggedBall.x = e.clientX - dragOffsetX;
         draggedBall.y = e.clientY - dragOffsetY;
 
-        // --- MODIFICATION: Store the current mouse position for the next frame's calculation ---
         draggedBall.lastMouseX = e.clientX;
         draggedBall.lastMouseY = e.clientY;
     }
 
+    // --- NEW FUNCTION ---
+    function touchMoveHandler(e) {
+        if (!draggedBall) return;
+        e.preventDefault(); 
+
+        const touch = e.touches[0];
+        if (!touch) return; 
+
+        const deltaX = touch.clientX - draggedBall.lastMouseX;
+        const deltaY = touch.clientY - draggedBall.lastMouseY;
+        draggedBall.vx = Math.max(-40, Math.min(40, deltaX));
+        draggedBall.vy = Math.max(-40, Math.min(40, deltaY));
+
+        draggedBall.x = touch.clientX - dragOffsetX;
+        draggedBall.y = touch.clientY - dragOffsetY;
+
+        draggedBall.lastMouseX = touch.clientX;
+        draggedBall.lastMouseY = touch.clientY;
+    }
+    // --- END OF NEW FUNCTION ---
     function mouseUpHandler() {
         if (!draggedBall) return;
         draggedBall.element.classList.remove('dragging');
         draggedBall.isDragging = false;
-        draggedBall.gravity = draggedBall.originalGravity; // Restore gravity
+        draggedBall.gravity = draggedBall.originalGravity; 
         
-        // --- MODIFICATION: We DON'T reset vx/vy here, so the ball retains its thrown velocity ---
         
         draggedBall = null;
-        
+
+        // Remove mouse listeners
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', mouseUpHandler);
+
+        // Also remove touch listeners
+        document.removeEventListener('touchmove', touchMoveHandler, { passive: false });
+        document.removeEventListener('touchend', mouseUpHandler);
+        document.removeEventListener('touchcancel', mouseUpHandler);
     }
 
     function animateBalls() {
         bouncingBalls.forEach((ball, index) => {
-            if (ball.isDragging) return; // Don't apply physics if being dragged
-
+            if (ball.isDragging) return; 
             ball.vy += ball.gravity;
             ball.x += ball.vx;
             ball.y += ball.vy;
 
-            // Wall collisions
             if (ball.x + ball.radius * 2 > window.innerWidth) {
                 ball.x = window.innerWidth - ball.radius * 2;
                 ball.vx *= -0.8;
@@ -472,6 +491,30 @@
                     document.addEventListener('mouseup', mouseUpHandler);
                 });
                 // --- end drag logic ---
+
+                ball.addEventListener('touchstart', (e) => {
+                    e.preventDefault(); 
+                    
+                    const touch = e.touches[0];
+                    if (!touch) return;
+
+                    draggedBall = ballObj;
+                    draggedBall.isDragging = true;
+                    draggedBall.element.classList.add('dragging');
+
+                    draggedBall.vx = 0;
+                    draggedBall.vy = 0;
+                    draggedBall.gravity = 0;
+                    draggedBall.lastMouseX = touch.clientX;
+                    draggedBall.lastMouseY = touch.clientY;
+
+                    dragOffsetX = touch.clientX - draggedBall.x;
+                    dragOffsetY = touch.clientY - draggedBall.y;
+
+                    document.addEventListener('touchmove', touchMoveHandler, { passive: false });
+                    document.addEventListener('touchend', mouseUpHandler); 
+                    document.addEventListener('touchcancel', mouseUpHandler);
+                });
 
                 bouncingBalls.push(ballObj);
 
