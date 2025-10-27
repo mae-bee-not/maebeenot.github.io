@@ -9,6 +9,13 @@
     let dragOffsetX = 0;
     let dragOffsetY = 0;
 
+    // --- Motion Control Variables ---
+    let motionEnabled = false;
+    let motionGravityX = 0;
+    let motionGravityY = 0.5; 
+    let motionPermissionGranted = false;
+
+
     const ballThemeColors = {
       dark: ['#ff79c6', '#ff008cff', '#fde3f2ff', '#ff008cff', '#ff82c9ff', '#ffffffff', '#c45f98ff'],
       matrix: ['#00ff41', '#049c2aff', '#52fa7cff', '#0aff16ff', '#44ff73ff', '#00d535ff', '#00ff40ff'],
@@ -40,7 +47,6 @@
         draggedBall.lastMouseY = e.clientY;
     }
 
-    // --- NEW FUNCTION ---
     function touchMoveHandler(e) {
         if (!draggedBall) return;
         e.preventDefault(); 
@@ -59,13 +65,15 @@
         draggedBall.lastMouseX = touch.clientX;
         draggedBall.lastMouseY = touch.clientY;
     }
-    // --- END OF NEW FUNCTION ---
+
     function mouseUpHandler() {
         if (!draggedBall) return;
         draggedBall.element.classList.remove('dragging');
         draggedBall.isDragging = false;
-        draggedBall.gravity = draggedBall.originalGravity; 
         
+        if (!motionEnabled) {
+            draggedBall.gravity = draggedBall.originalGravity; 
+        }
         
         draggedBall = null;
 
@@ -79,10 +87,59 @@
         document.removeEventListener('touchcancel', mouseUpHandler);
     }
 
+    // --- Device Motion Handler ---
+    function deviceMotionHandler(event) {
+        if (!motionEnabled) return;
+        
+        const accel = event.accelerationIncludingGravity;
+        
+        const sensitivity = 0.5;
+        motionGravityX = Math.max(-9.8, Math.min(9.8, (accel.x || 0))) * sensitivity;
+        motionGravityY = Math.max(-9.8, Math.min(9.8, (accel.y || 0))) * sensitivity;
+
+        motionGravityY = -motionGravityY;
+    }
+
+    // --- Permission Request Function ---
+    function requestMotionPermission() {
+        if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+            DeviceMotionEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        window.addEventListener('devicemotion', deviceMotionHandler);
+                        motionPermissionGranted = true;
+                        motionEnabled = true;
+                        printToHistory('Motion controls <strong>enabled</strong>. Tilt your device!');
+                        bouncingBalls.forEach(ball => ball.gravity = 0);
+                    } else {
+                        printToHistory('Motion permission denied.');
+                    }
+                })
+                .catch((e) => {
+                    console.error(e);
+                    printToHistory('Error requesting motion permission.');
+                });
+        } else {
+            window.addEventListener('devicemotion', deviceMotionHandler);
+            motionPermissionGranted = true;
+            motionEnabled = true;
+            printToHistory('Motion controls <strong>enabled</strong>. Tilt your device!');
+            bouncingBalls.forEach(ball => ball.gravity = 0);
+        }
+    }
+
+
     function animateBalls() {
         bouncingBalls.forEach((ball, index) => {
             if (ball.isDragging) return; 
-            ball.vy += ball.gravity;
+
+            if (motionEnabled) {
+                ball.vx += motionGravityX;
+                ball.vy += motionGravityY;
+            } else {
+                ball.vy += ball.gravity; 
+            }
+
             ball.x += ball.vx;
             ball.y += ball.vy;
 
@@ -260,6 +317,13 @@
             bouncingBalls.forEach(ball => ball.element.remove());
             bouncingBalls = [];
             mouseUpHandler();
+
+            // --- Reset motion controls ---
+            window.removeEventListener('devicemotion', deviceMotionHandler);
+            motionEnabled = false;
+            motionPermissionGranted = false;
+            motionGravityX = 0;
+            motionGravityY = 0.5;
         },
         apps: function() {
             window.location.href = '/pages/apps.html';
@@ -301,7 +365,7 @@
                     printToHistory(`- <strong>${name}</strong>: ${themes[name]}`);
                 }
             } else if (themes[themeName]) {
-                window.terminalThemes.apply(themeName); // Use the global function
+                window.terminalThemes.apply(themeName);
                 printToHistory(`Theme changed to <strong>${themeName}</strong>.`);
             } else {
                 printToHistory(`Theme not found: <strong>${themeName}</strong>.`);
@@ -358,7 +422,7 @@
                 '/assets/deer2.png',
                 '/assets/deer3.webp',
                 '/assets/deer4.webp',
-                '/assets/deer5.png',
+                '/assets.deer5.png',
                 '/assets/deer6.png'
             ];
             for (let i = 0; i < 15; i++) {
@@ -434,6 +498,25 @@
             animateBugs();
         },
         ball: function(args) {
+            if (!motionPermissionGranted) {
+                const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+                if (isTouchDevice) {
+                    printToHistory('Tap the screen to enable motion controls.');
+                    
+                    const requestPermissionHandler = () => {
+                        requestMotionPermission();
+                        document.body.removeEventListener('click', requestPermissionHandler);
+                    };
+                    
+                    document.body.addEventListener('click', requestPermissionHandler);
+                    
+                    return; 
+                } else {
+                    motionPermissionGranted = true; 
+                }
+            }
+
+
             const argsArray = args.split(' ').map(Number);
             
             const sizeArg = argsArray[0];
@@ -444,7 +527,14 @@
             for (let i = 0; i < count; i++) {
                 const size = isNaN(sizeArg) || sizeArg <= 0 ? Math.random() * 100 + 10 : sizeArg;
                 const speed = isNaN(speedArg) || speedArg <= 0 ? Math.random() * 50 + 2 : speedArg / 10;
-                const gravity = gravityArg == null || gravityArg < 0 || isNaN(gravityArg) ? 0.5 : gravityArg / 10;
+    
+                let gravity;
+                if (motionEnabled) {
+                    gravity = 0;
+                } else {
+                    gravity = (gravityArg == null || gravityArg < 0 || isNaN(gravityArg)) ? 0.5 : gravityArg / 10;
+                }
+
 
                 const ball = document.createElement('div');
                 ball.className = 'ball';
@@ -460,12 +550,12 @@
                     vx: (Math.random() - 0.5) * speed * 2,
                     vy: (Math.random() - 0.5) * speed,
                     radius: size / 2,
-                    gravity: gravity,
-                    originalGravity: gravity,
+                    gravity: gravity, 
+                    originalGravity: (gravityArg == null || gravityArg < 0 || isNaN(gravityArg)) ? 0.5 : gravityArg / 10, // Store the intended gravity
                     mass: Math.PI * (size / 2) * (size / 2), 
                     isDragging: false,
-                    lastMouseX: 0, // --- MODIFICATION: Add property to track mouse ---
-                    lastMouseY: 0  // --- MODIFICATION: Add property to track mouse ---
+                    lastMouseX: 0, 
+                    lastMouseY: 0  
                 };
 
                 // --- drag logic ---
@@ -477,7 +567,6 @@
                     draggedBall.isDragging = true;
                     draggedBall.element.classList.add('dragging');
 
-                    // --- MODIFICATION: Stop ball and record start drag position ---
                     draggedBall.vx = 0;
                     draggedBall.vy = 0;
                     draggedBall.gravity = 0;
@@ -526,7 +615,14 @@
             if (count === 1) {
                 const sizeStr = isNaN(sizeArg) || sizeArg <= 0 ? "random" : sizeArg.toFixed(0);
                 const speedStr = isNaN(speedArg) || speedArg <= 0 ? "random" : (speedArg/10).toFixed(1);
-                const gravityStr = (gravityArg == null || isNaN(gravityArg) || gravityArg < 0) ? "default (0.5)" : (gravityArg/10).toFixed(1);
+                
+                let gravityStr;
+                if (motionEnabled) {
+                    gravityStr = "motion-controlled";
+                } else {
+                    gravityStr = (gravityArg == null || isNaN(gravityArg) || gravityArg < 0) ? "default (0.5)" : (gravityArg/10).toFixed(1);
+                }
+
                 printToHistory(`Ball created (Size: ${sizeStr}, Speed: ${speedStr}, Gravity: ${gravityStr})`);
             } else {
                 printToHistory(`Created ${count} balls.`);
