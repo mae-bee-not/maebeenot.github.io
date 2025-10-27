@@ -80,7 +80,7 @@ html, body {
   font-size: var(--font-size-base);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s;
-  overflow: hidden; /* Hide scrollbars that might appear from balls */
+  overflow: auto;
 }
 
 a {
@@ -329,7 +329,7 @@ a:focus,
     width: 100px;
     height: auto;
     animation: run-across 10s linear;
-    z-index: 5; /* Below terminal */
+    z-index: 5; 
 }
 
 @keyframes run-across {
@@ -350,7 +350,7 @@ a:focus,
     width: 250px;
     height: auto;
     animation: pop-in-out 3s ease-in-out;
-    z-index: 20; /* On top of everything */
+    z-index: 20; 
 }
 
 @keyframes pop-in-out {

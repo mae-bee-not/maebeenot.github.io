@@ -109,7 +109,7 @@
                         window.addEventListener('devicemotion', deviceMotionHandler);
                         motionPermissionGranted = true;
                         motionEnabled = true;
-                        printToHistory('Motion controls <strong>enabled</strong>. Tilt your device!');
+                        printToHistory('Motion Controls <strong>enabled</strong>');
                         bouncingBalls.forEach(ball => ball.gravity = 0);
                     } else {
                         printToHistory('Motion permission denied.');
@@ -123,7 +123,7 @@
             window.addEventListener('devicemotion', deviceMotionHandler);
             motionPermissionGranted = true;
             motionEnabled = true;
-            printToHistory('Motion controls <strong>enabled</strong>. Tilt your device!');
+            printToHistory('Motion controls <strong>enabled</strong>');
             bouncingBalls.forEach(ball => ball.gravity = 0);
         }
     }
@@ -501,7 +501,7 @@
             if (!motionPermissionGranted) {
                 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
                 if (isTouchDevice) {
-                    printToHistory('Tap the screen to enable motion controls.');
+                    printToHistory('Tap the screen to enable motion controls');
                     
                     const requestPermissionHandler = () => {
                         requestMotionPermission();
