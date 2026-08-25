@@ -1,0 +1,23 @@
+services:
+  messages-api:
+    build: .
+    container_name: coolbugs-messages-api
+    restart: unless-stopped
+    environment:
+      ALLOWED_ORIGINS: https://terminal.coolbugs.win
+      DATABASE_PATH: /data/messages.sqlite
+      MAX_MESSAGES: 100
+      RATE_LIMIT_WINDOW_SECONDS: 60
+      RATE_LIMIT_MAX_POSTS: 5
+    ports:
+      - "8087:8080"
+    volumes:
+      - messages_data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2).read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  messages_data:

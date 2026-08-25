@@ -153,10 +153,19 @@ async function loadMessages() {
     data.messages.forEach((msg) => {
       const div = document.createElement("div");
       div.className = "message-line";
-      
+
+      const alias = document.createElement("span");
+      alias.className = "alias";
+      alias.textContent = msg.alias ? msg.alias : "Anon";
+
+      const text = document.createTextNode(`: ${msg.text} `);
+
       const date = new Date(msg.created_at).toLocaleString('en-US', { timeZone: 'America/New_York' });
-      div.innerHTML = `<span class="alias">${msg.alias ? msg.alias : "Anon"}</span>: ${msg.text} <span class="timestamp">[${date}]</span>`;
-      
+      const timestamp = document.createElement("span");
+      timestamp.className = "timestamp";
+      timestamp.textContent = `[${date}]`;
+
+      div.append(alias, text, timestamp);
       container.appendChild(div);
     });
     container.scrollTop = container.scrollHeight;
