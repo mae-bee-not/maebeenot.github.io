@@ -16,7 +16,7 @@ Posts are rate limited per client IP with `RATE_LIMIT_MAX_POSTS` inside
 
 1. In Portainer, go to `Stacks` -> `Add stack`.
 2. Use the Git repository option for this repo.
-3. Set the Compose path to `messages-backend/docker-compose.yml`.
+3. Set the Compose path to `backends/messages/docker-compose.yml`.
 4. Deploy the stack.
 5. Point nginx for `messages.coolbugs.win` at `http://127.0.0.1:8087`.
 

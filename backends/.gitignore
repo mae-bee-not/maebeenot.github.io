@@ -1,0 +1,6 @@
+# Local backend runtime files.
+__pycache__/
+*.pyc
+*.sqlite
+*.sqlite-*
+.env

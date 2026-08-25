@@ -26,7 +26,7 @@ manual debugging easier.
 
 1. In Portainer, go to `Stacks` -> `Add stack`.
 2. Use the Git repository option for this repo.
-3. Set the Compose path to `tetris-backend/docker-compose.yml`.
+3. Set the Compose path to `backends/tetris/docker-compose.yml`.
 4. Deploy the stack.
 5. Point nginx for `tetris-leaderboard.coolbugs.win` at `http://127.0.0.1:8088`.
 
@@ -75,4 +75,3 @@ curl -X POST https://tetris-leaderboard.coolbugs.win/api/scores \
   -H 'Content-Type: application/json' \
   -d '{"name":"Mae","score":1200}'
 ```
-
