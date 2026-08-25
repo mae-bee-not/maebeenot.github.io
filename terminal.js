@@ -422,7 +422,6 @@
                 '/assets/deer2.png',
                 '/assets/deer3.webp',
                 '/assets/deer4.webp',
-                '/assets.deer5.png',
                 '/assets/deer6.png'
             ];
             for (let i = 0; i < 15; i++) {
