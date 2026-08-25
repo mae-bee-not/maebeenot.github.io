@@ -79,7 +79,8 @@ body.theme-gruvbox-rainbow .prompt,
 body.theme-gruvbox-rainbow .system-message,
 body.theme-gruvbox-rainbow .history-line strong,
 body.theme-gruvbox-rainbow .game-info h3,
-body.theme-gruvbox-rainbow .game-info h4 {
+body.theme-gruvbox-rainbow .game-info h4,
+body.theme-gruvbox-rainbow .snake-status {
   background: linear-gradient(
     90deg,
     #fb4934,
@@ -426,7 +427,7 @@ a:focus,
     }
 }
 
-/* tetris */
+/* games */
 .game-container {
     display: flex;
     justify-content: center;
@@ -435,9 +436,18 @@ a:focus,
     flex-wrap: wrap;
 }
 
-#tetris, #next {
+#tetris, #next, #snake {
     border: 2px solid var(--border-color);
     background-color: var(--bg-color);
+    image-rendering: pixelated;
+}
+
+#snake {
+    display: block;
+    width: min(480px, 90vw);
+    height: auto;
+    max-width: 100%;
+    touch-action: none;
 }
 
 .game-info {
@@ -461,6 +471,127 @@ a:focus,
 
 .controls p {
     margin: 0.2rem 0;
+}
+
+.snake-game-info {
+    min-width: 250px;
+}
+
+.snake-status {
+    color: var(--accent-color);
+    min-height: 1.6rem;
+    margin: 0.5rem 0;
+}
+
+.snake-settings {
+    margin-top: 1rem;
+    text-align: left;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.snake-settings label {
+    display: grid;
+    gap: 0.2rem;
+    color: var(--text-color);
+}
+
+.snake-settings select,
+.modal-content input {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--terminal-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font: inherit;
+}
+
+.snake-buttons {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.snake-buttons button,
+.modal-content button {
+    min-height: 2.25rem;
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    cursor: pointer;
+    font: inherit;
+}
+
+.snake-buttons button:hover,
+.snake-buttons button:focus,
+.modal-content button:hover,
+.modal-content button:focus {
+    background-color: var(--hover-bg);
+    outline: none;
+}
+
+.leaderboard {
+    margin-top: 1.5rem;
+    text-align: left;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.leaderboard h3 {
+    color: var(--accent-color);
+    margin-top: 0;
+}
+
+.leaderboard ol {
+    padding-left: 1.5rem;
+}
+
+.leaderboard li {
+    overflow-wrap: anywhere;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 30;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: var(--terminal-bg-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    width: 80%;
+    max-width: 400px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.modal-content input {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+    .game-container {
+        gap: 1rem;
+    }
+
+    .snake-buttons {
+        grid-template-columns: 1fr;
+    }
 }
 
 .bug {

@@ -1,0 +1,26 @@
+services:
+  snake-api:
+    build: .
+    container_name: coolbugs-snake-api
+    restart: unless-stopped
+    environment:
+      ALLOWED_ORIGINS: https://terminal.coolbugs.win
+      DATABASE_PATH: /data/snake.sqlite
+      LEADERBOARD_LIMIT: 10
+      MAX_NAME_LENGTH: 30
+      MAX_SETTINGS_LENGTH: 80
+      MAX_SCORE: 999999999
+      RATE_LIMIT_WINDOW_SECONDS: 60
+      RATE_LIMIT_MAX_POSTS: 10
+    ports:
+      - "8089:8080"
+    volumes:
+      - snake_data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2).read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  snake_data:

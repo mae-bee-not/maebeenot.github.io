@@ -60,6 +60,7 @@
             printToHistory('<strong>echo [text]</strong> – print text to the terminal');
             printToHistory('<strong>neofetch</strong> – display user information');
             printToHistory('<strong>tetris</strong> – play Tetris');
+            printToHistory('<strong>snake</strong> – play Snake');
             printToHistory('<strong>ball [size] [speed] [gravity] [count]</strong> – make bouncing balls');
             printToHistory('<strong>help</strong> – show this help message');
             printToHistory('<strong>clear</strong> – clear this terminal');
@@ -98,6 +99,9 @@
         },
         tetris: function() {
              window.location.href = '/pages/tetris.html';
+        },
+        snake: function() {
+             window.location.href = '/pages/snake.html';
         },
         theme: function(args) {
             const themeName = args.trim().toLowerCase();
