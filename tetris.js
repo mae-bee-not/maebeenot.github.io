@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
       matrix: ['#00ff41', '#049c2aff', '#145825ff', '#0aff16ff', '#44ff73ff', '#00771eff', '#00ff40ff'],
       ocean: ['#64ffda', '#0040ffff', '#00c496ff', '#8892b0', '#ffffffff', '#066affff', '#cdc7f1ff'],
       scary: ['#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000', '#ff0000'],
-      light: ['#0055ff', '#ff9679ff', '#0dd7ffff', '#73ff00ff', '#fffb00ff', '#ff4b4bff', '#ff9100ff']
+      light: ['#0055ff', '#ff9679ff', '#0dd7ffff', '#73ff00ff', '#fffb00ff', '#ff4b4bff', '#ff9100ff'],
+      'gruvbox-rainbow': ['#83a598', '#fe8019', '#fb4934', '#b8bb26', '#fabd2f', '#8ec07c', '#d3869b']
     };
 
     function getThemeColors() {

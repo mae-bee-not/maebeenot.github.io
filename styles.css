@@ -63,6 +63,38 @@ body.theme-light {
     --link-color: #0055ff;
 }
 
+body.theme-gruvbox-rainbow {
+  --bg-color: #282828;
+  --terminal-bg-color: #1d2021;
+  --card-bg: #3c3836;
+  --hover-bg: #504945;
+  --text-color: #ebdbb2;
+  --accent-color: #fabd2f;
+  --border-color: #665c54;
+  --link-color: #83a598;
+}
+
+body.theme-gruvbox-rainbow .input-line::before,
+body.theme-gruvbox-rainbow .prompt,
+body.theme-gruvbox-rainbow .system-message,
+body.theme-gruvbox-rainbow .history-line strong,
+body.theme-gruvbox-rainbow .game-info h3,
+body.theme-gruvbox-rainbow .game-info h4 {
+  background: linear-gradient(
+    90deg,
+    #fb4934,
+    #fe8019,
+    #fabd2f,
+    #b8bb26,
+    #8ec07c,
+    #83a598,
+    #d3869b
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 
 /* Global resets */
 * {

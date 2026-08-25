@@ -4,7 +4,8 @@
         'matrix': 'green on black',
         'ocean': 'mint on navy',
         'light': 'blue on white',
-        'scary': 'red on black'
+        'scary': 'red on black',
+        'gruvbox-rainbow': 'warm gruvbox with rainbow accents'
     };
 
     function applyTheme(themeName) {
