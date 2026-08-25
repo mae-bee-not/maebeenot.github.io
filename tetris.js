@@ -57,7 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchLeaderboard() {
       try {
         const response = await fetch(`${API_URL}/api/leaderboard`);
+        if (!response.ok) {
+          throw new Error(`Leaderboard request failed: ${response.status}`);
+        }
         const scores = await response.json();
+        if (!Array.isArray(scores)) {
+          throw new Error('Leaderboard response was not an array');
+        }
         leaderboardList.innerHTML = '';
         scores.forEach(score => {
           const li = document.createElement('li');
@@ -72,13 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function submitScore(name, score) {
       try {
-        await fetch(`${API_URL}/api/scores`, {
+        const response = await fetch(`${API_URL}/api/scores`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ name, score }),
         });
+        if (!response.ok) {
+          throw new Error(`Score submit failed: ${response.status}`);
+        }
         fetchLeaderboard();
       } catch (error) {
         console.error('Failed to submit score:', error);
@@ -186,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('submitScore').addEventListener('click', () => {
-        const name = document.getElementById('playerName').value || 'Anonymous';
+        const name = document.getElementById('playerName').value.trim() || 'Anonymous';
         submitScore(name, score);
         document.getElementById('nameModal').style.display = 'none';
     });
