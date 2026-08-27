@@ -83,7 +83,8 @@
             window.location.href = '/pages/socials.html';
         },
         old: function() {
-            window.location.href = 'https://old.coolbugs.win';
+            const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+            window.location.href = isLocal ? '/old/' : 'https://old.coolbugs.win/';
         },
         message: function() {
             window.location.href = '/pages/messages.html';

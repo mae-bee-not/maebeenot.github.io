@@ -1,0 +1,24 @@
+{
+  "name": "cool bugz",
+  "short_name": "cool bugz",
+  "icons": [
+    {
+      "src": "/old/media/bee-bee-pink16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/old/media/bee-bee-pink32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/old/media/bee-bee-pink64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ff53c3",
+  "background_color": "#000000",
+  "display": "browser"
+}
