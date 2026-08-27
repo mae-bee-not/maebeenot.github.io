@@ -48,10 +48,16 @@ def init_db() -> None:
             CREATE TABLE IF NOT EXISTS scores (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
+                name_key TEXT NOT NULL,
                 score INTEGER NOT NULL,
                 created_at TEXT NOT NULL
             )
             """
+        )
+        ensure_name_key_column(conn)
+        merge_duplicate_names(conn)
+        conn.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_scores_name_key ON scores(name_key)"
         )
         conn.execute(
             "CREATE INDEX IF NOT EXISTS idx_scores_leaderboard ON scores(score DESC, id ASC)"
@@ -66,6 +72,58 @@ def clean_name(value: object) -> str:
     if not normalized:
         return "Anonymous"
     return normalized[:MAX_NAME_LENGTH]
+
+
+def name_key_for(name: str) -> str:
+    return re.sub(r"\s+", " ", name).strip().casefold()
+
+
+def ensure_name_key_column(conn: sqlite3.Connection) -> None:
+    columns = {
+        row[1]
+        for row in conn.execute("PRAGMA table_info(scores)").fetchall()
+    }
+    if "name_key" not in columns:
+        conn.execute("ALTER TABLE scores ADD COLUMN name_key TEXT")
+
+
+def merge_duplicate_names(conn: sqlite3.Connection) -> None:
+    conn.row_factory = sqlite3.Row
+    rows = conn.execute(
+        """
+        SELECT id, name, score, created_at
+        FROM scores
+        ORDER BY id ASC
+        """
+    ).fetchall()
+    if not rows:
+        return
+
+    winners: dict[str, sqlite3.Row] = {}
+    for row in rows:
+        clean = clean_name(row["name"])
+        key = name_key_for(clean)
+        winner = winners.get(key)
+        if (
+            winner is None
+            or row["score"] > winner["score"]
+            or (row["score"] == winner["score"] and row["id"] < winner["id"])
+        ):
+            winners[key] = row
+
+    keep_ids = set()
+    for key, row in winners.items():
+        keep_ids.add(row["id"])
+        conn.execute(
+            "UPDATE scores SET name = ?, name_key = ? WHERE id = ?",
+            (clean_name(row["name"]), key, row["id"]),
+        )
+
+    placeholders = ",".join("?" for _ in keep_ids)
+    conn.execute(
+        f"DELETE FROM scores WHERE id NOT IN ({placeholders})",
+        tuple(keep_ids),
+    )
 
 
 def parse_score(value: object) -> int | None:
@@ -102,21 +160,35 @@ def fetch_leaderboard() -> list[dict[str, object]]:
 
 
 def create_score(name: str, score: int) -> dict[str, object]:
+    name = clean_name(name)
     created_at = utc_now_iso()
     with db_lock, sqlite3.connect(DATABASE_PATH) as conn:
-        cursor = conn.execute(
-            "INSERT INTO scores (name, score, created_at) VALUES (?, ?, ?)",
-            (name, score, created_at),
+        conn.row_factory = sqlite3.Row
+        name_key = name_key_for(name)
+        conn.execute(
+            """
+            INSERT INTO scores (name, name_key, score, created_at)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(name_key) DO UPDATE SET
+                score = excluded.score,
+                created_at = excluded.created_at
+            """,
+            (name, name_key, score, created_at),
         )
+        row = conn.execute(
+            """
+            SELECT id, name, score, created_at
+            FROM scores
+            WHERE name_key = ?
+            """,
+            (name_key,),
+        ).fetchone()
+        if row is None:
+            raise RuntimeError("score upsert failed")
+        record = dict(row)
         conn.commit()
-        score_id = cursor.lastrowid
 
-    return {
-        "id": score_id,
-        "name": name,
-        "score": score,
-        "created_at": created_at,
-    }
+    return record
 
 
 def client_ip(handler: BaseHTTPRequestHandler) -> str:
@@ -237,4 +309,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

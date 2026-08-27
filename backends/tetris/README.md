@@ -22,6 +22,11 @@ Score records look like this:
 The existing frontend only needs `name` and `score`, but the extra fields make
 manual debugging easier.
 
+Player names are matched case-insensitively after whitespace cleanup. If a name
+already exists, submitting another score updates that row's score instead of
+adding a duplicate. When an existing database is migrated, duplicate names are
+collapsed by keeping the highest score.
+
 ## Portainer
 
 1. In Portainer, go to `Stacks` -> `Add stack`.
