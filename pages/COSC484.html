@@ -1,18 +1,81 @@
-<!DOCTYPE html><html>
+<!doctype html>
+<html>
     <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>COSC484</title>
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap"></noscript>
-        <link rel="stylesheet" href="/styles.css?v=502a9ab">
-        <script src="/themes.js?v=502a9ab"></script>
-        <link rel="icon" type="image/ico" href="/assets/terminal.ico">
-    </head>
-<body>
-    <h1>
-        Hello!
-    </h1>
-</body>
+        <head>
+            <meta name="description" content="buzz buzz" />
+            <meta name="keywords" content="maebeenot,mae,bugs,mae beeman" />
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>COSC 484</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link rel="preload" href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" as="style" />
+            <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet" />
+            <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
+            <link rel="icon" type="image/png" sizes="16x16" href="/old/media/bee-bee-pink16x16.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/old/media/bee-bee-pink32x32.png" />
+            <link rel="icon" type="image/png" sizes="64x64" href="/old/media/bee-bee-pink64x64.png" />
+            <link rel="stylesheet" href="/old/styles.css" />
+            <style>
+                body {
+                    background-image: url("/old/media/flying-space.gif");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                pre {
+                    min-height: 200px;
+                }
+            </style>
+            <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js" defer></script>
+            <script src="/old/scripts/effects.js" defer></script>
+            <script src="/old/scripts/oneko.js" defer></script>
+            <script src="/old/scripts/spotify.js" defer></script>
+            <script src="/old/scripts/audio.js" defer></script>
+            <script src="/old/scripts/page-init.js" defer></script>
+
+            <script defer>
+                document.addEventListener("DOMContentLoaded", function () {
+                    setupRainbowCursor();
+                    setupTrailingCursorExclusion();
+                    setupOneko();
+                });
+            </script>
+        </head>
+        <body>
+            <!-- Header Section -->
+            <h1 id="title">Hello!</h1>
+            <header class="index-flex-container">
+                <div class="about-text-area">
+                    <p>
+                        hi! my name is <strong>Mae Beeman</strong>! <br />
+                        i'm a comp sci major at Towson University in my senior year<br />
+                        my birthday is october 23rd and i am currently 21, my birthday is right near halloween which is also my favorite holiday ! <br />
+                        my favorite animal is deer and my favorite color is green, <br />
+                        hence why I adore hiking and such
+                    </p>
+                </div>
+            </header>
+            <div class="flex-container">
+                <div class="socials-box">
+                    <a href="https://github.com/mae-bee-not">
+                        <div class="socials-logo">
+                            <img src="/assets/cosc484_github.webp" alt="github logo" loading="lazy" />
+                        </div>
+                    </a>
+
+                    <a href="/assets/resume.pdf">
+                        <div class="socials-logo">
+                            <img src="/assets/resume.webp" alt="resume logo" loading="lazy" />
+                        </div>
+                    </a>
+
+                    <a href="mailto:mbeeman2@students.towson.edu">
+                        <div class="socials-logo">
+                            <img src="/assets/email.webp" alt="spotify logo" loading="lazy" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </body>
+    </html>
 </html>
