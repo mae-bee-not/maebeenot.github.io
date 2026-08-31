@@ -1,29 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal</title>
-    <script>
-        if (window.location.hostname === 'old.coolbugs.win' && !window.location.pathname.startsWith('/old')) {
-            const oldPath = window.location.pathname === '/' ? '/old/' : '/old' + window.location.pathname;
-            window.location.replace(oldPath + window.location.search + window.location.hash);
-        }
-    </script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
-    <link rel="stylesheet" href="/styles.css?v=snake">
-    <link rel="icon" type="image/ico" href="/assets/terminal.ico">
-    <script src="/themes.js?v=502a9ab"></script>
-</head>
-<body>
-    <main class="terminal" aria-label="Terminal">
-        <section id="history" class="history" aria-live="polite"></section>
-        <div id="input-line" class="input-line" contenteditable="true"
-             spellcheck="false" role="textbox"
-             aria-label="Command line. Type a command and press Enter."></div>
-    </main>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Terminal</title>
+        <script>
+            if (window.location.hostname === "old.coolbugs.win" && !window.location.pathname.startsWith("/old")) {
+                const oldPath = window.location.pathname === "/" ? "/old/" : "/old" + window.location.pathname;
+                window.location.replace(oldPath + window.location.search + window.location.hash);
+            }
+        </script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" />
+        <link rel="stylesheet" href="/styles.css?v=snake" />
+        <link rel="icon" type="image/ico" href="/assets/terminal.ico" />
+        <script src="/themes.js?v=502a9ab"></script>
+    </head>
+    <body>
+        <main class="terminal" aria-label="Terminal">
+            <section id="history" class="history" aria-live="polite"></section>
+            <div id="input-line" class="input-line" contenteditable="true" spellcheck="false" role="textbox" aria-label="Command line. Type a command and press Enter."></div>
+        </main>
 
-    <script src="/ball.js?v=ball-physics" defer></script>
-    <script src="/terminal.js?v=snake" defer></script>
-</body>
+        <script src="/ball.js?v=ball-physics" defer></script>
+        <script src="/terminal.js?v=snake" defer></script>
+    </body>
 </html>

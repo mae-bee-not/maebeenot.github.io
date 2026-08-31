@@ -1,98 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tetris</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
-    <link rel="stylesheet" href="/styles.css?v=502a9ab">
-    <script src="/themes.js?v=502a9ab"></script>
-    <link rel="icon" type="image/ico" href="/assets/terminal.ico">
-    <style>
-        /* Styles for the leaderboard and modal */
-        .leaderboard {
-            margin-top: 1.5rem;
-            text-align: left;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 6px;
-        }
-        .leaderboard h3 {
-            color: var(--accent-color);
-            margin-top: 0;
-        }
-        .leaderboard ol {
-            padding-left: 1.5rem;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.7);
-        }
-        .modal-content {
-            background-color: var(--terminal-bg-color);
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            width: 80%;
-            max-width: 400px;
-            border-radius: 6px;
-            text-align: center;
-        }
-        .modal-content input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-family: 'VT323', monospace;
-        }
-        .modal-content button {
-            padding: 10px 20px;
-            background-color: var(--accent-color);
-            border: none;
-            color: var(--bg-color);
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <main class="page-container">
-        <nav>
-            <a href="/index.html" class="back-link">&larr; Back to Terminal</a>
-        </nav>
-        <h1>Tetris</h1>
-        <div class="game-container">
-            <canvas id="tetris" width="240" height="480"></canvas>
-            <div class="game-info">
-                <div class="leaderboard">
-                    <h3>Leaderboard</h3>
-                    <ol id="leaderboard-list"></ol>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tetris</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap" />
+        <link rel="stylesheet" href="/styles.css?v=502a9ab" />
+        <script src="/themes.js?v=502a9ab"></script>
+        <link rel="icon" type="image/ico" href="/assets/terminal.ico" />
+        <style>
+            /* Styles for the leaderboard and modal */
+            .leaderboard {
+                margin-top: 1.5rem;
+                text-align: left;
+                background-color: var(--card-bg);
+                border: 1px solid var(--border-color);
+                padding: 1rem;
+                border-radius: 6px;
+            }
+            .leaderboard h3 {
+                color: var(--accent-color);
+                margin-top: 0;
+            }
+            .leaderboard ol {
+                padding-left: 1.5rem;
+            }
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            .modal-content {
+                background-color: var(--terminal-bg-color);
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid var(--border-color);
+                width: 80%;
+                max-width: 400px;
+                border-radius: 6px;
+                text-align: center;
+            }
+            .modal-content input {
+                width: calc(100% - 20px);
+                padding: 10px;
+                margin-bottom: 10px;
+                background-color: var(--card-bg);
+                border: 1px solid var(--border-color);
+                color: var(--text-color);
+                font-family: "VT323", monospace;
+            }
+            .modal-content button {
+                padding: 10px 20px;
+                background-color: var(--accent-color);
+                border: none;
+                color: var(--bg-color);
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="page-container">
+            <nav>
+                <a href="/index.html" class="back-link">&larr; Back to Terminal</a>
+            </nav>
+            <h1>Tetris</h1>
+            <div class="game-container">
+                <canvas id="tetris" width="240" height="480"></canvas>
+                <div class="game-info">
+                    <div class="leaderboard">
+                        <h3>Leaderboard</h3>
+                        <ol id="leaderboard-list"></ol>
+                    </div>
+                    <h3>Score: <span id="score">0</span></h3>
+                    <h4>Next:</h4>
+                    <canvas id="next" width="96" height="96"></canvas>
                 </div>
-                <h3>Score: <span id="score">0</span></h3>
-                <h4>Next:</h4>
-                <canvas id="next" width="96" height="96"></canvas>
+            </div>
+        </main>
+
+        <div id="nameModal" class="modal">
+            <div class="modal-content">
+                <h2>Game Over!</h2>
+                <p>Your score: <span id="finalScore">0</span></p>
+                <input type="text" id="playerName" placeholder="Enter your name" maxlength="30" />
+                <button id="submitScore">Submit Score</button>
             </div>
         </div>
-    </main>
 
-    <div id="nameModal" class="modal">
-        <div class="modal-content">
-            <h2>Game Over!</h2>
-            <p>Your score: <span id="finalScore">0</span></p>
-            <input type="text" id="playerName" placeholder="Enter your name" maxlength="30">
-            <button id="submitScore">Submit Score</button>
-        </div>
-    </div>
-
-    <script src="/tetris.js?v=502a9ab"></script>
-</body>
+        <script src="/tetris.js?v=502a9ab"></script>
+    </body>
 </html>
